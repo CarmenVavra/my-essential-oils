@@ -19,7 +19,6 @@ return new class extends Migration
             $table->boolean('sensitive')->default(false);
             $table->boolean('dilute')->default(false);
             $table->boolean('internal')->default(false);
-
             $table->timestamps();
         });
     }

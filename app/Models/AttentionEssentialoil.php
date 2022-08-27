@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class AttentionEssentialoil extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'attention_id',
+        'essentialoil_id',
+    ];
 }

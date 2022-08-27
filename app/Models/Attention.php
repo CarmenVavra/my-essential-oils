@@ -10,6 +10,7 @@ class Attention extends Model
     use HasFactory;
 
     protected $fillable = [
-        
+        'name',
+        'description',
     ];
 }

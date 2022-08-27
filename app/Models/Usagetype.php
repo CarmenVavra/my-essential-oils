@@ -10,6 +10,9 @@ class Usagetype extends Model
     use HasFactory;
 
     protected $fillable = [
-        
+        'pur',
+        'sensitive',
+        'dilute',
+        'internal',
     ];
 }

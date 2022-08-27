@@ -10,6 +10,7 @@ class Incredient extends Model
     use HasFactory;
 
     protected $fillable = [
-        
+        'name',
+        'effect',
     ];
 }

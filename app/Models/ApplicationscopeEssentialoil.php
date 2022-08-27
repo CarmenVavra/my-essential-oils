@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class ApplicationscopeEssentialoil extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'applicationscope_id',
+        'essentialoil_id',
+    ];
 }

@@ -10,6 +10,6 @@ class Method extends Model
     use HasFactory;
 
     protected $fillable = [
-        
+        'name',
     ];
 }

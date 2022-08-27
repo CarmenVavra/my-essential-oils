@@ -10,6 +10,7 @@ class Applicationscope extends Model
     use HasFactory;
 
     protected $fillable = [
-        
+        'name',
+        'name_latin', 
     ];
 }

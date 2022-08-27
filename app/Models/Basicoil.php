@@ -10,6 +10,9 @@ class Basicoil extends Model
     use HasFactory;
 
     protected $fillable = [
-        
+        'name',
+        'skintype',
+        'skinarea',
+        'description',  
     ];
 }
