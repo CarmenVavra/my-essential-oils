@@ -14,7 +14,8 @@ class PlantpartController extends Controller
      */
     public function index()
     {
-        //
+        $plantparts = Plantpart::all();
+        return view('admin.plantparts.index', compact('plantparts'));
     }
 
     /**
@@ -24,7 +25,7 @@ class PlantpartController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.plantparts.create');
     }
 
     /**
@@ -35,7 +36,12 @@ class PlantpartController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'part' => '|min:2|max:255|',
+        ]);
+
+        Plantpart::create($request->all());
+        return redirect()->route('admin.plantparts.index')->with('success', 'Das Pflanzenteil wurde erfolgreich angelegt!');
     }
 
     /**
@@ -57,7 +63,8 @@ class PlantpartController extends Controller
      */
     public function edit(Plantpart $plantpart)
     {
-        //
+        $plantpart = Plantpart::find($plantpart->id);
+        return view('admin.plantparts.edit', compact('plantpart'));
     }
 
     /**
@@ -69,7 +76,12 @@ class PlantpartController extends Controller
      */
     public function update(Request $request, Plantpart $plantpart)
     {
-        //
+        $request->validate([
+            'part' => '|min:2|max:255|',
+        ]);
+
+        $plantpart->update($request->all());
+        return redirect()->route('admin.plantparts.index')->with('success', 'Das Pflanzenteil wurde erfolgreich geändert!');
     }
 
     /**
@@ -80,6 +92,7 @@ class PlantpartController extends Controller
      */
     public function destroy(Plantpart $plantpart)
     {
-        //
+        $plantpart->delete();
+        return redirect()->route('admin.plantparts.index')->with('success', 'Das Pflanzenteil wurde erfolgreich gelöscht!');
     }
 }

@@ -2,15 +2,23 @@
 
 @section('content')
     <div>
-      <form action="{{ route('admin.merchant.store') }}" method="post">
+      <form action="{{ route('admin.usagetype.store') }}" method="post">
         @csrf
         <div class="row">
           <div class="col">
-            <label for="name">Name</label>
+            <label for="name">Pur</label>
             <input type="text" class="form-control" name="name" id="name" placeholder="Name">
           </div>
           <div class="col">
-            <label for="website">Website</label>
+            <label for="website">Verdünnt</label>
+            <input type="text" class="form-control" name="website" id="website" placeholder="http://">
+          </div>
+          <div class="col">
+            <label for="name">Empflindlich</label>
+            <input type="text" class="form-control" name="name" id="name" placeholder="Name">
+          </div>
+          <div class="col">
+            <label for="website">Einnahme</label>
             <input type="text" class="form-control" name="website" id="website" placeholder="http://">
           </div>
           <div class="col">

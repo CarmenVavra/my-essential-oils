@@ -8,10 +8,10 @@
 @if(!empty(session('success')))
   <div class="alert alert-success">{{ session('success') }}</div>
 @endif
-@if(isset($plantparts))
   <div>
-    <h1>Merchants</h1>
+    <h1>Pflanzenteile</h1>
     <a href="{{ route('admin.plantpart.create') }}" class="btn btn-secondary">Neu</a>
+    @if(isset($plantparts))
     <table class="table table-hover table-dark">
       <thead>
         <tr>

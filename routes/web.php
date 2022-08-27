@@ -10,7 +10,9 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\IncredientController;
 use App\Http\Controllers\MentaleffectController;
 use App\Http\Controllers\MerchantController;
+use App\Http\Controllers\MethodController;
 use App\Http\Controllers\PhysicaleffectController;
+use App\Http\Controllers\PlantpartController;
 use App\Http\Controllers\UsagetypeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -59,26 +61,26 @@ Route::get('/basicoil/{basicoil}/edit', [BasicoilController::class, 'edit'])->na
 Route::put('/basicoil/{basicoil}', [BasicoilController::class, 'update'])->name('admin.basicoil.update');
 Route::delete('/basicoil/{basicoil}', [BasicoilController::class, 'destroy'])->name('admin.basicoil.delete');
 
-Route::get('/essentialoils', [EssentialoilController::class, 'index'])->name('admin.essentialoil.index');
+Route::get('/essentialoils', [EssentialoilController::class, 'index'])->name('admin.essentialoils.index');
 Route::get('/essentialoil/create', [EssentialoilController::class, 'create'])->name('admin.essentialoil.create');
 Route::post('/essentialoil', [EssentialoilController::class, 'store'])->name('admin.essentialoil.store');
 Route::get('/essentialoil/{essentialoil}/edit', [EssentialoilController::class, 'edit'])->name('admin.essentialoil.edit');
 Route::put('/essentialoil/{essentialoil}', [EssentialoilController::class, 'update'])->name('admin.essentialoil.update');
 Route::delete('/essentialoil/{essentialoil}', [EssentialoilController::class, 'destroy'])->name('admin.essentialoil.delete');
 
-Route::get('/fragrancenotes', [FragrancenoteController::class, 'index'])->name('admin.fragrancenote.index');
+Route::get('/fragrancenotes', [FragrancenoteController::class, 'index'])->name('admin.fragrancenotes.index');
 Route::get('/fragrancenote/create', [FragrancenoteController::class, 'create'])->name('admin.fragrancenote.create');
 Route::post('/fragrancenote', [FragrancenoteController::class, 'store'])->name('admin.fragrancenote.store');
 Route::get('/fragrancenote/{fragrancenote}/edit', [FragrancenoteController::class, 'edit'])->name('admin.fragrancenote.edit');
 Route::put('/fragrancenote/{fragrancenote}', [FragrancenoteController::class, 'update'])->name('admin.fragrancenote.update');
 Route::delete('/fragrancenote/{fragrancenote}', [FragrancenoteController::class, 'destroy'])->name('admin.fragrancenote.delete');
 
-Route::get('/ncredients', [IncredientController::class, 'index'])->name('admin.incredients.index');
-Route::get('/ncredient/create', [IncredientController::class, 'create'])->name('admin.ncredient.create');
-Route::post('/ncredient', [IncredientController::class, 'store'])->name('admin.ncredient.store');
-Route::get('/ncredient/{ncredient}/edit', [IncredientController::class, 'edit'])->name('admin.ncredient.edit');
-Route::put('/ncredient/{ncredient}', [IncredientController::class, 'update'])->name('admin.ncredient.update');
-Route::delete('/ncredient/{ncredient}', [IncredientController::class, 'destroy'])->name('admin.ncredient.delete');
+Route::get('/incredients', [IncredientController::class, 'index'])->name('admin.incredients.index');
+Route::get('/incredient/create', [IncredientController::class, 'create'])->name('admin.incredient.create');
+Route::post('/incredient', [IncredientController::class, 'store'])->name('admin.incredient.store');
+Route::get('/incredient/{incredient}/edit', [IncredientController::class, 'edit'])->name('admin.incredient.edit');
+Route::put('/incredient/{incredient}', [IncredientController::class, 'update'])->name('admin.incredient.update');
+Route::delete('/incredient/{incredient}', [IncredientController::class, 'destroy'])->name('admin.incredient.delete');
 
 Route::get('/mentaleffects', [MentaleffectController::class, 'index'])->name('admin.mentaleffects.index');
 Route::get('/mentaleffect/create', [MentaleffectController::class, 'create'])->name('admin.mentaleffect.create');
@@ -87,7 +89,7 @@ Route::get('/mentaleffect/{mentaleffect}/edit', [MentaleffectController::class, 
 Route::put('/mentaleffect/{mentaleffect}', [MentaleffectController::class, 'update'])->name('admin.mentaleffect.update');
 Route::delete('/mentaleffect/{mentaleffect}', [MentaleffectController::class, 'destroy'])->name('admin.mentaleffect.delete');
 
-Route::get('/merchant', [MerchantController::class, 'index'])->name('admin.merchants.index');
+Route::get('/merchants', [MerchantController::class, 'index'])->name('admin.merchants.index');
 Route::get('/merchant/create', [MerchantController::class, 'create'])->name('admin.merchant.create');
 Route::post('/merchant', [MerchantController::class, 'store'])->name('admin.merchant.store');
 Route::get('/merchant/{merchant}/edit', [MerchantController::class, 'edit'])->name('admin.merchant.edit');

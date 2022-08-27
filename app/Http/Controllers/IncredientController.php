@@ -14,7 +14,8 @@ class IncredientController extends Controller
      */
     public function index()
     {
-        //
+        $incredients = Incredient::all();
+        return view('admin.incredients.index', compact('incredients'));
     }
 
     /**
@@ -24,7 +25,7 @@ class IncredientController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.incredients.create');
     }
 
     /**
@@ -35,7 +36,13 @@ class IncredientController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => '|min:2|max:255|',
+            'name_latin' => '|min:2|max:255|',
+        ]);
+
+        Incredient::create($request->all());
+        return redirect()->route('admin.incredients.index')->with('success', 'Der Inhaltsstoff wurde erfolgreich erstellt!');
     }
 
     /**
@@ -57,7 +64,8 @@ class IncredientController extends Controller
      */
     public function edit(Incredient $incredient)
     {
-        //
+        $incredient = Incredient::find($incredient->id);
+        return view('admin.incredients.edit', compact('incredient'));
     }
 
     /**
@@ -69,7 +77,13 @@ class IncredientController extends Controller
      */
     public function update(Request $request, Incredient $incredient)
     {
-        //
+        $request->validate([
+            'name' => '|min:2|max:255|',
+            'name_latin' => '|min:2|max:255|',
+        ]);
+
+        $incredient->update($request->all());        
+        return redirect()->route('admin.incredients.index')->with('success', 'Der Inhaltsstoff wurde erfolgreich geändert!');
     }
 
     /**
@@ -80,6 +94,7 @@ class IncredientController extends Controller
      */
     public function destroy(Incredient $incredient)
     {
-        //
+        $incredient->delete();
+        return redirect()->route('admin.incredients.index')->with('success', 'Der Inhaltsstoff wurde erfolgreich gelöscht!');
     }
 }

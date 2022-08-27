@@ -8,29 +8,29 @@
 @if(!empty(session('success')))
   <div class="alert alert-success">{{ session('success') }}</div>
 @endif
-@if(isset($merchants))
+@if(isset($incredients))
   <div>
-    <h1>Merchants</h1>
-    <a href="{{ route('admin.merchant.create') }}" class="btn btn-secondary">Neu</a>
+    <h1>Inhaltsstoffe</h1>
+    <a href="{{ route('admin.incredient.create') }}" class="btn btn-secondary">Neu</a>
     <table class="table table-hover table-dark">
       <thead>
         <tr>
           <th>#</th>
           <th>Name</th>
-          <th>Website</th>
+          <th>Wirkung</th>
           <th>edit</th>
           <th>delete</th>
         </tr>
       </thead>
       <tbody>
-        @foreach($merchants as $merchant)
+        @foreach($incredients as $incredient)
         <tr>
-          <td>{{ $merchant->id }}</td>
-          <td>{{ $merchant->name }}</td>
-          <td><a href="{{ $merchant->website }}" target="_blank">{{ $merchant->website }}</a></td>
-          <td><a href="{{ route('admin.merchant.edit', $merchant->id) }}" class="btn btn-warning">edit</a></td>
+          <td>{{ $incredient->id }}</td>
+          <td>{{ $incredient->name }}</td>
+          <td>{{ $incredient->effect }}</td>
+          <td><a href="{{ route('admin.incredient.edit', $incredient->id) }}" class="btn btn-warning">edit</a></td>
           <td>
-            <form action="{{ route('admin.merchant.delete', $merchant->id) }}" method="post">
+            <form action="{{ route('admin.incredient.delete', $incredient->id) }}" method="post">
               @csrf
               @method('delete')
               <button type="submit" class="btn btn-danger">löschen</button>
@@ -42,9 +42,6 @@
     </table>
   </div>
 @endif
-
-
-
 
 @endsection
 
