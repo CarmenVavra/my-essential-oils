@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.main')
 
 @section('content')
 <div class="container">
@@ -15,6 +15,9 @@
                     @endif
 
                     {{ __('You are logged in!') }}
+                    <div>
+                        <a href="{{ route('admin.dashboard') }}" class="btn btn-primary">zum Dashboard</a>
+                    </div>
                 </div>
             </div>
         </div>

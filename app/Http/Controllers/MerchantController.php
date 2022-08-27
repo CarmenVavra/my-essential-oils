@@ -14,7 +14,8 @@ class MerchantController extends Controller
      */
     public function index()
     {
-        //
+        $merchants = Merchant::all();
+        return view('admin.merchants.index', compact('merchants'));
     }
 
     /**
@@ -24,7 +25,7 @@ class MerchantController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.merchants.create');
     }
 
     /**
@@ -35,7 +36,13 @@ class MerchantController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => '|required|min:2|max:255',
+            'website' => '|max:255|',
+        ]);
+
+        Merchant::create($request->all());
+        return redirect()->route('admin.merchants.index')->with('success', 'Merchant wurde erfolgreich angelegt!');
     }
 
     /**
@@ -57,7 +64,8 @@ class MerchantController extends Controller
      */
     public function edit(Merchant $merchant)
     {
-        //
+        $merchant = Merchant::find($merchant->id);
+        return view('admin.merchants.edit', compact('merchant'));
     }
 
     /**
@@ -69,7 +77,13 @@ class MerchantController extends Controller
      */
     public function update(Request $request, Merchant $merchant)
     {
-        //
+        $request->validate([
+            'name' => '|required|min:2|max:255',
+            'website' => '|max:255|',
+        ]);
+
+        $merchant->update($request->all());
+        return redirect()->route('admin.merchants.index')->with('success', 'Merchant wurde erfolgreich bearbeitet!');
     }
 
     /**
@@ -80,6 +94,7 @@ class MerchantController extends Controller
      */
     public function destroy(Merchant $merchant)
     {
-        //
+        $merchant->delete();
+        return redirect()->route('admin.merchants.index')->with('success', 'Merchant wurde erfolgreich gelöscht!');
     }
 }

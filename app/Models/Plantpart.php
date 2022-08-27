@@ -10,6 +10,6 @@ class Plantpart extends Model
     use HasFactory;
 
     protected $fillable = [
-        
+        'part',
     ];
 }
