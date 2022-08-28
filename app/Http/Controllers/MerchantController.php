@@ -64,7 +64,6 @@ class MerchantController extends Controller
      */
     public function edit(Merchant $merchant)
     {
-        $merchant = Merchant::find($merchant->id);
         return view('admin.merchants.edit', compact('merchant'));
     }
 

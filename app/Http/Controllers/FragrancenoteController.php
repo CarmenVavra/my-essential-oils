@@ -14,7 +14,8 @@ class FragrancenoteController extends Controller
      */
     public function index()
     {
-        //
+        $fragrancenotes = Fragrancenote::all();
+        return view('admin.fragrancenotes.index', compact('fragrancenotes'));
     }
 
     /**
@@ -24,7 +25,7 @@ class FragrancenoteController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.fragrancenotes.create');
     }
 
     /**
@@ -35,7 +36,12 @@ class FragrancenoteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => '|min:2|max:255|',
+        ]);
+
+        Fragrancenote::create($request->all());
+        return redirect()->route('admin.fragrancenotes.index')->with('success', 'Die Duftnote wurde erfolgreich erstellt!');
     }
 
     /**
@@ -57,7 +63,7 @@ class FragrancenoteController extends Controller
      */
     public function edit(Fragrancenote $fragrancenote)
     {
-        //
+        return view('admin.fragrancenotes.edit', compact('fragrancenote'));
     }
 
     /**
@@ -69,7 +75,12 @@ class FragrancenoteController extends Controller
      */
     public function update(Request $request, Fragrancenote $fragrancenote)
     {
-        //
+        $request->validate([
+            'name' => '|min:2|max:255|',
+        ]);
+
+        $fragrancenote->update($request->all());
+        return redirect()->route('admin.fragrancenotes.index')->with('success', 'Die Duftnote wurde erfolgreich geändert!');
     }
 
     /**
@@ -80,6 +91,7 @@ class FragrancenoteController extends Controller
      */
     public function destroy(Fragrancenote $fragrancenote)
     {
-        //
+        $fragrancenote->delete();
+        return redirect()->route('admin.fragrancenotes.index')->with('success', 'Die Duftnote wurde erfolgreich gelöscht!');
     }
 }

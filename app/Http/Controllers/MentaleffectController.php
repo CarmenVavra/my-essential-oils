@@ -14,7 +14,8 @@ class MentaleffectController extends Controller
      */
     public function index()
     {
-        //
+        $mentaleffects = Mentaleffect::all();
+        return view('admin.mentaleffects.index', compact('mentaleffects'));
     }
 
     /**
@@ -24,7 +25,7 @@ class MentaleffectController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.mentaleffect.create');
     }
 
     /**
@@ -35,7 +36,13 @@ class MentaleffectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => '|min:2|max:255|',
+            'description' => '|min:2|max:255|',
+        ]);
+
+        Mentaleffect::create($request->all());
+        return redirect()->route('admin.mentaleffects.index')->with('success', 'Körperliche Wirkung wurde erfolgreich erstellt!');
     }
 
     /**
@@ -57,7 +64,7 @@ class MentaleffectController extends Controller
      */
     public function edit(Mentaleffect $mentaleffect)
     {
-        //
+        return view('admin.mentaleffects.edit', compact('mentaleffect'));
     }
 
     /**
@@ -69,7 +76,13 @@ class MentaleffectController extends Controller
      */
     public function update(Request $request, Mentaleffect $mentaleffect)
     {
-        //
+        $request->validate([
+            'name' => '|min:2|max:255|',
+            'description' => '|min:2|max:255|',
+        ]);
+
+        $mentaleffect->update($request->all());
+        return redirect()->route('admin.mentaleffects.index')->with('success', 'Körperliche Wirkung wurde erfolgreich geändert!');
     }
 
     /**
@@ -80,6 +93,7 @@ class MentaleffectController extends Controller
      */
     public function destroy(Mentaleffect $mentaleffect)
     {
-        //
+        $mentaleffect->delete();
+        return redirect()->route('admin.mentaleffects.index')->with('success', 'Körperliche Wirkung wurde erfolgreich gelöscht!');
     }
 }

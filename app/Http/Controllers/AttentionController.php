@@ -14,7 +14,8 @@ class AttentionController extends Controller
      */
     public function index()
     {
-        //
+        $attentions = Attention::all();
+        return view('admin.attentions.index', compact('attentions'));
     }
 
     /**
@@ -24,7 +25,7 @@ class AttentionController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.attentions.create');
     }
 
     /**
@@ -35,7 +36,13 @@ class AttentionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => '|min:2|max:255|',
+            'description' => '|min:2|max:255|',
+        ]);
+
+        Attention::create($request->all());
+        return redirect()->route('admin.attentions.index')->with('success', 'Der Gefahrenhinweis wurde erfolgreich erstellt!');
     }
 
     /**
@@ -57,7 +64,7 @@ class AttentionController extends Controller
      */
     public function edit(Attention $attention)
     {
-        //
+        return view('admin.attention.edit', compact('attention'));
     }
 
     /**
@@ -69,7 +76,13 @@ class AttentionController extends Controller
      */
     public function update(Request $request, Attention $attention)
     {
-        //
+        $request->validate([
+            'name' => '|min:2|max:255|',
+            'description' => '|min:2|max:255|',
+        ]);
+
+        $attention->update($request->all());
+        return redirect()->route('admin.attentions.index')->with('success', 'Der Gefahrenhinweis wurde erfolgreich geändert!');
     }
 
     /**
@@ -80,6 +93,7 @@ class AttentionController extends Controller
      */
     public function destroy(Attention $attention)
     {
-        //
+        $attention->delete();
+        return redirect()->route('admin.attentions.index')->with('success', 'Der Gefahrenhinweis wurde erfolgreich gelöscht!');
     }
 }

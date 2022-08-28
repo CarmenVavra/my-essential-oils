@@ -64,7 +64,6 @@ class IncredientController extends Controller
      */
     public function edit(Incredient $incredient)
     {
-        $incredient = Incredient::find($incredient->id);
         return view('admin.incredients.edit', compact('incredient'));
     }
 

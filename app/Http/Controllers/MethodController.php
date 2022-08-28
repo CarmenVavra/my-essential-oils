@@ -14,7 +14,8 @@ class MethodController extends Controller
      */
     public function index()
     {
-        //
+        $methods = Method::all();
+        return view('admin.methods.index', compact('methods'));
     }
 
     /**
@@ -24,7 +25,7 @@ class MethodController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.method.create');
     }
 
     /**
@@ -35,7 +36,13 @@ class MethodController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => '|min:2|max:255|',
+            'description' => '|min:2|max:255|',
+        ]);
+
+        Method::create($request->all());
+        return redirect()->route('admin.methods.index')->with('success', 'Das Verfahren wurde erfolgreich erstellt!');
     }
 
     /**
@@ -57,7 +64,7 @@ class MethodController extends Controller
      */
     public function edit(Method $method)
     {
-        //
+        return view('admin.methods.edit', compact('method'));
     }
 
     /**
@@ -69,7 +76,13 @@ class MethodController extends Controller
      */
     public function update(Request $request, Method $method)
     {
-        //
+        $request->validate([
+            'name' => '|min:2|max:255|',
+            'description' => '|min:2|max:255|',
+        ]);
+
+        $method->update($request->all());
+        return redirect()->route('admin.methods.index')->with('success', 'Das Verfahren wurde erfolgreich geändert!');
     }
 
     /**
@@ -80,6 +93,7 @@ class MethodController extends Controller
      */
     public function destroy(Method $method)
     {
-        //
+        $method->delete();
+        return redirect()->route('admin.methods.index')->with('success', 'Das Verfahren wurde erfolgreich gelöscht!');
     }
 }

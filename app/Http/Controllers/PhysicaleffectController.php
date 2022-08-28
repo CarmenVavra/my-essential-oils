@@ -14,7 +14,8 @@ class PhysicaleffectController extends Controller
      */
     public function index()
     {
-        //
+        $physicaleffects = Physicaleffect::all();
+        return view('admin.physicaleffects.index', compact('physicaleffects'));
     }
 
     /**
@@ -24,7 +25,7 @@ class PhysicaleffectController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.physicaleffects.create');
     }
 
     /**
@@ -35,7 +36,14 @@ class PhysicaleffectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => '|min:2|max:255|',
+            'description' => '|min:2|max:255|',
+        ]);
+
+        Physicaleffect::create($request->all());
+        return redirect()->route('admin.physicaleffects.index')->with('success', 'Psychische Wirkung wurde erfolgreich erstellt!');
+
     }
 
     /**
@@ -57,7 +65,7 @@ class PhysicaleffectController extends Controller
      */
     public function edit(Physicaleffect $physicaleffect)
     {
-        //
+        return view('admin.physicaleffects.index', compact('physicaleffect'));
     }
 
     /**
@@ -69,7 +77,13 @@ class PhysicaleffectController extends Controller
      */
     public function update(Request $request, Physicaleffect $physicaleffect)
     {
-        //
+        $request->validate([
+            'name' => '|min:2|max:255|',
+            'description' => '|min:2|max:255|',
+        ]);
+
+        $physicaleffect->update($request->all());
+        return redirect()->route('admin.physicaleffects.index')->with('success', 'Psychische Wirkung wurde erfolgreich geändert!');
     }
 
     /**
@@ -80,6 +94,7 @@ class PhysicaleffectController extends Controller
      */
     public function destroy(Physicaleffect $physicaleffect)
     {
-        //
+        $physicaleffect->delete();
+        return redirect()->route('admin.physicaleffects.index')->with('success', 'Psychische Wirkung wurde erfolgreich gelöscht!');
     }
 }

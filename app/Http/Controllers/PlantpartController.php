@@ -63,7 +63,6 @@ class PlantpartController extends Controller
      */
     public function edit(Plantpart $plantpart)
     {
-        $plantpart = Plantpart::find($plantpart->id);
         return view('admin.plantparts.edit', compact('plantpart'));
     }
 

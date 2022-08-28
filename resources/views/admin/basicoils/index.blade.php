@@ -8,29 +8,33 @@
 @if(!empty(session('success')))
   <div class="alert alert-success">{{ session('success') }}</div>
 @endif
-@if(isset($merchants))
+@if(isset($basicoils))
   <div>
-    <h1>Merchants</h1>
-    <a href="{{ route('admin.merchant.create') }}" class="btn btn-secondary">Neu</a>
+    <h1>Basisöle</h1>
+    <a href="{{ route('admin.basicoil.create') }}" class="btn btn-secondary">Neu</a>
     <table class="table table-hover table-dark">
       <thead>
         <tr>
           <th>#</th>
           <th>Name</th>
-          <th>Website</th>
+          <th>Hauttyp</th>
+          <th>Hautbereich</th>
+          <th>Beschreibung</th>
           <th>edit</th>
           <th>delete</th>
         </tr>
       </thead>
       <tbody>
-        @foreach($merchants as $merchant)
+        @foreach($basicoils as $basicoil)
         <tr>
-          <td>{{ $merchant->id }}</td>
-          <td>{{ $merchant->name }}</td>
-          <td><a href="{{ $merchant->website }}" target="_blank">{{ $merchant->website }}</a></td>
-          <td><a href="{{ route('admin.merchant.edit', $merchant->id) }}" class="btn btn-warning">edit</a></td>
+          <td>{{ $basicoil->id }}</td>
+          <td>{{ $basicoil->name }}</td>
+          <td>{{ $basicoil->skintype }}</td>
+          <td>{{ $basicoil->skinarea }}</td>
+          <td>{{ $basicoil->description }}</td>
+          <td><a href="{{ route('admin.basicoil.edit', $basicoil->id) }}" class="btn btn-warning">edit</a></td>
           <td>
-            <form action="{{ route('admin.merchant.delete', $merchant->id) }}" method="post">
+            <form action="{{ route('admin.basicoil.delete', $basicoil->id) }}" method="post">
               @csrf
               @method('delete')
               <button type="submit" class="btn btn-danger">löschen</button>

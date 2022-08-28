@@ -14,7 +14,8 @@ class ApplicationscopeController extends Controller
      */
     public function index()
     {
-        //
+        $applicationscopes = Applicationscope::all();
+        return view('admin.applicationscopes.index', compact('applicationscopes'));
     }
 
     /**
@@ -24,7 +25,7 @@ class ApplicationscopeController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.applicationscopes.create');
     }
 
     /**
@@ -35,7 +36,13 @@ class ApplicationscopeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => '|min:2|max:255|',
+            'name_latin' => '|min:2|max:255|',
+        ]);
+
+        Applicationscope::create($request->all());
+        return redirect()->route('admin.applicationscopes.index')->with('success', 'Der Anwendungsbereich wurde erfolgreich erstellt!');
     }
 
     /**
@@ -57,7 +64,7 @@ class ApplicationscopeController extends Controller
      */
     public function edit(Applicationscope $applicationscope)
     {
-        //
+        return view('admin.applicationscopes.edit', compact('applicationscope'));
     }
 
     /**
@@ -69,7 +76,13 @@ class ApplicationscopeController extends Controller
      */
     public function update(Request $request, Applicationscope $applicationscope)
     {
-        //
+        $request->validate([
+            'name' => '|min:2|max:255|',
+            'name_latin' => '|min:2|max:255|',
+        ]);
+
+        $applicationscope->update($request->all());
+        return redirect()->route('admin.applicationscopes.index')->with('success', 'Der Anwendungsbereich wurde erfolgreich geändert!');
     }
 
     /**
@@ -80,6 +93,7 @@ class ApplicationscopeController extends Controller
      */
     public function destroy(Applicationscope $applicationscope)
     {
-        //
+        $applicationscope->delete();
+        return redirect()->route('admin.applicationscopes.index')->with('success', 'Der Anwendungsbereich wurde erfolgreich gelöscht!');
     }
 }

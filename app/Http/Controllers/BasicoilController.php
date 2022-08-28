@@ -14,7 +14,8 @@ class BasicoilController extends Controller
      */
     public function index()
     {
-        //
+        $basicoils = Basicoil::all();
+        return view('admin.basicoils.index', compact('basicoils'));
     }
 
     /**
@@ -24,7 +25,7 @@ class BasicoilController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.basicoils.create');
     }
 
     /**
@@ -35,7 +36,15 @@ class BasicoilController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => '|min:2|max:255|',
+            'skintype' => '|min:2|max:255|',
+            'skinarea' => '|min:2|max:255|',
+            'description' => '|min:2|max:255|',
+        ]);
+
+        Basicoil::create($request->all());
+        return redirect()->route('admin.basicoils.index')->with('success', 'Das Basisöl wurde erfolgreich erstellt!');
     }
 
     /**
@@ -57,7 +66,7 @@ class BasicoilController extends Controller
      */
     public function edit(Basicoil $basicoil)
     {
-        //
+        return view('admin.basicoils.edit', compact('basicoil'));
     }
 
     /**
@@ -69,7 +78,15 @@ class BasicoilController extends Controller
      */
     public function update(Request $request, Basicoil $basicoil)
     {
-        //
+        $request->validate([
+            'name' => '|min:2|max:255|',
+            'skintype' => '|min:2|max:255|',
+            'skinarea' => '|min:2|max:255|',
+            'description' => '|min:2|max:255|',
+        ]);
+
+        $basicoil->update($request->all());
+        return redirect()->route('admin.basicoils.index')->with('success', 'Das Basisöl wurde erfolgreich geändert!');
     }
 
     /**
@@ -80,6 +97,7 @@ class BasicoilController extends Controller
      */
     public function destroy(Basicoil $basicoil)
     {
-        //
+        $basicoil->delete();
+        return redirect()->route('admin.basicoils.index')->with('success', 'Das Basisöl wurde erfolgreich gelöscht!');
     }
 }
