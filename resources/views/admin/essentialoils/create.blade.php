@@ -45,7 +45,7 @@
           </div>
         </div>
         <div class="row py-4">
-          <div class="col" style="background-color: black">
+          <div class="col">
             <label for="merchantSelect">Merchant</label>
             <select class="form-control" name="merchantSelect" id="merchantSelect">
               @foreach($data['merchants'] as $key => $merchant)
