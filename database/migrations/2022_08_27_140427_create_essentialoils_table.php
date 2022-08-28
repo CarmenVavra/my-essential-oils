@@ -19,7 +19,10 @@ return new class extends Migration
             $table->string('name_latin')->nullable();
             $table->string('name_english')->nullable();
             $table->string('description')->nullable();
-            $table->foreignId('usagetype_id')->default(0);
+            $table->boolean('pur')->default(false);
+            $table->boolean('dilute')->default(false);
+            $table->boolean('sensitive')->default(false);
+            $table->boolean('internal')->default(false);
             $table->foreignId('merchant_id')->default(0);
             $table->foreignId('method_id')->default(0);
             $table->foreignId('plantpart_id')->default(0);

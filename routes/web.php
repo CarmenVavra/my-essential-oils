@@ -117,11 +117,5 @@ Route::get('/plantpart/{plantpart}/edit', [PlantpartController::class, 'edit'])-
 Route::put('/plantpart/{plantpart}', [PlantpartController::class, 'update'])->name('admin.plantpart.update');
 Route::delete('/plantpart/{plantpart}', [PlantpartController::class, 'destroy'])->name('admin.plantpart.delete');
 
-Route::get('/usagetypes', [UsagetypeController::class, 'index'])->name('admin.usagetypes.index');
-Route::get('/usagetype/create', [UsagetypeController::class, 'create'])->name('admin.usagetype.create');
-Route::post('/usagetype', [UsagetypeController::class, 'store'])->name('admin.usagetype.store');
-Route::get('/usagetype/{usagetype}/edit', [UsagetypeController::class, 'edit'])->name('admin.usagetype.edit');
-Route::put('/usagetype/{usagetype}', [UsagetypeController::class, 'update'])->name('admin.usagetype.update');
-Route::delete('/usagetype/{usagetype}', [UsagetypeController::class, 'destroy'])->name('admin.usagetype.delete');
 
 /* Admin END-Section */

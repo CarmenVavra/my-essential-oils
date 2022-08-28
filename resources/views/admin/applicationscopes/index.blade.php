@@ -28,9 +28,9 @@
           <td>{{ $applicationscope->id }}</td>
           <td>{{ $applicationscope->name }}</td>
           <td>{{ $applicationscope->name_latin }}</td>
-          <td><a href="{{ route('admin.merchant.edit', $applicationscope->id) }}" class="btn btn-warning">edit</a></td>
+          <td><a href="{{ route('admin.applicationscope.edit', $applicationscope->id) }}" class="btn btn-warning">edit</a></td>
           <td>
-            <form action="{{ route('admin.merchant.delete', $applicationscope->id) }}" method="post">
+            <form action="{{ route('admin.applicationscope.delete', $applicationscope->id) }}" method="post">
               @csrf
               @method('delete')
               <button type="submit" class="btn btn-danger">löschen</button>

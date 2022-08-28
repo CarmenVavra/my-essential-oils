@@ -9,7 +9,6 @@
   <li class="list-item"><a href="{{ route('admin.incredients.index') }}">Incredients</a></li>
   <li class="list-item"><a href="{{ route('admin.plantparts.index') }}">Plantparts</a></li>
   <li class="list-item"><a href="{{ route('admin.applicationscopes.index') }}">Application Scopes</a></li>
-  <li class="list-item"><a href="{{ route('admin.usagetypes.index') }}">Usage Types</a></li>
   <li class="list-item"><a href="{{ route('admin.methods.index') }}">Methods</a></li>
   <li class="list-item"><a href="{{ route('admin.fragrancenotes.index') }}">Frangrance Notes</a></li>
   <li class="list-item"><a href="{{ route('admin.attentions.index') }}">Attentions</a></li>

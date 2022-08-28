@@ -64,7 +64,7 @@ class AttentionController extends Controller
      */
     public function edit(Attention $attention)
     {
-        return view('admin.attention.edit', compact('attention'));
+        return view('admin.attentions.edit', compact('attention'));
     }
 
     /**

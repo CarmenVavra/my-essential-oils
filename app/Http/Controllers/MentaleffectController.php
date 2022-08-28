@@ -25,7 +25,7 @@ class MentaleffectController extends Controller
      */
     public function create()
     {
-        return view('admin.mentaleffect.create');
+        return view('admin.mentaleffects.create');
     }
 
     /**

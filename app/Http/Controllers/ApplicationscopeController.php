@@ -38,7 +38,6 @@ class ApplicationscopeController extends Controller
     {
         $request->validate([
             'name' => '|min:2|max:255|',
-            'name_latin' => '|min:2|max:255|',
         ]);
 
         Applicationscope::create($request->all());
@@ -78,7 +77,6 @@ class ApplicationscopeController extends Controller
     {
         $request->validate([
             'name' => '|min:2|max:255|',
-            'name_latin' => '|min:2|max:255|',
         ]);
 
         $applicationscope->update($request->all());
