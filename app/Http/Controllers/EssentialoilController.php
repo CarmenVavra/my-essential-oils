@@ -2,7 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Applicationscope;
+use App\Models\ApplicationscopeEssentialoil;
+use App\Models\Attention;
+use App\Models\AttentionEssentialoil;
 use App\Models\Essentialoil;
+use App\Models\EssentialoilFragrancenote;
+use App\Models\EssentialoilIncredient;
+use App\Models\EssentialoilMentaleffect;
+use App\Models\EssentialoilPhysicaleffect;
+use App\Models\EssentialoilPlantpart;
+use App\Models\Fragrancenote;
+use App\Models\Incredient;
+use App\Models\Mentaleffect;
+use App\Models\Merchant;
+use App\Models\Method;
+use App\Models\Physicaleffect;
+use App\Models\Plantpart;
 use Illuminate\Http\Request;
 
 class EssentialoilController extends Controller
@@ -15,7 +31,20 @@ class EssentialoilController extends Controller
     public function index()
     {
         $essentialoils = Essentialoil::all();
-        return view('admin.essentialoils.index', compact('essentialoils'));
+
+        // TODO: hope it works ... check this
+        // it seems that this does not work 
+        foreach($essentialoils as $essentialoil){
+            $mentalEffects[] = EssentialoilMentaleffect::where('essentialoil_id', $essentialoil->id)->get();
+            $physicalEffects[] = EssentialoilPhysicaleffect::where('essentialoil_id', $essentialoil->id)->get();
+            $fragranceNotes[] = EssentialoilFragrancenote::where('essentialoil_id', $essentialoil->id)->get();
+            $attentions[] = AttentionEssentialoil::where('essentialoil_id', $essentialoil->id)->get();
+            $incredients[] = EssentialoilIncredient::where('essentialoil_id', $essentialoil->id)->get();
+            $applicationScope[] = ApplicationscopeEssentialoil::where('essentialoil_id', $essentialoil->id)->get();
+            $plantParts[] = EssentialoilPlantpart::where('essentialoil_id', $essentialoil->id)->get();
+        }
+
+        return view('admin.essentialoils.index', compact('essentialoils'/* , 'mentalEffects', 'physicalEffects' */));
     }
 
     /**
@@ -25,7 +54,19 @@ class EssentialoilController extends Controller
      */
     public function create()
     {
-        return view('admin.essentialoils.create');
+        $data = [
+            'merchants' => Merchant::all(),
+            'methods' => Method::all(),
+            'plantparts' => Plantpart::all(),
+            'attentions' => Attention::all(),
+            'incredients' => Incredient::all(),
+            'fragrancenotes' => Fragrancenote::all(),
+            'applicationscopes' => Applicationscope::all(),
+            'physicaleffects' => Physicaleffect::all(),
+            'mentaleffects' => Mentaleffect::all(),
+        ];
+   
+        return view('admin.essentialoils.create', compact('data'));
     }
 
     /**
@@ -36,6 +77,7 @@ class EssentialoilController extends Controller
      */
     public function store(Request $request)
     {
+
         $usageTypes = $this->getUsageTypes($request);
  
         $request['pur'] = $usageTypes['pur'];
@@ -43,6 +85,13 @@ class EssentialoilController extends Controller
         $request['sensitive'] = $usageTypes['sensitive'];
         $request['internal'] = $usageTypes['internal'];
 
+/*         $essentialoilData = [
+            'pur' => $usageTypes['pur'],
+            'dilute' => $usageTypes['dilute'],
+            'sensitive' => $usageTypes['sensitive'],
+            'internal' => $usageTypes['internal'],
+        ];
+ */  
         $request->validate([
 
         ]);

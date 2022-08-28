@@ -1,28 +1,24 @@
 @extends('layouts.main')
 
 @section('content')
-    <div>
+    <div class="container">
       <form action="{{ route('admin.essentialoil.store') }}" method="post">
         @csrf
-        <div class="row">
+        <div class="row py-4">
           <div class="col">
-            <label for="name_german">Name Deutsch</label>
             <input type="text" class="form-control" name="name_german" id="name_german" placeholder="Name Deutsch">
           </div>
           <div class="col">
-            <label for="name_latin">Name Latein</label>
             <input type="text" class="form-control" name="name_latin" id="name_latin" placeholder="Name Latein">
           </div>
           <div class="col">
-            <label for="name_english">Name Englisch</label>
             <input type="text" class="form-control" name="name_english" id="name_english" placeholder="Name Englisch">
           </div>
           <div class="col">
-            <label for="description">Beschreibung</label>
             <input type="text" class="form-control" name="description" id="description" placeholder="Beschreibung">
           </div>
         </div>
-        <div class="row">
+        <div class="row py-4">
           <div class="col">
             <div class="form-check form-switch">
               <input class="form-check-input" type="checkbox" name="pur" id="pur">
@@ -48,23 +44,111 @@
             </div>
           </div>
         </div>
-        <div class="row">
-          <div class="col">
-            <label for="merchant_id">Merchant ID</label>
-            <input type="text" class="form-control" name="merchant_id" id="merchant_id" placeholder="Merchant ID">
+        <div class="row py-4">
+          <div class="col" style="background-color: black">
+            <label for="merchantSelect">Merchant</label>
+            <select class="form-control" name="merchantSelect" id="merchantSelect">
+              @foreach($data['merchants'] as $key => $merchant)
+                <option value="{{ $merchant->id }}">{{ $merchant->name }}</option>
+              @endforeach
+            </select>
           </div>
           <div class="col">
-            <label for="method_id">Verfahren ID</label>
-            <input type="text" class="form-control" name="method_id" id="method_id" placeholder="Verfahren ID">
+            <label for="methodSelect">Verfahren</label>
+            <div class="list-group">
+              @foreach($data['methods'] as $key => $method)
+                <label class="list-group-item">
+                  <input class="form-check-input me-1" type="checkbox" value="">
+                  {{ $method->name }}
+                </label>
+              @endforeach
+            </div>
           </div>
           <div class="col">
-            <label for="plantpart_id">Pflanzenteil ID</label>
-            <input type="text" class="form-control" name="plantpart_id" id="plantpart_id" placeholder="Pflanzenteil ID">
+            <label for="plantpartSelect">Pflanzenteile</label>
+            <div class="list-group">
+              @foreach($data['plantparts'] as $key => $plantpart)
+                <label class="list-group-item">
+                  <input class="form-check-input me-1" type="checkbox" value="">
+                  {{ $plantpart->part }}
+                </label>
+              @endforeach
+            </div>
           </div>
         </div>
-        <div class="row">
+        <div class="row py-4">
           <div class="col">
-            <button type="submit" class="btn btn-dark">anlegen</button>
+            <label for="incredientSelect">Inhaltsstoffe</label>
+            <div class="list-group">
+              @foreach($data['incredients'] as $key => $incredient)
+                <label class="list-group-item">
+                  <input class="form-check-input me-1" type="checkbox" value="">
+                  {{ $incredient->name }}
+                </label>
+              @endforeach
+            </div>
+          </div>
+          <div class="col">
+            <label for="applicationscopeSelect">Anwendungsbereiche</label>
+            <div class="list-group">
+              @foreach($data['applicationscopes'] as $key => $applicationscope)
+                <label class="list-group-item">
+                  <input class="form-check-input me-1" type="checkbox" value="">
+                  {{ $applicationscope->name }}
+                </label>
+              @endforeach
+            </div>
+          </div>
+          <div class="col">
+            <label for="attentionSelect">Gefahrenhinweise</label>
+            <div class="list-group">
+              @foreach($data['attentions'] as $key => $attention)
+                <label class="list-group-item">
+                  <input class="form-check-input me-1" type="checkbox" value="">
+                  {{ $attention->name }}
+                </label>
+              @endforeach
+            </div>
+          </div>
+        </div>
+        <div class="row py-4">
+          <div class="col">
+            <label for="physicaleffectSelect">Körperliche Wirkung</label>
+            <div class="list-group">
+              @foreach($data['physicaleffects'] as $key => $physicaleffect)
+                <label class="list-group-item">
+                  <input class="form-check-input me-1" type="checkbox" value="">
+                  {{ $physicaleffect->name }}
+                </label>
+              @endforeach
+            </div>
+          </div>
+          <div class="col">
+            <label for="mentaleffectSelect">Psychische Wirkung</label>
+            <div class="list-group">
+              @foreach($data['mentaleffects'] as $key => $mentaleffect)
+                <label class="list-group-item">
+                  <input class="form-check-input me-1" type="checkbox" value="">
+                  {{ $mentaleffect->name }}
+                </label>
+              @endforeach
+            </div>
+          </div>
+          <div class="col">
+            <label for="fragrancenoteSelect">Duftnoten</label>
+            <div class="list-group">
+              @foreach($data['fragrancenotes'] as $key => $fragrancenote)
+                <label class="list-group-item">
+                  <input class="form-check-input me-1" type="checkbox" value="">
+                  {{ $fragrancenote->name }}
+                </label>
+              @endforeach
+            </div>
+          </div>
+        </div>
+        <div class="row py-4">
+          <div class="col">
+            <button type="submit" class="btn btn-purple">anlegen</button>
           </div>
           </div>
       </form>

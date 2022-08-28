@@ -25,7 +25,7 @@ class MethodController extends Controller
      */
     public function create()
     {
-        return view('admin.method.create');
+        return view('admin.methods.create');
     }
 
     /**
@@ -38,7 +38,6 @@ class MethodController extends Controller
     {
         $request->validate([
             'name' => '|min:2|max:255|',
-            'description' => '|min:2|max:255|',
         ]);
 
         Method::create($request->all());
@@ -78,7 +77,6 @@ class MethodController extends Controller
     {
         $request->validate([
             'name' => '|min:2|max:255|',
-            'description' => '|min:2|max:255|',
         ]);
 
         $method->update($request->all());

@@ -1,3 +1,48 @@
+/* 
+Sage
+#8C9B88
+
+Cream
+#F5E8DA
+
+Purple
+#735E93
+
+Ivory
+#EFF1EF */
+
+body{
+  background-color: #EFF1EF;
+}
+
+.btn.btn-sage{
+  background-color: #8C9B88;
+  color: #F5E8DA
+}
+
+.btn.btn-cream{
+  background-color: #F5E8DA;
+  color: #8C9B88;
+}
+
+.btn.btn-purple{
+  background-color: #735E93;
+  color: #EFF1EF;
+}
+
+.btn.btn-ivory{
+  background-color: #EFF1EF;
+  color: #735E93;
+}
+
+.bg-purple{
+  background-color: #735E93;
+}
+
+.navbar-brand, .nav-link{
+  color: #EFF1EF;
+}
+
 .text-light{
-  color: aliceblue;
+  color: #EFF1EF;
 }
