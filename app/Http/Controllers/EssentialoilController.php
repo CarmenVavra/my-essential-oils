@@ -75,28 +75,25 @@ class EssentialoilController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request){
+
+        
 
         $usageTypes = $this->getUsageTypes($request);
- 
+        //dd($usageTypes);
         $request['pur'] = $usageTypes['pur'];
         $request['dilute'] = $usageTypes['dilute'];
         $request['sensitive'] = $usageTypes['sensitive'];
         $request['internal'] = $usageTypes['internal'];
+        
+        //dd(array_key_exists('part_1', $requestArray));
+        $essentialOil = Essentialoil::create($request->all());
+        
+        
+        
+        $essentialOilId = $essentialOil['id'];
 
-/*         $essentialoilData = [
-            'pur' => $usageTypes['pur'],
-            'dilute' => $usageTypes['dilute'],
-            'sensitive' => $usageTypes['sensitive'],
-            'internal' => $usageTypes['internal'],
-        ];
- */  
-        $request->validate([
 
-        ]);
-
-        Essentialoil::create($request->all());
         return redirect()->route('admin.essentialoils.index')->with('success', 'Das ätherische Öl wurde erfolgreich erstellt!');
     }
 
@@ -131,12 +128,12 @@ class EssentialoilController extends Controller
      */
     public function update(Request $request, Essentialoil $essentialoil)
     {
-        $usageTypes = $this->getUsageTypes($request);
+/*         $usageTypes = $this->getUsageTypes($request);
  
         $request['pur'] = $usageTypes['pur'];
         $request['dilute'] = $usageTypes['dilute'];
         $request['sensitive'] = $usageTypes['sensitive'];
-        $request['internal'] = $usageTypes['internal'];
+        $request['internal'] = $usageTypes['internal']; */
 
         $request->validate([
 
@@ -163,12 +160,19 @@ class EssentialoilController extends Controller
      * 
      * @return array
      */
-    private function getUsageTypes(Request $request){
+    private function getUsageTypes($request){
         return [
+            'pur' => $request['pur'] ? true : false,
+            'dilute' => $request['dilute'] ? true : false,
+            'sensitive' => $request['sensitive'] ? true : false,
+            'internal' => $request['internal'] ? true : false,
+        ];
+
+/*         return [
             'pur' => $request->pur ? true : false,
             'dilute' => $request->dilute ? true : false,
             'sensitive' => $request->sensitive ? true : false,
             'internal' => $request->internal ? true : false,
-        ];
+        ]; */
     }
 }

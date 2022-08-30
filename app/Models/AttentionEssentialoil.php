@@ -13,4 +13,6 @@ class AttentionEssentialoil extends Model
         'attention_id',
         'essentialoil_id',
     ];
+
+    
 }

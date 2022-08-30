@@ -13,4 +13,8 @@ class Attention extends Model
         'name',
         'description',
     ];
+
+    public function attentionEssentialoils(){
+        return $this->belongsToMany(AttentionEssentialoil::class, 'attention_id', 'id');
+    }
 }

@@ -20,6 +20,33 @@ class Essentialoil extends Model
         'internal',
         'merchant_id',
         'method_id',
-        'plantpart_id',
     ];
+
+    /**
+     * foreignkey constraints
+     * 
+     * @return \Illuminate\Http\Response
+     */    
+    public function merchant(){
+        return $this->belongsTo(Merchant::class, 'merchant_id', 'id');
+    }
+
+    /**
+     * foreignkey constraints
+     * 
+     * @return \Illuminate\Http\Response
+     */    
+    public function method(){
+        return $this->belongsTo(Method::class, 'method_id', 'id');
+    }
+
+    /**
+     * foreignkey constraints
+     * 
+     * @return \Illuminate\Http\Response
+     */ 
+    public function attentionEssentialoils(){
+        return $this->belongsToMany(AttentionEssentialoil::class, 'essentialoil_id', 'id');
+    }
+
 }

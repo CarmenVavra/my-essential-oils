@@ -55,21 +55,18 @@
           </div>
           <div class="col">
             <label for="methodSelect">Verfahren</label>
-            <div class="list-group">
+            <select class="form-control" name="methodSelect" id="methodSelect">
               @foreach($data['methods'] as $key => $method)
-                <label class="list-group-item">
-                  <input class="form-check-input me-1" type="checkbox" value="">
-                  {{ $method->name }}
-                </label>
+                <option value="{{ $method->id }}">{{ $method->name }}</option>
               @endforeach
-            </div>
+            </select>
           </div>
           <div class="col">
             <label for="plantpartSelect">Pflanzenteile</label>
             <div class="list-group">
               @foreach($data['plantparts'] as $key => $plantpart)
                 <label class="list-group-item">
-                  <input class="form-check-input me-1" type="checkbox" value="">
+                  <input class="form-check-input me-1" id="plantPartSelect" name="part_{{ $plantpart->id }}" type="checkbox" value="{{ $plantpart->id }}">
                   {{ $plantpart->part }}
                 </label>
               @endforeach
@@ -82,7 +79,7 @@
             <div class="list-group">
               @foreach($data['incredients'] as $key => $incredient)
                 <label class="list-group-item">
-                  <input class="form-check-input me-1" type="checkbox" value="">
+                  <input class="form-check-input me-1" name="incredientId_{{ $incredient->id }}" type="checkbox" value="{{ $incredient->id }}">
                   {{ $incredient->name }}
                 </label>
               @endforeach
@@ -93,7 +90,7 @@
             <div class="list-group">
               @foreach($data['applicationscopes'] as $key => $applicationscope)
                 <label class="list-group-item">
-                  <input class="form-check-input me-1" type="checkbox" value="">
+                  <input class="form-check-input me-1" name="applicationscopeId_{{ $applicationscope->id }}" type="checkbox" value="{{ $applicationscope->id }}">
                   {{ $applicationscope->name }}
                 </label>
               @endforeach
@@ -104,7 +101,7 @@
             <div class="list-group">
               @foreach($data['attentions'] as $key => $attention)
                 <label class="list-group-item">
-                  <input class="form-check-input me-1" type="checkbox" value="">
+                  <input class="form-check-input me-1" name="attentionId_{{ $attention->id }}" type="checkbox" value="{{ $attention->id }}">
                   {{ $attention->name }}
                 </label>
               @endforeach
@@ -117,7 +114,7 @@
             <div class="list-group">
               @foreach($data['physicaleffects'] as $key => $physicaleffect)
                 <label class="list-group-item">
-                  <input class="form-check-input me-1" type="checkbox" value="">
+                  <input class="form-check-input me-1" name="physicaleffectId_{{ $physicaleffect->id }}" type="checkbox" value="{{ $physicaleffect->id }}">
                   {{ $physicaleffect->name }}
                 </label>
               @endforeach
@@ -128,7 +125,7 @@
             <div class="list-group">
               @foreach($data['mentaleffects'] as $key => $mentaleffect)
                 <label class="list-group-item">
-                  <input class="form-check-input me-1" type="checkbox" value="">
+                  <input class="form-check-input me-1" name="mentaleffectId_{{ $mentaleffect->id }}" type="checkbox" value="{{ $mentaleffect->id }}">
                   {{ $mentaleffect->name }}
                 </label>
               @endforeach
@@ -139,7 +136,7 @@
             <div class="list-group">
               @foreach($data['fragrancenotes'] as $key => $fragrancenote)
                 <label class="list-group-item">
-                  <input class="form-check-input me-1" type="checkbox" value="">
+                  <input class="form-check-input me-1" name="fragrancenoteId_{{ $fragrancenote->id }}" type="checkbox" value="{{ $fragrancenote->id }}">
                   {{ $fragrancenote->name }}
                 </label>
               @endforeach

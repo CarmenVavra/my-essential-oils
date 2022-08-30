@@ -12,4 +12,11 @@ class Method extends Model
     protected $fillable = [
         'name',
     ];
+
+    /**
+     * 
+     */
+    public function essentialoils(){
+        return $this->hasMany(Essentialoil::class, 'method_id', 'id');
+    }
 }

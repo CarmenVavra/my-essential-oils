@@ -25,13 +25,6 @@ return new class extends Migration
             $table->boolean('internal')->default(false);
             $table->foreignId('merchant_id')->default(0);
             $table->foreignId('method_id')->default(0);
-            $table->foreignId('plantpart_id')->default(0);
-            $table->foreignId('incredient_id')->default(0);
-            $table->foreignId('applicationscope_id')->default(0);
-            $table->foreignId('attention_id')->default(0);
-            $table->foreignId('physicaleffect_id')->default(0);
-            $table->foreignId('mentaleffect_id')->default(0);
-            $table->foreignId('fragrancenote_id')->default(0);
             $table->timestamps();
         });
     }

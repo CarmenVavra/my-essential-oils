@@ -13,4 +13,12 @@ class Merchant extends Model
         'name',
         'website',
     ];
+
+    /**
+     * 
+     */
+    public function essentialoils(){
+        return $this->hasMany(Essentialoil::class, 'merchant_id', 'id');
+    }
+
 }
