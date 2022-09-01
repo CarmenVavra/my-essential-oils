@@ -46,3 +46,26 @@ body{
 .text-light{
   color: #EFF1EF;
 }
+
+/* input[type="text"], input[type="checkbox"], select{
+  border: 1px solid #735E93;
+}
+ */
+.form-control, .form-check-input{
+  border: 1px solid #735E93;
+}
+
+select.widthHeight::-webkit-scrollbar {
+  width: 18px;
+  height: 14px;
+}
+
+select.style::-webkit-scrollbar-track {
+  border: rgb(180, 180, 180);
+  background-color: #b0a3c2;
+}
+
+select.style::-webkit-scrollbar-thumb {
+  background-color: #735E93;
+  border: 1px solid rgb(193, 193, 193);
+}

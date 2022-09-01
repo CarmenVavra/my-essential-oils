@@ -26,7 +26,6 @@
           <th>Einnahme</th>
           <th>Merchant ID</th>
           <th>Verfahren ID</th>
-          <th>Pflanzenteil ID</th>
           <th>edit</th>
           <th>delete</th>
         </tr>
@@ -45,7 +44,6 @@
           <td>{{ $essentialoil->internal }}</td>
           <td>{{ $essentialoil->merchant_id }}</td>
           <td>{{ $essentialoil->method_id }}</td>
-          <td>{{ $essentialoil->plantpart_id }}</td>
           <td><a href="{{ route('admin.essentialoil.edit', $essentialoil->id) }}" class="btn btn-warning">edit</a></td>
           <td>
             <form action="{{ route('admin.essentialoil.delete', $essentialoil->id) }}" method="post">
@@ -60,10 +58,6 @@
     </table>
   </div>
 @endif
-
-
-
-
 @endsection
 
 @section('js')

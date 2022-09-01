@@ -77,22 +77,61 @@ class EssentialoilController extends Controller
      */
     public function store(Request $request){
 
+        $essentialOils['name_german'] = $request['name_german'] ?? '';
+        $essentialOils['name_latin'] = $request['name_latin'] ?? '';
+        $essentialOils['name_english'] = $request['name_english'] ?? '';
+        $essentialOils['description'] = $request['description'] ?? '';
+        $essentialOils['pur'] = isset($request['pur']) ? true : false;
+        $essentialOils['dilute'] = isset($request['dilute']) ? true : false;
+        $essentialOils['sensitive'] = isset($request['sensitive']) ? true : false;
+        $essentialOils['internal'] = isset($request['internal']) ? true : false;
+        $essentialOils['merchant_id'] = $request['merchantSelect'] ?? '';
+        $essentialOils['method_id'] = $request['methodSelect'] ?? '';
         
-
-        $usageTypes = $this->getUsageTypes($request);
-        //dd($usageTypes);
-        $request['pur'] = $usageTypes['pur'];
-        $request['dilute'] = $usageTypes['dilute'];
-        $request['sensitive'] = $usageTypes['sensitive'];
-        $request['internal'] = $usageTypes['internal'];
-        
-        //dd(array_key_exists('part_1', $requestArray));
-        $essentialOil = Essentialoil::create($request->all());
-        
-        
-        
+        $essentialOil = Essentialoil::create($essentialOils);
         $essentialOilId = $essentialOil['id'];
 
+        if(isset($request['plantpartSelect'])){
+            foreach($request['plantpartSelect'] as $plantpartId){
+                EssentialoilPlantpart::create(['essentialoil_id' => $essentialOilId, 'plantpart_id' => $plantpartId]);
+            }
+        }
+
+        if(isset($request['incredientSelect'])){
+            foreach($request['incredientSelect'] as $incredientId){
+                EssentialoilIncredient::create(['essentialoil_id' => $essentialOilId, 'incredient_id' => $incredientId]);
+            }
+        }
+        
+        if(isset($request['applicationscopeSelect'])){
+            foreach($request['applicationscopeSelect'] as $applicationscopeId){
+                ApplicationscopeEssentialoil::create(['essentialoil_id' => $essentialOilId, 'applicationscope_id' => $applicationscopeId]);
+            }
+        }
+        
+        if(isset($request['attentionSelect'])){
+            foreach($request['attentionSelect'] as $attentionId){
+                AttentionEssentialoil::create(['essentialoil_id' => $essentialOilId, 'attentiont_id' => $attentionId]);
+            }
+        }
+        
+        if(isset($request['physicaleffectSelect'])){
+            foreach($request['physicaleffectSelect'] as $physicaleffectId){
+                EssentialoilPhysicaleffect::create(['essentialoil_id' => $essentialOilId, 'physicaleffect_id' => $physicaleffectId]);
+            }
+        }
+        
+        if(isset($request['mentaleffectSelect'])){
+            foreach($request['mentaleffectSelect'] as $mentaleffectId){
+                EssentialoilMentaleffect::create(['essentialoil_id' => $essentialOilId, 'mentaleffect_id' => $mentaleffectId]);
+            }
+        }
+        
+        if(isset($request['fragrancenoteSelect'])){
+            foreach($request['fragrancenoteSelect'] as $fragrancenoteId){
+                EssentialoilFragrancenote::create(['essentialoil_id' => $essentialOilId, 'fragrancenote_id' => $fragrancenoteId]);
+            }
+        }
 
         return redirect()->route('admin.essentialoils.index')->with('success', 'Das ätherische Öl wurde erfolgreich erstellt!');
     }
@@ -116,7 +155,19 @@ class EssentialoilController extends Controller
      */
     public function edit(Essentialoil $essentialoil)
     {
-        return view('admin.essentialoils.edit', compact('essentialoil'));
+        $data = [
+            'merchants' => Merchant::all(),
+            'methods' => Method::all(),
+            'plantparts' => Plantpart::all(),
+            'attentions' => Attention::all(),
+            'incredients' => Incredient::all(),
+            'fragrancenotes' => Fragrancenote::all(),
+            'applicationscopes' => Applicationscope::all(),
+            'physicaleffects' => Physicaleffect::all(),
+            'mentaleffects' => Mentaleffect::all(),
+        ];
+
+        return view('admin.essentialoils.edit', compact('essentialoil', 'data'));
     }
 
     /**
@@ -128,18 +179,74 @@ class EssentialoilController extends Controller
      */
     public function update(Request $request, Essentialoil $essentialoil)
     {
-/*         $usageTypes = $this->getUsageTypes($request);
- 
-        $request['pur'] = $usageTypes['pur'];
-        $request['dilute'] = $usageTypes['dilute'];
-        $request['sensitive'] = $usageTypes['sensitive'];
-        $request['internal'] = $usageTypes['internal']; */
+        $essentialOils['name_german'] = $request['name_german'] ?? '';
+        $essentialOils['name_latin'] = $request['name_latin'] ?? '';
+        $essentialOils['name_english'] = $request['name_english'] ?? '';
+        $essentialOils['description'] = $request['description'] ?? '';
+        $essentialOils['pur'] = isset($request['pur']) ? true : false;
+        $essentialOils['dilute'] = isset($request['dilute']) ? true : false;
+        $essentialOils['sensitive'] = isset($request['sensitive']) ? true : false;
+        $essentialOils['internal'] = isset($request['internal']) ? true : false;
+        $essentialOils['merchant_id'] = $request['merchantSelect'] ?? '';
+        $essentialOils['method_id'] = (isset($request['methodSelect']) && $request['methodSelect'] != 'first') ? $request['methodSelect'] : 0; 
 
-        $request->validate([
+        $essentialoil->update($essentialOils);
+        $essentialOilId = $essentialoil['id'];
+//dd($request);
+        if(isset($request['plantpartSelect'])){
+            $essentialPlantParts = EssentialoilPlantpart::where('essentialoil_id', $essentialOilId)->get();
+            $count = 0;
+            
+            // TODO: check this ... nicht richtig!!!
 
-        ]);
+            foreach($essentialPlantParts as $essentialPlantPart){
+                $essentialPlantPart->update([
+                    'essentialoil_id' => $essentialOilId, 
+                    'plantpart_id' => $request['plantpartSelect'][$count] ?? $essentialPlantPart['plantpart_id']
+                ]);
+                $count++;
+            }
 
-        $essentialoil->update($request->all());
+        }
+
+/*         if(isset($request['incredientSelect'])){
+            $essentialIncredients = EssentialoilIncredient::where('essentialoil_id', $essentialOilId)->get();
+            foreach($essentialIncredients as $key => $essentialIncredient){
+                $essentialIncredient->update(['essentialoil_id' => $essentialOilId, 'incredient_id' => $request['incredientSelect'][$key]]);
+            }
+        }
+        
+        if(isset($request['applicationscopeSelect'])){
+            foreach($request['applicationscopeSelect'] as $applicationscopeId){
+                ApplicationscopeEssentialoil::create(['essentialoil_id' => $essentialOilId, 'applicationscope_id' => $applicationscopeId]);
+            }
+        }
+        
+        if(isset($request['attentionSelect'])){
+            foreach($request['attentionSelect'] as $attentionId){
+                AttentionEssentialoil::create(['essentialoil_id' => $essentialOilId, 'attentiont_id' => $attentionId]);
+            }
+        }
+        
+        if(isset($request['physicaleffectSelect'])){
+            foreach($request['physicaleffectSelect'] as $physicaleffectId){
+                EssentialoilPhysicaleffect::create(['essentialoil_id' => $essentialOilId, 'physicaleffect_id' => $physicaleffectId]);
+            }
+        }
+        
+        if(isset($request['mentaleffectSelect'])){
+            foreach($request['mentaleffectSelect'] as $mentaleffectId){
+                EssentialoilMentaleffect::create(['essentialoil_id' => $essentialOilId, 'mentaleffect_id' => $mentaleffectId]);
+            }
+        }
+        
+        if(isset($request['fragrancenoteSelect'])){
+            foreach($request['fragrancenoteSelect'] as $fragrancenoteId){
+                EssentialoilFragrancenote::create(['essentialoil_id' => $essentialOilId, 'fragrancenote_id' => $fragrancenoteId]);
+            }
+        }
+ */
+        //$essentialoil->update($request->all());
         return redirect()->route('admin.essentialoils.index')->with('success', 'Das ätherische Öl wurde erfolgreich geändert!');
     }
 
@@ -155,24 +262,4 @@ class EssentialoilController extends Controller
         return redirect()->route('admin.essentialoils.index')->with('success', 'Das ätherische Öl wurde erfolgreich gelöscht!');
     }
 
-    /**
-     * @param Request $request
-     * 
-     * @return array
-     */
-    private function getUsageTypes($request){
-        return [
-            'pur' => $request['pur'] ? true : false,
-            'dilute' => $request['dilute'] ? true : false,
-            'sensitive' => $request['sensitive'] ? true : false,
-            'internal' => $request['internal'] ? true : false,
-        ];
-
-/*         return [
-            'pur' => $request->pur ? true : false,
-            'dilute' => $request->dilute ? true : false,
-            'sensitive' => $request->sensitive ? true : false,
-            'internal' => $request->internal ? true : false,
-        ]; */
-    }
 }

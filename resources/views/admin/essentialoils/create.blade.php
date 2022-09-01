@@ -49,98 +49,76 @@
             <label for="merchantSelect">Merchant</label>
             <select class="form-control" name="merchantSelect" id="merchantSelect">
               @foreach($data['merchants'] as $key => $merchant)
-                <option value="{{ $merchant->id }}">{{ $merchant->name }}</option>
+                <option name="{{ $merchant->id }}" value="{{ $merchant->id }}">{{ $merchant->name }}</option>
               @endforeach
             </select>
           </div>
           <div class="col">
             <label for="methodSelect">Verfahren</label>
             <select class="form-control" name="methodSelect" id="methodSelect">
+              <option value="first">bitte wählen ...</option>
               @foreach($data['methods'] as $key => $method)
-                <option value="{{ $method->id }}">{{ $method->name }}</option>
+                <option name="{{ $method->id }}" value="{{ $method->id }}">{{ $method->name }}</option>
               @endforeach
             </select>
           </div>
           <div class="col">
             <label for="plantpartSelect">Pflanzenteile</label>
-            <div class="list-group">
+            <select class="form-control style widthHeight" name="plantpartSelect[]" id="plantpartSelect" multiple size="3">
               @foreach($data['plantparts'] as $key => $plantpart)
-                <label class="list-group-item">
-                  <input class="form-check-input me-1" id="plantPartSelect" name="part_{{ $plantpart->id }}" type="checkbox" value="{{ $plantpart->id }}">
-                  {{ $plantpart->part }}
-                </label>
+                <option name="{{ $plantpart->id }}" value="{{ $plantpart->id }}">{{ $plantpart->part }}</option>
               @endforeach
-            </div>
-          </div>
+            </select>
         </div>
         <div class="row py-4">
           <div class="col">
             <label for="incredientSelect">Inhaltsstoffe</label>
-            <div class="list-group">
+            <select class="form-control style widthHeight" name="incredientSelect[]" id="incredientSelect" multiple size="3">
               @foreach($data['incredients'] as $key => $incredient)
-                <label class="list-group-item">
-                  <input class="form-check-input me-1" name="incredientId_{{ $incredient->id }}" type="checkbox" value="{{ $incredient->id }}">
-                  {{ $incredient->name }}
-                </label>
+                <option name="{{ $incredient->id }}" value="{{ $incredient->id }}">{{ $incredient->name }}</option>
               @endforeach
-            </div>
+            </select>
           </div>
           <div class="col">
             <label for="applicationscopeSelect">Anwendungsbereiche</label>
-            <div class="list-group">
+            <select class="form-control style widthHeight" name="incredientSelect[]" id="incredientSelect" multiple size="3">
               @foreach($data['applicationscopes'] as $key => $applicationscope)
-                <label class="list-group-item">
-                  <input class="form-check-input me-1" name="applicationscopeId_{{ $applicationscope->id }}" type="checkbox" value="{{ $applicationscope->id }}">
-                  {{ $applicationscope->name }}
-                </label>
+                <option name="{{ $applicationscope->id }}" value="{{ $applicationscope->id }}">{{ $applicationscope->name }}</option>
               @endforeach
-            </div>
+            </select>
           </div>
           <div class="col">
             <label for="attentionSelect">Gefahrenhinweise</label>
-            <div class="list-group">
+            <select class="form-control style widthHeight" name="attentionSelect[]" id="incredientSelect" multiple size="3">
               @foreach($data['attentions'] as $key => $attention)
-                <label class="list-group-item">
-                  <input class="form-check-input me-1" name="attentionId_{{ $attention->id }}" type="checkbox" value="{{ $attention->id }}">
-                  {{ $attention->name }}
-                </label>
+                <option name="{{ $attention->id }}" value="{{ $attention->id }}">{{ $attention->name }}</option>
               @endforeach
-            </div>
-          </div>
+            </select>
         </div>
         <div class="row py-4">
           <div class="col">
             <label for="physicaleffectSelect">Körperliche Wirkung</label>
-            <div class="list-group">
+            <select class="form-control style widthHeight" name="physicaleffectSelect[]" id="physicaleffectSelect" multiple size="3">
               @foreach($data['physicaleffects'] as $key => $physicaleffect)
-                <label class="list-group-item">
-                  <input class="form-check-input me-1" name="physicaleffectId_{{ $physicaleffect->id }}" type="checkbox" value="{{ $physicaleffect->id }}">
-                  {{ $physicaleffect->name }}
-                </label>
+                <option name="{{ $physicaleffect->id }}" value="{{ $physicaleffect->id }}">{{ $physicaleffect->name }}</option>
               @endforeach
-            </div>
+            </select>
           </div>
           <div class="col">
             <label for="mentaleffectSelect">Psychische Wirkung</label>
-            <div class="list-group">
+            <select class="form-control style widthHeight" name="mentaleffectSelect[]" id="mentaleffectSelect" multiple size="3">
               @foreach($data['mentaleffects'] as $key => $mentaleffect)
-                <label class="list-group-item">
-                  <input class="form-check-input me-1" name="mentaleffectId_{{ $mentaleffect->id }}" type="checkbox" value="{{ $mentaleffect->id }}">
-                  {{ $mentaleffect->name }}
-                </label>
+                <option name="{{ $mentaleffect->id }}" value="{{ $mentaleffect->id }}">{{ $mentaleffect->name }}</option>
               @endforeach
-            </div>
+            </select>
           </div>
           <div class="col">
             <label for="fragrancenoteSelect">Duftnoten</label>
-            <div class="list-group">
+            <select class="form-control style widthHeight" name="fragrancenoteSelect[]" id="fragrancenoteSelect" multiple size="3">
               @foreach($data['fragrancenotes'] as $key => $fragrancenote)
-                <label class="list-group-item">
-                  <input class="form-check-input me-1" name="fragrancenoteId_{{ $fragrancenote->id }}" type="checkbox" value="{{ $fragrancenote->id }}">
-                  {{ $fragrancenote->name }}
-                </label>
+                <option name="{{ $fragrancenote->id }}" value="{{ $fragrancenote->id }}">{{ $fragrancenote->name }}</option>
               @endforeach
-            </div>
+            </select>
           </div>
         </div>
         <div class="row py-4">

@@ -14,5 +14,11 @@ class AttentionEssentialoil extends Model
         'essentialoil_id',
     ];
 
-    
+    public function essentialoils(){
+        return $this->belongsTo(Essentialoil::class, 'essentialoil_id', 'id');
+    }
+
+    public function attentions(){
+        return $this->belongsTo(Attention::class, 'attention_id', 'id');
+    }
 }
