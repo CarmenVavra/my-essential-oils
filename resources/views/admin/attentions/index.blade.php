@@ -10,7 +10,7 @@
 @endif
 @if(isset($attentions))
   <div>
-    <h1>Geharenhinweise</h1>
+    <h1>Gefahrenhinweise</h1>
     <a href="{{ route('admin.attention.create') }}" class="btn btn-secondary">Neu</a>
     <table class="table table-hover table-dark">
       <thead>
