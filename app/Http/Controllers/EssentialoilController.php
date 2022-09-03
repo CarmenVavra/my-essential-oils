@@ -115,13 +115,12 @@ class EssentialoilController extends Controller
             }
         }
         
-        if(isset($request['attentionSelect'])){
+/*         if(isset($request['attentionSelect'])){
             foreach($request['attentionSelect'] as $attentionId){
                 $attention = AttentionEssentialoil::create(['essentialoil_id' => $essentialOilId, 'attentiont_id' => $attentionId]);
             }
-        }
+        } */
         
-        dd($attention);
         if(isset($request['physicaleffectSelect'])){
             foreach($request['physicaleffectSelect'] as $physicaleffectId){
                 EssentialoilPhysicaleffect::create(['essentialoil_id' => $essentialOilId, 'physicaleffect_id' => $physicaleffectId]);
@@ -174,8 +173,6 @@ class EssentialoilController extends Controller
      */
     public function edit(Essentialoil $essentialoil)
     {
-
-        
         $data = [
             'merchants' => Merchant::all(),
             'methods' => Method::all(),
@@ -200,8 +197,6 @@ class EssentialoilController extends Controller
      */
     public function update(Request $request, Essentialoil $essentialoil)
     {
-
-
         //dd($request);
         $essentialOils['name_german'] = $request['name_german'] ?? '';
         $essentialOils['name_latin'] = $request['name_latin'] ?? '';
@@ -215,22 +210,35 @@ class EssentialoilController extends Controller
         $essentialOils['method_id'] = (isset($request['methodSelect'])) ? $request['methodSelect'] : 0; 
 
 
-        //$essentialoil->update($essentialOils);
+        $essentialoil->update($essentialOils);
 
 /*         $merchant = $essentialoil->merchant;
         $merchant->update($request['merchantSelect']);
         $method = $essentialoil->method;
         $method->update($request['methodSelect']); */
-        $attentions = $essentialoil->attentions;
+
+        $this->updateEssentialOilPlantParts($request, $essentialoil);
+        $this->updateEssentialOilIncredients($request, $essentialoil);
+        $this->updateEssentialOilFragranceNotes($request, $essentialoil);
+        $this->updateAttentionEssentialOils($request, $essentialoil);
+        $this->updateApplicationScopeEssentialOils($request, $essentialoil);
+        $this->updateEssentialOilPhysicalEffects($request, $essentialoil);
+        $this->updateEssentialOilMentalEffects($request, $essentialoil);
+        
+/*         $attentions = $essentialoil->attentions;
         foreach($attentions as $attention){
             $attention->update($request['attentionSelect']);
         }
-        $plantparts = $essentialoil->plantparts;
+ */
+       
+
+
         //dd($plantparts);
-        foreach($plantparts as $plantpart){
+        /* foreach($plantparts as $plantpart){
+            dd($plantpart);
             // die Felder im plantpartSelect müssen noch in die DB-Spaltennamen umbenannt werden
             $plantpart->update($request['plantpartSelect']);
-        }
+        } */
 /*        $incredients = $essentialoil->incredients;
         $incredients->update($request['incredientSelect']);
         $fragrancenotes = $essentialoil->fragrancenotes;
@@ -245,6 +253,221 @@ class EssentialoilController extends Controller
         //$essentialoil->update($request->all());
         return redirect()->route('admin.essentialoils.index')->with('success', 'Das ätherische Öl wurde erfolgreich geändert!');
     }
+
+    /**
+     * 
+     */
+    private function updateEssentialOilPlantParts(Request $request, EssentialOil $essentialoil){
+        $pivotPlantParts = [];
+        $pivotPlantPartsIds = [];
+        foreach($plantpartsRequest = $request['plantpartSelect'] as $plantpartId){
+            $pivotPlantParts[] = $essentialoil->plantparts;
+            foreach($pivotPlantParts as $pivotPlantPart){
+                foreach($pivotPlantPart as $pivPlantPart){
+                    $pivotPlantPartsIds[] = $pivPlantPart['id'];
+                }
+            }
+
+            if(!in_array($plantpartId, $pivotPlantPartsIds)){
+                EssentialoilPlantpart::create([
+                    'essentialoil_id' => $essentialoil->id,
+                    'plantpart_id' => $plantpartId,
+                ])->session_commit;
+            }            
+        }
+
+        foreach($essentialoil->plantparts as $essPlantPart){
+            if(!in_array($essPlantPart->id, $plantpartsRequest)){
+                $essPlantPart = EssentialoilPlantpart::where('essentialoil_id', $essentialoil->id)
+                                                        ->where('plantpart_id', $essPlantPart->id)->first();
+                $essPlantPart->delete();
+            }
+        }
+    }
+    
+    /**
+     * 
+     */
+    private function updateEssentialOilIncredients(Request $request, EssentialOil $essentialoil){
+        $pivotIncredients = [];
+        $pivotIncredientsIds = [];
+        foreach($incredientsRequest = $request['incredientSelect'] as $incredientId){
+            $pivotIncredients[] = $essentialoil->incredients;
+            foreach($pivotIncredients as $pivotIncredient){
+                foreach($pivotIncredient as $pivInc){
+                    $pivotIncredientsIds[] = $pivInc['id'];
+                }
+            }
+
+            if(!in_array($incredientId, $pivotIncredientsIds)){
+                EssentialoilIncredient::create([
+                    'essentialoil_id' => $essentialoil->id,
+                    'incredient_id' => $incredientId,
+                ])->session_commit;
+            }            
+        }
+
+        foreach($essentialoil->incredients as $essInc){
+            if(!in_array($essInc->id, $incredientsRequest)){
+                $essIncredient = EssentialoilIncredient::where('essentialoil_id', $essentialoil->id)
+                                                        ->where('incredient_id', $essInc->id)->first();
+                $essInc->delete();
+            }
+        }
+    }
+
+    private function updateEssentialOilFragranceNotes(Request $request, EssentialOil $essentialoil){
+        $pivotFragranceNotes = [];
+        $pivotFragranceNotesIds = [];
+        foreach($fragranceNotesRequest = $request['fragrancenoteSelect'] as $fragranceNoteId){
+            $pivotFragranceNotes[] = $essentialoil->fragrancenotes;
+            foreach($pivotFragranceNotes as $pivotFragranceNote){
+                foreach($pivotFragranceNote as $pivFragNote){
+                    $pivotFragranceNotesIds[] = $pivFragNote['id'];
+                }
+            }
+
+            if(!in_array($fragranceNoteId, $pivotFragranceNotesIds)){
+                EssentialoilFragrancenote::create([
+                    'essentialoil_id' => $essentialoil->id,
+                    'fragrancenote_id' => $fragranceNoteId,
+                ])->session_commit;
+            }            
+        }
+
+        foreach($essentialoil->fragrancenotes as $essFragNote){
+            if(!in_array($essFragNote->id, $fragranceNotesRequest)){
+                $essFragNote = EssentialoilFragrancenote::where('essentialoil_id', $essentialoil->id)
+                                                        ->where('fragrancenote_id', $essFragNote->id)->first();
+                $essFragNote->delete();
+            }
+        }
+
+    }
+    
+    private function updateAttentionEssentialOils(Request $request, EssentialOil $essentialoil){
+        $pivotAttentions = [];
+        $pivotAttentionsIds = [];
+        foreach($attentionsRequest = $request['attentionSelect'] as $attentionId){
+            $pivotAttentions[] = $essentialoil->attentions;
+            foreach($pivotAttentions as $pivotAttention){
+                foreach($pivotAttention as $pivAtt){
+                    $pivotAttentionsIds[] = $pivAtt['id'];
+                }
+            }
+
+            if(!in_array($attentionId, $pivotAttentionsIds)){
+                EssentialoilIncredient::create([
+                    'essentialoil_id' => $essentialoil->id,
+                    'attention_id' => $attentionId,
+                ])->session_commit;
+            }            
+        }
+
+        foreach($essentialoil->attentions as $essAtt){
+            if(!in_array($essAtt->id, $attentionsRequest)){
+                $attEss = AttentionEssentialoil::where('essentialoil_id', $essentialoil->id)
+                                                ->where('attention_id', $essAtt->id)->first();
+                $attEss->delete();
+            }
+        }
+    } 
+
+    private function updateApplicationScopeEssentialOils(Request $request, EssentialOil $essentialoil){
+
+        if(is_null($request['applicationScopeRequest'])){
+            return '';
+        }
+        $pivotApplicationScopes = [];
+        $pivotApplicationScopesIds = [];
+        foreach($applicationScopesRequest = $request['applicationScopeSelect'] as $applicationScopeId){
+            $pivotApplicationScopes[] = $essentialoil->applicationScopes;
+            foreach($pivotApplicationScopes as $pivotApplicationScope){
+                foreach($pivotApplicationScope as $pivApp){
+                    $pivotApplicationScopesIds[] = $pivApp['id'];
+                }
+            }
+
+            if(!in_array($applicationScopeId, $pivotApplicationScopesIds)){
+                ApplicationScopeEssentialoil::create([
+                    'essentialoil_id' => $essentialoil->id,
+                    'applicationScope_id' => $applicationScopeId,
+                ])->session_commit;
+            }            
+        }
+
+        foreach($essentialoil->applicationScopes as $essApp){
+            if(!in_array($essApp->id, $applicationScopesRequest)){
+                $appEss = ApplicationScopeEssentialoil::where('essentialoil_id', $essentialoil->id)
+                                                        ->where('applicationScope_id', $essApp->id)->first();
+                $appEss->delete();
+            }
+        }
+    }
+    
+    private function updateEssentialOilPhysicalEffects(Request $request, EssentialOil $essentialoil){
+        if(is_null($request['PhysicalEffectRequest'])){
+
+            return $essentialoil->physicaleffects()->delete();
+        }
+        $pivotPhysicalEffects = [];
+        $pivotPhysicalEffectsIds = [];
+        foreach($physicalEffectsRequest = $request['physicaleffectSelect'] as $physicalEffectId){
+            $pivotPhysicalEffects[] = $essentialoil->physicalEffects;
+            foreach($pivotPhysicalEffects as $pivotPhysicalEffect){
+                foreach($pivotPhysicalEffect as $pivPhysEff){
+                    $pivotPhysicalEffectsIds[] = $pivPhysEff['id'];
+                }
+            }
+
+            if(!in_array($physicalEffectId, $pivotPhysicalEffectsIds)){
+                EssentialoilPhysicalEffect::create([
+                    'essentialoil_id' => $essentialoil->id,
+                    'physicalEffect_id' => $physicalEffectId,
+                ])->session_commit;
+            }            
+        }
+
+        foreach($essentialoil->physicalEffects as $essPhysEff){
+            if(!in_array($essPhysEff->id, $physicalEffectsRequest)){
+                $essPhysEff = EssentialoilPhysicalEffect::where('essentialoil_id', $essentialoil->id)
+                                                        ->where('physicalEffect_id', $essPhysEff->id)->first();
+                $essPhysEff->delete();
+            }
+        }
+    }
+
+    private function updateEssentialOilMentalEffects(Request $request, EssentialOil $essentialoil){
+        if(is_null($request['MentalEffectRequest'])){
+            return '';
+        }
+        $pivotMentalEffects = [];
+        $pivotMentalEffectsIds = [];
+        foreach($mentalEffectsRequest = $request['mentaleffectSelect'] as $mentalEffectId){
+            $pivotMentalEffects[] = $essentialoil->mentalEffects;
+            foreach($pivotMentalEffects as $pivotMentalEffect){
+                foreach($pivotMentalEffect as $pivMentEff){
+                    $pivotMentalEffectsIds[] = $pivMentEff['id'];
+                }
+            }
+
+            if(!in_array($mentalEffectId, $pivotMentalEffectsIds)){
+                EssentialoilMentalEffect::create([
+                    'essentialoil_id' => $essentialoil->id,
+                    'mentalEffect_id' => $mentalEffectId,
+                ])->session_commit;
+            }            
+        }
+
+        foreach($essentialoil->mentalEffects as $essMentEff){
+            if(!in_array($essMentEff->id, $mentalEffectsRequest)){
+                $essMentEff = EssentialoilMentalEffect::where('essentialoil_id', $essentialoil->id)
+                                                        ->where('mentalEffect_id', $essMentEff->id)->first();
+                $essMentEff->delete();
+            }
+        }
+    }
+
 
     /**
      * Remove the specified resource from storage.

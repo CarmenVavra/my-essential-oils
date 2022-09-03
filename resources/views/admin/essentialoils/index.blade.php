@@ -19,9 +19,10 @@
           <th>#</th>
           <th>Name Deutsch</th>
           <th>Name Latein</th>
+          <th>Name Englisch</th>
           <th class="align-center">Pur</th>
           <th class="align-center">Verdünnt</th>
-          <th class="align-center">Empflindlich</th>
+          <th class="align-center">Empfindlich</th>
           <th class="align-center">Einnahme</th>
           <th>Merchant ID</th>
           <th>Verfahren ID</th>
@@ -36,7 +37,7 @@
           <td>{{ $essentialOil->id }}</td>
           <td>{{ $essentialOil->name_german }}</td>
           <td>{{ $essentialOil->name_latin }}</td>
-          
+          <td>{{ $essentialOil->name_english }}</td>
           <td class="align-center">
             @if($essentialOil->pur == 1)
               <div class="badge bg-warning">P</div>
