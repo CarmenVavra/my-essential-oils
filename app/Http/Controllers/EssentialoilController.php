@@ -68,6 +68,8 @@ class EssentialoilController extends Controller
             'physicaleffects' => Physicaleffect::all(),
             'mentaleffects' => Mentaleffect::all(),
         ];
+
+        
    
         return view('admin.essentialoils.create', compact('data'));
     }
@@ -94,9 +96,6 @@ class EssentialoilController extends Controller
         $essentialOil = Essentialoil::create($essentialOils);
         $essentialOilId = $essentialOil['id'];
         
-        
-        
-        
         if(isset($request['plantpartSelect'])){
             foreach($request['plantpartSelect'] as $plantpartId){
                 $plantpart = EssentialoilPlantpart::create(['essentialoil_id' => $essentialOilId, 'plantpart_id' => $plantpartId]);
@@ -115,11 +114,11 @@ class EssentialoilController extends Controller
             }
         }
         
-/*         if(isset($request['attentionSelect'])){
+        if(isset($request['attentionSelect'])){
             foreach($request['attentionSelect'] as $attentionId){
-                $attention = AttentionEssentialoil::create(['essentialoil_id' => $essentialOilId, 'attentiont_id' => $attentionId]);
+                AttentionEssentialoil::create(['essentialoil_id' => $essentialOilId, 'attentiont_id' => $attentionId]);
             }
-        } */
+        }
         
         if(isset($request['physicaleffectSelect'])){
             foreach($request['physicaleffectSelect'] as $physicaleffectId){
@@ -184,8 +183,24 @@ class EssentialoilController extends Controller
             'physicaleffects' => Physicaleffect::all(),
             'mentaleffects' => Mentaleffect::all(),
         ];
+        
 
-        return view('admin.essentialoils.edit', compact('essentialoil', 'data'));
+        // TODO check this ... i am confused 
+        //dd(EssentialoilPlantpart::where('essentialoil_id', $essentialoil->id)->get());
+
+/*         $pivotIds = [
+            'essentialoil_plantparts' => EssentialoilPlantpart::where('essentialoil_id', $essentialoil->id)->get(), 
+            'essentialoil_incredients' => EssentialoilIncredient::where('essentialoil_id', $essentialoil->id)->get(),
+            'essentialoil_fragrancenotes' => EssentialoilFragrancenote::where('essentialoil_id', $essentialoil->id)->get(),
+            'attention_essentialoils' => AttentionEssentialoil::where('essentialoil_id', $essentialoil->id)->get(),
+            'applicationscope_essentialoils' => ApplicationscopeEssentialoil::where('essentialoil_id', $essentialoil->id)->get(),
+            'essentialoil_physicaleffects' => EssentialoilPhysicaleffect::where('essentialoil_id', $essentialoil->id)->get(),
+            'essentialoil_mentaleffects' => EssentialoilMentaleffect::where('essentialoil_id', $essentialoil->id)->get(),
+        ];
+        
+        dd('pivotIds',$data); */
+
+        return view('admin.essentialoils.edit', compact('essentialoil', 'data'/* , 'pivotIds' */));
     }
 
     /**
@@ -224,33 +239,7 @@ class EssentialoilController extends Controller
         $this->updateApplicationScopeEssentialOils($request, $essentialoil);
         $this->updateEssentialOilPhysicalEffects($request, $essentialoil);
         $this->updateEssentialOilMentalEffects($request, $essentialoil);
-        
-/*         $attentions = $essentialoil->attentions;
-        foreach($attentions as $attention){
-            $attention->update($request['attentionSelect']);
-        }
- */
-       
 
-
-        //dd($plantparts);
-        /* foreach($plantparts as $plantpart){
-            dd($plantpart);
-            // die Felder im plantpartSelect müssen noch in die DB-Spaltennamen umbenannt werden
-            $plantpart->update($request['plantpartSelect']);
-        } */
-/*        $incredients = $essentialoil->incredients;
-        $incredients->update($request['incredientSelect']);
-        $fragrancenotes = $essentialoil->fragrancenotes;
-        $fragrancenotes->update($request['fragrancenoteSelect']);
-        $applicationscope = $essentialoil->applicationscopes;
-        $applicationscope->update($request['applicationscopeSelect']);
-        $physicaleffects = $essentialoil->physicaleffects;
-        $physicaleffects->update($request['physicaleffectSelect']);
-        $mentaleffects = $essentialoil->mentaleffects;
-        $mentaleffects->update($request['mentaleffectSelect']); */
-
-        //$essentialoil->update($request->all());
         return redirect()->route('admin.essentialoils.index')->with('success', 'Das ätherische Öl wurde erfolgreich geändert!');
     }
 
@@ -345,6 +334,9 @@ class EssentialoilController extends Controller
 
     }
     
+    /**
+     * 
+     */
     private function updateAttentionEssentialOils(Request $request, EssentialOil $essentialoil){
         $pivotAttentions = [];
         $pivotAttentionsIds = [];

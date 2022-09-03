@@ -2,6 +2,7 @@
 
 @section('content')
   @if(isset($essentialoil))
+{{--   {{ dd($essentialoil->plantparts) }} --}}
     <div class="container">
       <form action="{{ route('admin.essentialoil.update', $essentialoil->id) }}" method="post">
         @csrf
@@ -97,7 +98,7 @@
                     <label for="plantpartSelect">Pflanzenteile</label>
                     <select class="form-control style widthHeight" name="plantpartSelect[]" id="plantpartSelect" multiple size="3">
                       @foreach($data['plantparts'] as $key => $plantpart)
-                        <option name="{{ $plantpart->id }}" value="{{ $plantpart->id }}"{{--  @if(in_array($plantpart->id, $pivotIds['essentialoil_plantpart_ids'])) selected @endif --}}>{{ $plantpart->part }}</option>
+                        <option name="{{ $plantpart->id }}" value="{{ $plantpart->id }}"@if(in_array($plantpart->id, $pivotIds['essentialoil_plantparts']['plantpart_id'])) selected @endif>{{ $plantpart->part }}</option>
                       @endforeach
                     </select>
                   </div>
