@@ -16,7 +16,9 @@ return new class extends Migration
         Schema::create('incredients', function (Blueprint $table) {
             $table->id();
             $table->string('name')->nullable();
-            $table->string('effect')->nullable();
+            $table->string('description', 1024)->nullable();
+            $table->string('physical_effect', 1024)->nullable();
+            $table->string('mental_effect', 1024)->nullable();
             $table->timestamps();
         });
     }

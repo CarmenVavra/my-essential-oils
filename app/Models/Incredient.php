@@ -11,6 +11,8 @@ class Incredient extends Model
 
     protected $fillable = [
         'name',
-        'effect',
+        'description',
+        'physical_effect',
+        'mental_effect',
     ];
 }

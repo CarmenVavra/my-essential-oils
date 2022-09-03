@@ -17,6 +17,7 @@
         <tr>
           <th>#</th>
           <th>Name</th>
+          <th>Beschreibung</th>
           <th>edit</th>
           <th>delete</th>
         </tr>
@@ -26,6 +27,7 @@
         <tr>
           <td>{{ $fragrancenote->id }}</td>
           <td>{{ $fragrancenote->name }}</td>
+          <td>{{ $fragrancenote->description }}</td>
           <td><a href="{{ route('admin.fragrancenote.edit', $fragrancenote->id) }}" class="btn btn-warning">edit</a></td>
           <td>
             <form action="{{ route('admin.fragrancenote.delete', $fragrancenote->id) }}" method="post">

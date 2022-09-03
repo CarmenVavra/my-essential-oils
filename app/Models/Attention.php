@@ -14,7 +14,7 @@ class Attention extends Model
         'description',
     ];
 
-    public function attentionEssentialoils(){
-        return $this->belongsToMany(AttentionEssentialoil::class, 'attention_id', 'id');
+    public function essentialoils(){
+        return $this->belongsToMany(Essentialoil::class, 'attention_essentialoils', 'attention_id', 'essentialoil_id');
     }
 }

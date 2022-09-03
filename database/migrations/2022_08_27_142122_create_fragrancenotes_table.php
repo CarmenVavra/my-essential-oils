@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('fragrancenotes', function (Blueprint $table) {
             $table->id();
             $table->string('name')->nullable();
+            $table->string('description', 1024)->nullable();
             $table->timestamps();
         });
     }

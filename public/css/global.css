@@ -47,6 +47,11 @@ body{
   color: #EFF1EF;
 }
 
+#essentialOils td.align-center, #essentialOils th.align-center{
+  text-align: center;
+}
+
+
 /* input[type="text"], input[type="checkbox"], select{
   border: 1px solid #735E93;
 }
@@ -68,4 +73,9 @@ select.style::-webkit-scrollbar-track {
 select.style::-webkit-scrollbar-thumb {
   background-color: #735E93;
   border: 1px solid rgb(193, 193, 193);
+}
+
+.under-heading{
+  font-style: italic;
+  margin-bottom: 20px;
 }

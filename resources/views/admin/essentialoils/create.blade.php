@@ -84,7 +84,6 @@
                   <div class="col">
                     <label for="methodSelect">Verfahren</label>
                     <select class="form-control" name="methodSelect" id="methodSelect">
-                      <option value="first">bitte wählen ...</option>
                       @foreach($data['methods'] as $key => $method)
                         <option name="{{ $method->id }}" value="{{ $method->id }}">{{ $method->name }}</option>
                       @endforeach

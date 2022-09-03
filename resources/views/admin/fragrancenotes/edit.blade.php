@@ -12,7 +12,11 @@
             <input type="text" class="form-control" name="name" id="name" placeholder="Duftnote" value="{{ $fragrancenote->name }}">
           </div>
           <div class="col">
-            <button type="submit" class="btn btn-dark">anlegen</button>
+            <label for="description">Beschreibung</label>
+            <input type="text" class="form-control" name="description" id="description" placeholder="Beschreibung" value="{{ $fragrancenote->description }}">
+          </div>
+          <div class="col">
+            <button type="submit" class="btn btn-dark">ändern</button>
           </div>
         </div>
       </form>

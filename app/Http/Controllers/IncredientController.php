@@ -36,9 +36,9 @@ class IncredientController extends Controller
      */
     public function store(Request $request)
     {
+        //dd($request);
         $request->validate([
             'name' => '|min:2|max:255|',
-            'name_latin' => '|min:2|max:255|',
         ]);
 
         Incredient::create($request->all());
@@ -76,9 +76,9 @@ class IncredientController extends Controller
      */
     public function update(Request $request, Incredient $incredient)
     {
+        //dd($request);
         $request->validate([
             'name' => '|min:2|max:255|',
-            'name_latin' => '|min:2|max:255|',
         ]);
 
         $incredient->update($request->all());        

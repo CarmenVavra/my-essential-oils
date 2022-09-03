@@ -17,7 +17,9 @@
         <tr>
           <th>#</th>
           <th>Name</th>
-          <th>Wirkung</th>
+          <th>Beschreibung</th>
+          <th>Körperliche Wirkung</th>
+          <th>Psychische Wirkung</th>
           <th>edit</th>
           <th>delete</th>
         </tr>
@@ -27,7 +29,9 @@
         <tr>
           <td>{{ $incredient->id }}</td>
           <td>{{ $incredient->name }}</td>
-          <td>{{ $incredient->effect }}</td>
+          <td>{{ $incredient->description }}</td>
+          <td>{{ $incredient->physical_effect }}</td>
+          <td>{{ $incredient->mental_effect }}</td>
           <td><a href="{{ route('admin.incredient.edit', $incredient->id) }}" class="btn btn-warning">edit</a></td>
           <td>
             <form action="{{ route('admin.incredient.delete', $incredient->id) }}" method="post">
