@@ -51,7 +51,9 @@ body{
   text-align: center;
 }
 
-
+hr{
+  border-top: 2px solid #735E93;
+}
 /* input[type="text"], input[type="checkbox"], select{
   border: 1px solid #735E93;
 }
