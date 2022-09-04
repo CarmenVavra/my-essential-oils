@@ -9,13 +9,12 @@
   <div class="alert alert-success">{{ session('success') }}</div>
 @endif
 @if(isset($incredients))
-  <div>
+  <div class="container">
     <h1>Inhaltsstoffe</h1>
     <a href="{{ route('admin.incredient.create') }}" class="btn btn-secondary">Neu</a>
-    <table class="table table-hover table-dark">
+    <table class="table table-hover table-secondary table-striped">
       <thead>
         <tr>
-          <th>#</th>
           <th>Name</th>
           <th>Beschreibung</th>
           <th>Körperliche Wirkung</th>
@@ -27,7 +26,6 @@
       <tbody>
         @foreach($incredients as $incredient)
         <tr>
-          <td>{{ $incredient->id }}</td>
           <td>{{ $incredient->name }}</td>
           <td>{{ $incredient->description }}</td>
           <td>{{ $incredient->physical_effect }}</td>

@@ -9,13 +9,12 @@
   <div class="alert alert-success">{{ session('success') }}</div>
 @endif
 @if(isset($applicationscopes))
-  <div>
+  <div class="container">
     <h1>Anwendungsbereiche</h1>
     <a href="{{ route('admin.applicationscope.create') }}" class="btn btn-secondary">Neu</a>
-    <table class="table table-hover table-dark">
+    <table class="table table-hover table-secondary table-striped">
       <thead>
         <tr>
-          <th>#</th>
           <th>Name</th>
           <th>Name Latein</th>
           <th>edit</th>
@@ -25,7 +24,6 @@
       <tbody>
         @foreach($applicationscopes as $applicationscope)
         <tr>
-          <td>{{ $applicationscope->id }}</td>
           <td>{{ $applicationscope->name }}</td>
           <td>{{ $applicationscope->name_latin }}</td>
           <td><a href="{{ route('admin.applicationscope.edit', $applicationscope->id) }}" class="btn btn-warning">edit</a></td>

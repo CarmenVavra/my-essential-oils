@@ -9,13 +9,12 @@
   <div class="alert alert-success">{{ session('success') }}</div>
 @endif
 @if(isset($merchants))
-  <div>
+  <div class="container">
     <h1>Merchants</h1>
     <a href="{{ route('admin.merchant.create') }}" class="btn btn-secondary">Neu</a>
-    <table class="table table-hover table-dark">
+    <table class="table table-hover table-secondary table-striped">
       <thead>
         <tr>
-          <th>#</th>
           <th>Name</th>
           <th>Website</th>
           <th>edit</th>
@@ -25,7 +24,6 @@
       <tbody>
         @foreach($merchants as $merchant)
         <tr>
-          <td>{{ $merchant->id }}</td>
           <td>{{ $merchant->name }}</td>
           <td><a href="{{ $merchant->website }}" target="_blank">{{ $merchant->website }}</a></td>
           <td><a href="{{ route('admin.merchant.edit', $merchant->id) }}" class="btn btn-warning">edit</a></td>

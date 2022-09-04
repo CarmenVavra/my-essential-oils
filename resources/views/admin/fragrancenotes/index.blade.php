@@ -12,10 +12,9 @@
   <h1>Duftnoten</h1>
   <a href="{{ route('admin.fragrancenote.create') }}" class="btn btn-secondary">Neu</a>
   @if(isset($fragrancenotes))
-    <table class="table table-hover table-dark">
+    <table class="table table-hover table-secondary table-striped">
       <thead>
         <tr>
-          <th>#</th>
           <th>Name</th>
           <th>Beschreibung</th>
           <th>edit</th>
@@ -25,7 +24,6 @@
       <tbody>
         @foreach($fragrancenotes as $fragrancenote)
         <tr>
-          <td>{{ $fragrancenote->id }}</td>
           <td>{{ $fragrancenote->name }}</td>
           <td>{{ $fragrancenote->description }}</td>
           <td><a href="{{ route('admin.fragrancenote.edit', $fragrancenote->id) }}" class="btn btn-warning">edit</a></td>

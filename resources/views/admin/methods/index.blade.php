@@ -9,14 +9,14 @@
   <div class="alert alert-success">{{ session('success') }}</div>
 @endif
 @if(isset($methods))
-  <div>
+  <div class="container">
     <h1>Verfahren</h1>
     <a href="{{ route('admin.method.create') }}" class="btn btn-secondary">Neu</a>
-    <table class="table table-hover table-dark">
+    <table class="table table-hover table-secondary table-striped">
       <thead>
         <tr>
-          <th>#</th>
           <th>Name</th>
+          <th>Short</th>
           <th>edit</th>
           <th>delete</th>
         </tr>
@@ -24,8 +24,8 @@
       <tbody>
         @foreach($methods as $method)
         <tr>
-          <td>{{ $method->id }}</td>
           <td>{{ $method->name }}</td>
+          <td>{{ $method->short_name }}</td>
           <td><a href="{{ route('admin.method.edit', $method->id) }}" class="btn btn-warning">edit</a></td>
           <td>
             <form action="{{ route('admin.method.delete', $method->id) }}" method="post">
@@ -40,10 +40,6 @@
     </table>
   </div>
 @endif
-
-
-
-
 @endsection
 
 @section('js')

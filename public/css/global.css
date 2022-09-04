@@ -62,10 +62,6 @@ hr{
   border: 1px solid #735E93;
 }
 
-table.table-cream{
-  background-color: #F5E8DA;
-}
-
 select.widthHeight::-webkit-scrollbar {
   width: 18px;
   height: 14px;
@@ -84,4 +80,10 @@ select.style::-webkit-scrollbar-thumb {
 .under-heading{
   font-style: italic;
   margin-bottom: 20px;
+}
+
+.list-header{
+  background-color: #dccdf9;
+  padding: 5px 10px;
+  margin: 10px 0;
 }

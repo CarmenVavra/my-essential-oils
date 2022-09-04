@@ -10,6 +10,10 @@
             <input type="text" class="form-control" name="name" id="name" placeholder="Name">
           </div>
           <div class="col">
+            <label for="short_name">Kürzel</label>
+            <input type="text" class="form-control" name="short_name" id="name" placeholder="Kürzel">
+          </div>
+          <div class="col">
             <button type="submit" class="btn btn-dark">anlegen</button>
           </div>
         </div>

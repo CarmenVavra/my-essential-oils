@@ -8,14 +8,13 @@
 @if(!empty(session('success')))
   <div class="alert alert-success">{{ session('success') }}</div>
 @endif
-  <div>
+  <div class="container">
     <h1>Pflanzenteile</h1>
     <a href="{{ route('admin.plantpart.create') }}" class="btn btn-secondary">Neu</a>
     @if(isset($plantparts))
-    <table class="table table-hover table-dark">
+    <table class="table table-hover table-secondary table-striped">
       <thead>
         <tr>
-          <th>#</th>
           <th>Pflanzenteil</th>
           <th>edit</th>
           <th>delete</th>
@@ -24,7 +23,6 @@
       <tbody>
         @foreach($plantparts as $plantpart)
         <tr>
-          <td>{{ $plantpart->id }}</td>
           <td>{{ $plantpart->part }}</td>
           <td><a href="{{ route('admin.plantpart.edit', $plantpart->id) }}" class="btn btn-warning">edit</a></td>
           <td>

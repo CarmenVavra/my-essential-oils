@@ -27,17 +27,17 @@
                 </div>
                 <div class="row py-2">
                   <div class="col">
+                    <input type="text" class="form-control" name="name_english" id="name_english" placeholder="Name" value="{{ old('name_english', $essentialoil->name_english) }}">
+                  </div>
+                </div>
+                <div class="row py-2">
+                  <div class="col">
                     <input type="text" class="form-control" name="name_german" id="name_german" placeholder="Name Deutsch" value="{{ old('name_german', $essentialoil->name_german) }}">
                   </div>
                 </div>
                 <div class="row py-2">
                   <div class="col">
                     <input type="text" class="form-control" name="name_latin" id="name_latin" placeholder="Name Latein" value="{{ old('name_latin', $essentialoil->name_latin) }}">
-                  </div>
-                </div>
-                <div class="row py-2">
-                  <div class="col">
-                    <input type="text" class="form-control" name="name_english" id="name_english" placeholder="Name Englisch" value="{{ old('name_english', $essentialoil->name_english) }}">
                   </div>
                 </div>
                 <div class="row py-2">
@@ -182,8 +182,6 @@
             </div>
           </div>
         </div>
-
-
       </form>
     </div>
     @endif

@@ -24,17 +24,17 @@
                 </div>
                 <div class="row py-2">
                   <div class="col">
+                    <input type="text" class="form-control" name="name_english" id="name_english" placeholder="Name">
+                  </div>
+                </div>
+                <div class="row py-2">
+                  <div class="col">
                     <input type="text" class="form-control" name="name_german" id="name_german" placeholder="Name Deutsch">
                   </div>
                 </div>
                 <div class="row py-2">
                   <div class="col">
                     <input type="text" class="form-control" name="name_latin" id="name_latin" placeholder="Name Latein">
-                  </div>
-                </div>
-                <div class="row py-2">
-                  <div class="col">
-                    <input type="text" class="form-control" name="name_english" id="name_english" placeholder="Name Englisch">
                   </div>
                 </div>
                 <div class="row py-2">

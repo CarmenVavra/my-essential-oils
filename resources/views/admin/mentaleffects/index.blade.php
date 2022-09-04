@@ -8,14 +8,13 @@
 @if(!empty(session('success')))
   <div class="alert alert-success">{{ session('success') }}</div>
 @endif
-<div>
+<div class="container">
   <h1>Psychische Wirkungen</h1>
   <a href="{{ route('admin.mentaleffect.create') }}" class="btn btn-secondary">Neu</a>
   @if(isset($mentaleffects))
-    <table class="table table-hover table-dark">
+    <table class="table table-hover table-secondary table-striped">
       <thead>
         <tr>
-          <th>#</th>
           <th>Name</th>
           <th>Beschreibung</th>
           <th>edit</th>
@@ -25,7 +24,6 @@
       <tbody>
         @foreach($mentaleffects as $mentaleffect)
         <tr>
-          <td>{{ $mentaleffect->id }}</td>
           <td>{{ $mentaleffect->name }}</td>
           <td>{{ $mentaleffect->description }}</td>
           <td><a href="{{ route('admin.mentaleffect.edit', $mentaleffect->id) }}" class="btn btn-warning">edit</a></td>

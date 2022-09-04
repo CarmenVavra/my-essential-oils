@@ -9,13 +9,12 @@
   <div class="alert alert-success">{{ session('success') }}</div>
 @endif
 @if(isset($attentions))
-  <div>
+  <div class="container">
     <h1>Gefahrenhinweise</h1>
     <a href="{{ route('admin.attention.create') }}" class="btn btn-secondary">Neu</a>
-    <table class="table table-hover table-dark">
+    <table class="table table-hover table-secondary table-striped">
       <thead>
         <tr>
-          <th>#</th>
           <th>Name</th>
           <th>Beschreibung</th>
           <th>edit</th>
@@ -25,7 +24,6 @@
       <tbody>
         @foreach($attentions as $attention)
         <tr>
-          <td>{{ $attention->id }}</td>
           <td>{{ $attention->name }}</td>
           <td>{{ $attention->description }}</td>
           <td><a href="{{ route('admin.attention.edit', $attention->id) }}" class="btn btn-warning">edit</a></td>

@@ -13,12 +13,12 @@
   <div class="container">
     <h1>Ätherische Öle</h1>
     <a href="{{ route('admin.essentialoil.create') }}" class="btn btn-secondary">Neu</a>
-    <table id="essentialOils" class="table table-hover table-secondary">
+    <table id="essentialOils" class="table table-hover table-secondary table-striped">
       <thead>
         <tr>
-          <th>Name Deutsch</th>
+          <th>Name</th>
           <th>Name Latein</th>
-          <th>Name Englisch</th>
+          <th>Name Deutsch</th>
           <th class="align-center">Pur</th>
           <th class="align-center">Verdünnt</th>
           <th class="align-center">Empfindlich</th>
@@ -33,9 +33,9 @@
       <tbody>
         @foreach($essentialOils as $essentialOil)
         <tr>
-          <td>{{ $essentialOil->name_german }}</td>
-          <td>{{ $essentialOil->name_latin }}</td>
           <td>{{ $essentialOil->name_english }}</td>
+          <td>{{ $essentialOil->name_latin }}</td>
+          <td>{{ $essentialOil->name_german }}</td>
           <td class="align-center">
             @if($essentialOil->pur == 1)
               <div class="badge bg-warning">P</div>

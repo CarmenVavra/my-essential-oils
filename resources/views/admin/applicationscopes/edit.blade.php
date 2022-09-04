@@ -16,7 +16,7 @@
             <input type="text" class="form-control" name="name_latin" id="name_latin" placeholder="Name Latein" value="{{ $applicationscope->name_latin }}">
           </div>
           <div class="col">
-            <button type="submit" class="btn btn-dark">anlegen</button>
+            <button type="submit" class="btn btn-dark">ändern</button>
           </div>
         </div>
       </form>
