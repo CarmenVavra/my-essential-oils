@@ -146,7 +146,7 @@
                 <div class="row py-2">
                   <div class="col">
                     <label for="applicationscopeSelect">Anwendungsbereiche</label>
-                    <select class="form-control style widthHeight" name="incredientSelect[]" id="incredientSelect" multiple size="5">
+                    <select class="form-control style widthHeight" name="applicationscopeSelect[]" id="applicationscopeSelect" multiple size="5">
                       @foreach($data['applicationscopes'] as $key => $applicationscope)
                         <option name="{{ $applicationscope->id }}" value="{{ $applicationscope->id }}" @if(in_array($applicationscope->id, $pivotIds['applicationscope_essentialoils'])) selected @endif>{{ $applicationscope->name }}</option>
                       @endforeach

@@ -35,20 +35,7 @@ class EssentialoilController extends Controller
                                         ->join('methods as meth', 'method_id', '=', 'meth.id')
                                         ->select('essentialoils.*', 'merch.name as merchant_name', 'meth.short_name as method_short_name')->get();
 
-        // TODO: hope it works ... check this
-        // it seems that this does not work 
-/*         foreach($essentialoils as $essentialoil){
-            $data = [];
-            $data['mentalEffects'] =  EssentialoilMentaleffect::where('essentialoil_id', $essentialoil->id)->get();
-            $data['physicalEffects'] = EssentialoilPhysicaleffect::where('essentialoil_id', $essentialoil->id)->get();
-            $fragranceNotes[] = EssentialoilFragrancenote::where('essentialoil_id', $essentialoil->id)->get();
-            $attentions[] = AttentionEssentialoil::where('essentialoil_id', $essentialoil->id)->get();
-            $incredients[] = EssentialoilIncredient::where('essentialoil_id', $essentialoil->id)->get();
-            $applicationScope[] = ApplicationscopeEssentialoil::where('essentialoil_id', $essentialoil->id)->get();
-            $plantParts[] = EssentialoilPlantpart::where('essentialoil_id', $essentialoil->id)->get();
-        } */
-
-        return view('admin.essentialoils.index', compact('essentialOils'/* , 'mentalEffects', 'physicalEffects' */));
+        return view('admin.essentialoils.index', compact('essentialOils'));
     }
 
     /**
@@ -70,8 +57,6 @@ class EssentialoilController extends Controller
             'mentaleffects' => Mentaleffect::all(),
         ];
 
-        
-   
         return view('admin.essentialoils.create', compact('data'));
     }
 
@@ -83,7 +68,6 @@ class EssentialoilController extends Controller
      */
     public function store(Request $request){
 
-        //dd($request);
         $essentialOils['name_german'] = $request['name_german'] ?? '';
         $essentialOils['name_latin'] = $request['name_latin'] ?? '';
         $essentialOils['name_english'] = $request['name_english'] ?? '';
@@ -186,10 +170,6 @@ class EssentialoilController extends Controller
             'physicaleffects' => Physicaleffect::all(),
             'mentaleffects' => Mentaleffect::all(),
         ];
-        
-
-        // TODO check this ... i am confused 
-        //dd(EssentialoilPlantpart::where('essentialoil_id', $essentialoil->id)->get());
 
         $constraintsIds = [
             'essentialoil_plantparts' => EssentialoilPlantpart::where('essentialoil_id', $essentialoil->id)->select('plantpart_id')->get(), 
@@ -271,11 +251,6 @@ class EssentialoilController extends Controller
 
 
         $essentialoil->update($essentialOils);
-
-/*         $merchant = $essentialoil->merchant;
-        $merchant->update($request['merchantSelect']);
-        $method = $essentialoil->method;
-        $method->update($request['methodSelect']); */
 
         $this->updateEssentialOilPlantParts($request, $essentialoil);
         $this->updateEssentialOilIncredients($request, $essentialoil);
@@ -383,6 +358,7 @@ class EssentialoilController extends Controller
      * 
      */
     private function updateAttentionEssentialOils(Request $request, EssentialOil $essentialoil){
+        
         $pivotAttentions = [];
         $pivotAttentionsIds = [];
         foreach($attentionsRequest = $request['attentionSelect'] as $attentionId){
@@ -394,7 +370,7 @@ class EssentialoilController extends Controller
             }
 
             if(!in_array($attentionId, $pivotAttentionsIds)){
-                EssentialoilIncredient::create([
+                AttentionEssentialoil::create([
                     'essentialoil_id' => $essentialoil->id,
                     'attention_id' => $attentionId,
                 ])->session_commit;
@@ -411,13 +387,10 @@ class EssentialoilController extends Controller
     } 
 
     private function updateApplicationScopeEssentialOils(Request $request, EssentialOil $essentialoil){
-
-        if(is_null($request['applicationScopeRequest'])){
-            return '';
-        }
+        
         $pivotApplicationScopes = [];
         $pivotApplicationScopesIds = [];
-        foreach($applicationScopesRequest = $request['applicationScopeSelect'] as $applicationScopeId){
+        foreach($applicationScopesRequest = $request['applicationscopeSelect'] as $applicationScopeId){
             $pivotApplicationScopes[] = $essentialoil->applicationScopes;
             foreach($pivotApplicationScopes as $pivotApplicationScope){
                 foreach($pivotApplicationScope as $pivApp){
@@ -446,10 +419,7 @@ class EssentialoilController extends Controller
      * 
      */
     private function updateEssentialOilPhysicalEffects(Request $request, EssentialOil $essentialoil){
-        if(is_null($request['PhysicalEffectRequest'])){
 
-            return $essentialoil->physicaleffects()->delete();
-        }
         $pivotPhysicalEffects = [];
         $pivotPhysicalEffectsIds = [];
         foreach($physicalEffectsRequest = $request['physicaleffectSelect'] as $physicalEffectId){
@@ -478,9 +448,7 @@ class EssentialoilController extends Controller
     }
 
     private function updateEssentialOilMentalEffects(Request $request, EssentialOil $essentialoil){
-        if(is_null($request['MentalEffectRequest'])){
-            return '';
-        }
+
         $pivotMentalEffects = [];
         $pivotMentalEffectsIds = [];
         foreach($mentalEffectsRequest = $request['mentaleffectSelect'] as $mentalEffectId){
