@@ -62,6 +62,10 @@ hr{
   border: 1px solid #735E93;
 }
 
+table.table-cream{
+  background-color: #F5E8DA;
+}
+
 select.widthHeight::-webkit-scrollbar {
   width: 18px;
   height: 14px;

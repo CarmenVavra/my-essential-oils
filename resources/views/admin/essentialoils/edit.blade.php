@@ -48,13 +48,13 @@
                 <div class="row py-2">
                   <div class="col">
                     <div class="form-check form-switch">
-                      <input class="form-check-input" type="checkbox" name="pur" id="pur">
+                      <input class="form-check-input" type="checkbox" name="pur" id="pur" @if($essentialoil->pur === 1) checked @endif>
                       <label class="form-check-label" for="pur">Pur</label>
                     </div>
                   </div>
                   <div class="col">
                     <div class="form-check form-switch">
-                      <input class="form-check-input" type="checkbox" name="dilute" id="dilute">
+                      <input class="form-check-input" type="checkbox" name="dilute" id="dilute" @if($essentialoil->dilute === 1) checked @endif>
                       <label class="form-check-label" for="dilute">Verdünnt</label>
                     </div>
                   </div>
@@ -62,13 +62,13 @@
                 <div class="row py-2">
                   <div class="col">
                     <div class="form-check form-switch">
-                      <input class="form-check-input" type="checkbox" name="sensitive" id="sensitive">
+                      <input class="form-check-input" type="checkbox" name="sensitive" id="sensitive" @if($essentialoil->sensitive === 1) checked @endif>
                       <label class="form-check-label" for="sensitive">Empfindlich</label>
                     </div>
                   </div>
                   <div class="col">
                     <div class="form-check form-switch">
-                      <input class="form-check-input" type="checkbox" name="internal" id="internal">
+                      <input class="form-check-input" type="checkbox" name="internal" id="internal" @if($essentialoil->internal === 1) checked @endif>
                       <label class="form-check-label" for="internal">Einnahme</label>
                     </div>
                   </div>

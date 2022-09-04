@@ -13,7 +13,7 @@
   <div class="container">
     <h1>Ätherische Öle</h1>
     <a href="{{ route('admin.essentialoil.create') }}" class="btn btn-secondary">Neu</a>
-    <table id="essentialOils" class="table table-hover table-dark">
+    <table id="essentialOils" class="table table-hover table-secondary">
       <thead>
         <tr>
           <th>Name Deutsch</th>
