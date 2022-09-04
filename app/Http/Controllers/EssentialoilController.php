@@ -102,7 +102,7 @@ class EssentialoilController extends Controller
         
         if(isset($request['attentionSelect'])){
             foreach($request['attentionSelect'] as $attentionId){
-                AttentionEssentialoil::create(['essentialoil_id' => $essentialOilId, 'attentiont_id' => $attentionId]);
+                AttentionEssentialoil::create(['essentialoil_id' => $essentialOilId, 'attention_id' => $attentionId]);
             }
         }
         
@@ -205,7 +205,7 @@ class EssentialoilController extends Controller
             $attentionsIds[] = $essAttention['id'];
         }
         $pivotIds['attention_essentialoils'] = $attentionsIds;
-        
+
         $applicationScopesIds = [];
         foreach($essentialoil->applicationscopes as $essApplicationScope){
            $applicationScopesIds[] = $essApplicationScope['id'];
@@ -285,11 +285,19 @@ class EssentialoilController extends Controller
             }            
         }
 
-        foreach($essentialoil->plantparts as $essPlantPart){
-            if(!in_array($essPlantPart->id, $plantpartsRequest)){
-                $essPlantPart = EssentialoilPlantpart::where('essentialoil_id', $essentialoil->id)
-                                                        ->where('plantpart_id', $essPlantPart->id)->first();
-                $essPlantPart->delete();
+        $pivotEssentialOilPlantPartsIds = [];
+        foreach($essentialoil->plantparts as $essentialPlantPart){
+            $pivotEssentialOilPlantPartsIds[] = $essentialPlantPart->id;
+        }
+
+        foreach($pivotEssentialOilPlantPartsIds as $pivotId){
+            if(!in_array($pivotId, $plantpartsRequest)){
+                $deletePivotId = EssentialoilPlantpart::where('essentialoil_id', $essentialoil->id)
+                                                        ->where('plantpart_id', $pivotId)->first();
+
+                if(!is_null($deletePivotId)){
+                    $deletePivotId->delete();
+                }
             }
         }
     }
@@ -316,11 +324,18 @@ class EssentialoilController extends Controller
             }            
         }
 
-        foreach($essentialoil->incredients as $essInc){
-            if(!in_array($essInc->id, $incredientsRequest)){
-                $essIncredient = EssentialoilIncredient::where('essentialoil_id', $essentialoil->id)
-                                                        ->where('incredient_id', $essInc->id)->first();
-                $essInc->delete();
+        $pivotEssentialOilIncredientsIds = [];
+        foreach($essentialoil->incredients as $essentialIncredient){
+            $pivotEssentialOilIncredientsIds[] = $essentialIncredient->id;
+        }
+
+        foreach($pivotEssentialOilIncredientsIds as $pivotId){
+            if(!in_array($pivotId, $incredientsRequest)){
+                $deletePivotId = EssentialoilIncredient::where('essentialoil_id', $essentialoil->id)
+                                                        ->where('incredient_id', $pivotId)->first();
+                if(!is_null($deletePivotId)){
+                    $deletePivotId->delete();
+                }
             }
         }
     }
@@ -344,11 +359,18 @@ class EssentialoilController extends Controller
             }            
         }
 
-        foreach($essentialoil->fragrancenotes as $essFragNote){
-            if(!in_array($essFragNote->id, $fragranceNotesRequest)){
-                $essFragNote = EssentialoilFragrancenote::where('essentialoil_id', $essentialoil->id)
-                                                        ->where('fragrancenote_id', $essFragNote->id)->first();
-                $essFragNote->delete();
+        $pivotEssentialOilFragranceNotesIds = [];
+        foreach($essentialoil->fragrancenotes as $essentialFragranceNote){
+            $pivotEssentialOilFragranceNotesIds[] = $essentialFragranceNote->id;
+        }
+
+        foreach($pivotEssentialOilFragranceNotesIds as $pivotId){
+            if(!in_array($pivotId, $fragranceNotesRequest)){
+                $deletePivotId = EssentialoilFragrancenote::where('essentialoil_id', $essentialoil->id)
+                                                            ->where('fragrancenote_id', $pivotId)->first();
+                if(!is_null($deletePivotId)){
+                    $deletePivotId->delete();
+                }
             }
         }
 
@@ -377,11 +399,18 @@ class EssentialoilController extends Controller
             }            
         }
 
-        foreach($essentialoil->attentions as $essAtt){
-            if(!in_array($essAtt->id, $attentionsRequest)){
-                $attEss = AttentionEssentialoil::where('essentialoil_id', $essentialoil->id)
-                                                ->where('attention_id', $essAtt->id)->first();
-                $attEss->delete();
+        $pivotEssentialOilAttentionsIds = [];
+        foreach($essentialoil->attentions as $essentialAttention){
+            $pivotEssentialOilAttentionsIds[] = $essentialAttention->id;
+        }
+
+        foreach($pivotEssentialOilAttentionsIds as $pivotId){
+            if(!in_array($pivotId, $attentionsRequest)){
+                $deletePivotId = AttentionEssentialoil::where('essentialoil_id', $essentialoil->id)
+                                                      ->where('attention_id', $pivotId)->first();
+                if(!is_null($deletePivotId)){
+                    $deletePivotId->delete();
+                }
             }
         }
     } 
@@ -401,16 +430,23 @@ class EssentialoilController extends Controller
             if(!in_array($applicationScopeId, $pivotApplicationScopesIds)){
                 ApplicationScopeEssentialoil::create([
                     'essentialoil_id' => $essentialoil->id,
-                    'applicationScope_id' => $applicationScopeId,
+                    'applicationscope_id' => $applicationScopeId,
                 ])->session_commit;
             }            
         }
 
-        foreach($essentialoil->applicationScopes as $essApp){
-            if(!in_array($essApp->id, $applicationScopesRequest)){
-                $appEss = ApplicationScopeEssentialoil::where('essentialoil_id', $essentialoil->id)
-                                                        ->where('applicationScope_id', $essApp->id)->first();
-                $appEss->delete();
+        $pivotEssentialOilApplicationScopesIds = [];
+        foreach($essentialoil->applicationscopes as $essentialApplicationScope){
+            $pivotEssentialOilApplicationScopesIds[] = $essentialApplicationScope->id;
+        }
+
+        foreach($pivotEssentialOilApplicationScopesIds as $pivotId){
+            if(!in_array($pivotId, $applicationScopesRequest)){
+                $deletePivotId = ApplicationscopeEssentialoil::where('essentialoil_id', $essentialoil->id)
+                                                            ->where('applicationscope_id', $pivotId)->first();
+                if(!is_null($deletePivotId)){
+                    $deletePivotId->delete();
+                }
             }
         }
     }
@@ -433,16 +469,24 @@ class EssentialoilController extends Controller
             if(!in_array($physicalEffectId, $pivotPhysicalEffectsIds)){
                 EssentialoilPhysicalEffect::create([
                     'essentialoil_id' => $essentialoil->id,
-                    'physicalEffect_id' => $physicalEffectId,
+                    'physicaleffect_id' => $physicalEffectId,
                 ])->session_commit;
             }            
         }
 
-        foreach($essentialoil->physicalEffects as $essPhysEff){
-            if(!in_array($essPhysEff->id, $physicalEffectsRequest)){
-                $essPhysEff = EssentialoilPhysicalEffect::where('essentialoil_id', $essentialoil->id)
-                                                        ->where('physicalEffect_id', $essPhysEff->id)->first();
-                $essPhysEff->delete();
+        $pivotEssentialOilPhysicalEffectsIds = [];
+        foreach($essentialoil->physicaleffects as $essentialPhysicalEffect){
+            $pivotEssentialOilPhysicalEffectsIds[] = $essentialPhysicalEffect->id;
+        }
+
+        foreach($pivotEssentialOilPhysicalEffectsIds as $pivotId){
+            if(!in_array($pivotId, $physicalEffectsRequest)){
+                $deletePivotId = EssentialoilPhysicaleffect::where('essentialoil_id', $essentialoil->id)
+                                                            ->where('physicaleffect_id', $pivotId)->first();
+                
+                if(!is_null($deletePivotId)){
+                    $deletePivotId->delete();
+                }
             }
         }
     }
@@ -462,16 +506,24 @@ class EssentialoilController extends Controller
             if(!in_array($mentalEffectId, $pivotMentalEffectsIds)){
                 EssentialoilMentalEffect::create([
                     'essentialoil_id' => $essentialoil->id,
-                    'mentalEffect_id' => $mentalEffectId,
+                    'mentaleffect_id' => $mentalEffectId,
                 ])->session_commit;
             }            
         }
 
-        foreach($essentialoil->mentalEffects as $essMentEff){
-            if(!in_array($essMentEff->id, $mentalEffectsRequest)){
-                $essMentEff = EssentialoilMentalEffect::where('essentialoil_id', $essentialoil->id)
-                                                        ->where('mentalEffect_id', $essMentEff->id)->first();
-                $essMentEff->delete();
+        $pivotEssentialOilMentalEffectsIds = [];
+        foreach($essentialoil->mentaleffects as $essentialMentalEffect){
+            $pivotEssentialOilMentalEffectsIds[] = $essentialMentalEffect->id;
+        }
+
+        foreach($pivotEssentialOilMentalEffectsIds as $pivotId){
+            if(!in_array($pivotId, $mentalEffectsRequest)){
+                $deletePivotId = EssentialoilMentaleffect::where('essentialoil_id', $essentialoil->id)
+                                                            ->where('mentaleffect_id', $pivotId)->first();
+
+                if(!is_null($deletePivotId)){
+                    $deletePivotId->delete();
+                }
             }
         }
     }
@@ -485,13 +537,13 @@ class EssentialoilController extends Controller
      */
     public function destroy(Essentialoil $essentialoil)
     {
-        $essentialoil->attentions()->delete();
+/*         $essentialoil->attentions()->delete();
         $essentialoil->applicationscopes()->delete();
         $essentialoil->incredients()->delete();
         $essentialoil->plantparts()->delete();
         $essentialoil->fragrancenotes()->delete();
         $essentialoil->physicaleffects()->delete();
-        $essentialoil->mentaleffects()->delete();
+        $essentialoil->mentaleffects()->delete(); */
         $essentialoil->delete();
         return redirect()->route('admin.essentialoils.index')->with('success', 'Das ätherische Öl wurde erfolgreich gelöscht!');
     }
