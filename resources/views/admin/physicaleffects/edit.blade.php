@@ -1,6 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
+
 @if(isset($physicaleffect))
     <div>
       <form action="{{ route('admin.physicaleffect.update', $physicaleffect->id) }}" method="post">

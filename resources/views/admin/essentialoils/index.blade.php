@@ -10,13 +10,12 @@
 @endif
 @if(isset($essentialOils))
 
-  <div>
+  <div class="container">
     <h1>Ätherische Öle</h1>
     <a href="{{ route('admin.essentialoil.create') }}" class="btn btn-secondary">Neu</a>
     <table id="essentialOils" class="table table-hover table-dark">
       <thead>
         <tr>
-          <th>#</th>
           <th>Name Deutsch</th>
           <th>Name Latein</th>
           <th>Name Englisch</th>
@@ -24,8 +23,8 @@
           <th class="align-center">Verdünnt</th>
           <th class="align-center">Empfindlich</th>
           <th class="align-center">Einnahme</th>
-          <th>Merchant ID</th>
-          <th>Verfahren ID</th>
+          <th>Merchant</th>
+          <th>Verfahren</th>
           <th class="align-center">show</th>
           <th class="align-center">edit</th>
           <th class="align-center">delete</th>
@@ -34,7 +33,6 @@
       <tbody>
         @foreach($essentialOils as $essentialOil)
         <tr>
-          <td>{{ $essentialOil->id }}</td>
           <td>{{ $essentialOil->name_german }}</td>
           <td>{{ $essentialOil->name_latin }}</td>
           <td>{{ $essentialOil->name_english }}</td>
@@ -59,7 +57,7 @@
             @endif
           </td>
           <td>{{ $essentialOil->merchant_name }}</td>
-          <td>{{ $essentialOil->method_name }}</td>
+          <td>{{ $essentialOil->method_short_name }}</td>
           <td class="align-center"><a href="{{ route('admin.essentialoil.show', $essentialOil->id) }}" class="btn btn-info">show</a></td>
           <td class="align-center"><a href="{{ route('admin.essentialoil.edit', $essentialOil->id) }}" class="btn btn-warning">edit</a></td>
           <td class="align-center">

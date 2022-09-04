@@ -38,7 +38,6 @@ class MentaleffectController extends Controller
     {
         $request->validate([
             'name' => '|min:2|max:255|',
-            'description' => '|min:2|max:255|',
         ]);
 
         Mentaleffect::create($request->all());
@@ -78,7 +77,6 @@ class MentaleffectController extends Controller
     {
         $request->validate([
             'name' => '|min:2|max:255|',
-            'description' => '|min:2|max:255|',
         ]);
 
         $mentaleffect->update($request->all());

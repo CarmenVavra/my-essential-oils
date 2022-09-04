@@ -96,9 +96,9 @@
                 <div class="row py-2">
                   <div class="col">
                     <label for="plantpartSelect">Pflanzenteile</label>
-                    <select class="form-control style widthHeight" name="plantpartSelect[]" id="plantpartSelect" multiple size="3">
+                    <select class="form-control style widthHeight" name="plantpartSelect[]" id="plantpartSelect" multiple size="5">
                       @foreach($data['plantparts'] as $key => $plantpart)
-                        <option name="{{ $plantpart->id }}" value="{{ $plantpart->id }}"@if(in_array($plantpart->id, $pivotIds['essentialoil_plantparts']['plantpart_id'])) selected @endif>{{ $plantpart->part }}</option>
+                        <option name="{{ $plantpart->id }}" value="{{ $plantpart->id }}"@if(in_array($plantpart->id, $pivotIds['essentialoil_plantparts'])) selected @endif>{{ $plantpart->part }}</option>
                       @endforeach
                     </select>
                   </div>
@@ -106,9 +106,9 @@
                 <div class="row py-2">
                   <div class="col">
                     <label for="incredientSelect">Inhaltsstoffe</label>
-                    <select class="form-control style widthHeight" name="incredientSelect[]" id="incredientSelect" multiple size="3">
+                    <select class="form-control style widthHeight" name="incredientSelect[]" id="incredientSelect" multiple size="5">
                       @foreach($data['incredients'] as $key => $incredient)
-                        <option name="{{ $incredient->id }}" value="{{ $incredient->id }}"{{--  @if(in_array($incredient->id, $pivotIds['essentialoil_incredient_ids'])) selected @endif --}}>{{ $incredient->name }}</option>
+                        <option name="{{ $incredient->id }}" value="{{ $incredient->id }}" @if(in_array($incredient->id, $pivotIds['essentialoil_incredients'])) selected @endif>{{ $incredient->name }}</option>
                       @endforeach
                     </select>
                   </div>
@@ -116,9 +116,9 @@
                 <div class="row py-2">
                   <div class="col">
                     <label for="fragrancenoteSelect">Duftnoten</label>
-                    <select class="form-control style widthHeight" name="fragrancenoteSelect[]" id="fragrancenoteSelect" multiple size="3">
+                    <select class="form-control style widthHeight" name="fragrancenoteSelect[]" id="fragrancenoteSelect" multiple size="5">
                       @foreach($data['fragrancenotes'] as $key => $fragrancenote)
-                        <option name="{{ $fragrancenote->id }}" value="{{ $fragrancenote->id }}"{{--  @if(in_array($fragrancenote->id, $pivotIds['essentialoil_fragrancenote_ids'])) selected @endif --}}>{{ $fragrancenote->name }}</option>
+                        <option name="{{ $fragrancenote->id }}" value="{{ $fragrancenote->id }}" @if(in_array($fragrancenote->id, $pivotIds['essentialoil_fragrancenotes'])) selected @endif>{{ $fragrancenote->name }}</option>
                       @endforeach
                     </select>
                   </div>
@@ -126,9 +126,9 @@
                 <div class="row py-2">
                   <div class="col">
                     <label for="attentionSelect">Gefahrenhinweise</label>
-                    <select class="form-control style widthHeight" name="attentionSelect[]" id="incredientSelect" multiple size="3">
+                    <select class="form-control style widthHeight" name="attentionSelect[]" id="attentionSelect" multiple size="5">
                       @foreach($data['attentions'] as $key => $attention)
-                        <option name="{{ $attention->id }}" value="{{ $attention->id }}"{{--  @if(in_array($attention->id, $pivotIds['attention_essential_ids'])) selected @endif --}}>{{ $attention->name }}</option>
+                        <option name="{{ $attention->id }}" value="{{ $attention->id }}" @if(in_array($attention->id, $pivotIds['attention_essentialoils'])) selected @endif>{{ $attention->name }}</option>
                       @endforeach
                     </select>
                   </div>
@@ -146,9 +146,9 @@
                 <div class="row py-2">
                   <div class="col">
                     <label for="applicationscopeSelect">Anwendungsbereiche</label>
-                    <select class="form-control style widthHeight" name="incredientSelect[]" id="incredientSelect" multiple size="3">
+                    <select class="form-control style widthHeight" name="incredientSelect[]" id="incredientSelect" multiple size="5">
                       @foreach($data['applicationscopes'] as $key => $applicationscope)
-                        <option name="{{ $applicationscope->id }}" value="{{ $applicationscope->id }}"{{--  @if(in_array($applicationscope->id, $pivotIds['essential_applicationscope_ids'])) selected @endif --}}>{{ $applicationscope->name }}</option>
+                        <option name="{{ $applicationscope->id }}" value="{{ $applicationscope->id }}" @if(in_array($applicationscope->id, $pivotIds['applicationscope_essentialoils'])) selected @endif>{{ $applicationscope->name }}</option>
                       @endforeach
                     </select>
                   </div>
@@ -156,9 +156,9 @@
                 <div class="row py-2">
                   <div class="col">
                     <label for="physicaleffectSelect">Körperliche Wirkung</label>
-                    <select class="form-control style widthHeight" name="physicaleffectSelect[]" id="physicaleffectSelect" multiple size="3">
+                    <select class="form-control style widthHeight" name="physicaleffectSelect[]" id="physicaleffectSelect" multiple size="5">
                       @foreach($data['physicaleffects'] as $key => $physicaleffect)
-                        <option name="{{ $physicaleffect->id }}" value="{{ $physicaleffect->id }}"{{--  @if(in_array($physicaleffect->id, $pivotIds['essential_physicaleffect_ids'])) selected @endif --}}>{{ $physicaleffect->name }}</option>
+                        <option name="{{ $physicaleffect->id }}" value="{{ $physicaleffect->id }}" @if(in_array($physicaleffect->id, $pivotIds['essentialoil_physicaleffects'])) selected @endif>{{ $physicaleffect->name }}</option>
                       @endforeach
                     </select>
                   </div>
@@ -166,9 +166,9 @@
                 <div class="row py-2">
                   <div class="col">
                     <label for="mentaleffectSelect">Psychische Wirkung</label>
-                    <select class="form-control style widthHeight" name="mentaleffectSelect[]" id="mentaleffectSelect" multiple size="3">
+                    <select class="form-control style widthHeight" name="mentaleffectSelect[]" id="mentaleffectSelect" multiple size="5">
                       @foreach($data['mentaleffects'] as $key => $mentaleffect)
-                        <option name="{{ $mentaleffect->id }}" value="{{ $mentaleffect->id }}"{{--  @if(in_array($mentaleffect->id, $pivotIds['essential_mentaleffect_ids'])) selected @endif --}}>{{ $mentaleffect->name }}</option>
+                        <option name="{{ $mentaleffect->id }}" value="{{ $mentaleffect->id }}" @if(in_array($mentaleffect->id, $pivotIds['essentialoil_mentaleffects'])) selected @endif>{{ $mentaleffect->name }}</option>
                       @endforeach
                     </select>
                   </div>

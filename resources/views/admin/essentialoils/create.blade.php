@@ -93,7 +93,7 @@
                 <div class="row py-2">
                   <div class="col">
                     <label for="plantpartSelect">Pflanzenteile</label>
-                    <select class="form-control style widthHeight" name="plantpartSelect[]" id="plantpartSelect" multiple size="3">
+                    <select class="form-control style widthHeight" name="plantpartSelect[]" id="plantpartSelect" multiple size="5">
                       @foreach($data['plantparts'] as $key => $plantpart)
                         <option name="{{ $plantpart->id }}" value="{{ $plantpart->id }}">{{ $plantpart->part }}</option>
                       @endforeach
@@ -103,7 +103,7 @@
                 <div class="row py-2">
                   <div class="col">
                     <label for="incredientSelect">Inhaltsstoffe</label>
-                    <select class="form-control style widthHeight" name="incredientSelect[]" id="incredientSelect" multiple size="3">
+                    <select class="form-control style widthHeight" name="incredientSelect[]" id="incredientSelect" multiple size="5">
                       @foreach($data['incredients'] as $key => $incredient)
                         <option name="{{ $incredient->id }}" value="{{ $incredient->id }}">{{ $incredient->name }}</option>
                       @endforeach
@@ -113,7 +113,7 @@
                 <div class="row py-2">
                   <div class="col">
                     <label for="fragrancenoteSelect">Duftnoten</label>
-                    <select class="form-control style widthHeight" name="fragrancenoteSelect[]" id="fragrancenoteSelect" multiple size="3">
+                    <select class="form-control style widthHeight" name="fragrancenoteSelect[]" id="fragrancenoteSelect" multiple size="5">
                       @foreach($data['fragrancenotes'] as $key => $fragrancenote)
                         <option name="{{ $fragrancenote->id }}" value="{{ $fragrancenote->id }}">{{ $fragrancenote->name }}</option>
                       @endforeach
@@ -123,7 +123,7 @@
                 <div class="row py-2">
                   <div class="col">
                     <label for="attentionSelect">Gefahrenhinweise</label>
-                    <select class="form-control style widthHeight" name="attentionSelect[]" id="incredientSelect" multiple size="3">
+                    <select class="form-control style widthHeight" name="attentionSelect[]" id="attentionSelect" multiple size="5">
                       @foreach($data['attentions'] as $key => $attention)
                         <option name="{{ $attention->id }}" value="{{ $attention->id }}">{{ $attention->name }}</option>
                       @endforeach
@@ -143,7 +143,7 @@
                 <div class="row py-2">
                   <div class="col">
                     <label for="applicationscopeSelect">Anwendungsbereiche</label>
-                    <select class="form-control style widthHeight" name="incredientSelect[]" id="incredientSelect" multiple size="3">
+                    <select class="form-control style widthHeight" name="applicationscopeSelect[]" id="applicationscopeSelect" multiple size="5">
                       @foreach($data['applicationscopes'] as $key => $applicationscope)
                         <option name="{{ $applicationscope->id }}" value="{{ $applicationscope->id }}">{{ $applicationscope->name }}</option>
                       @endforeach
@@ -153,7 +153,7 @@
                 <div class="row py-2">
                   <div class="col">
                     <label for="physicaleffectSelect">Körperliche Wirkung</label>
-                    <select class="form-control style widthHeight" name="physicaleffectSelect[]" id="physicaleffectSelect" multiple size="3">
+                    <select class="form-control style widthHeight" name="physicaleffectSelect[]" id="physicaleffectSelect" multiple size="5">
                       @foreach($data['physicaleffects'] as $key => $physicaleffect)
                         <option name="{{ $physicaleffect->id }}" value="{{ $physicaleffect->id }}">{{ $physicaleffect->name }}</option>
                       @endforeach
@@ -163,7 +163,7 @@
                 <div class="row py-2">
                   <div class="col">
                     <label for="mentaleffectSelect">Psychische Wirkung</label>
-                    <select class="form-control style widthHeight" name="mentaleffectSelect[]" id="mentaleffectSelect" multiple size="3">
+                    <select class="form-control style widthHeight" name="mentaleffectSelect[]" id="mentaleffectSelect" multiple size="5">
                       @foreach($data['mentaleffects'] as $key => $mentaleffect)
                         <option name="{{ $mentaleffect->id }}" value="{{ $mentaleffect->id }}">{{ $mentaleffect->name }}</option>
                       @endforeach

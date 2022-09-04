@@ -37,10 +37,10 @@ class BasicoilController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => '|min:2|max:255|',
+            'name' => '|min:2|max:255|'/* ,
             'skintype' => '|min:2|max:255|',
             'skinarea' => '|min:2|max:255|',
-            'description' => '|min:2|max:255|',
+            'description' => '|min:2|max:255|', */
         ]);
 
         Basicoil::create($request->all());
@@ -79,10 +79,10 @@ class BasicoilController extends Controller
     public function update(Request $request, Basicoil $basicoil)
     {
         $request->validate([
-            'name' => '|min:2|max:255|',
+            'name' => '|min:2|max:255|'/* ,
             'skintype' => '|min:2|max:255|',
             'skinarea' => '|min:2|max:255|',
-            'description' => '|min:2|max:255|',
+            'description' => '|min:2|max:255|', */
         ]);
 
         $basicoil->update($request->all());

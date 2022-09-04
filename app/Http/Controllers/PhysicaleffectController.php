@@ -37,12 +37,11 @@ class PhysicaleffectController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => '|min:2|max:255|',
-            'description' => '|min:2|max:255|',
+            'name' => '|min:2|max:255|'
         ]);
 
         Physicaleffect::create($request->all());
-        return redirect()->route('admin.physicaleffects.index')->with('success', 'Psychische Wirkung wurde erfolgreich erstellt!');
+        return redirect()->route('admin.physicaleffects.index')->with('success', 'Körperliche Wirkung wurde erfolgreich erstellt!');
 
     }
 
@@ -65,7 +64,7 @@ class PhysicaleffectController extends Controller
      */
     public function edit(Physicaleffect $physicaleffect)
     {
-        return view('admin.physicaleffects.index', compact('physicaleffect'));
+        return view('admin.physicaleffects.edit', compact('physicaleffect'));
     }
 
     /**
@@ -78,12 +77,11 @@ class PhysicaleffectController extends Controller
     public function update(Request $request, Physicaleffect $physicaleffect)
     {
         $request->validate([
-            'name' => '|min:2|max:255|',
-            'description' => '|min:2|max:255|',
+            'name' => '|min:2|max:255|'
         ]);
 
         $physicaleffect->update($request->all());
-        return redirect()->route('admin.physicaleffects.index')->with('success', 'Psychische Wirkung wurde erfolgreich geändert!');
+        return redirect()->route('admin.physicaleffects.index')->with('success', 'Körperliche Wirkung wurde erfolgreich geändert!');
     }
 
     /**
@@ -95,6 +93,6 @@ class PhysicaleffectController extends Controller
     public function destroy(Physicaleffect $physicaleffect)
     {
         $physicaleffect->delete();
-        return redirect()->route('admin.physicaleffects.index')->with('success', 'Psychische Wirkung wurde erfolgreich gelöscht!');
+        return redirect()->route('admin.physicaleffects.index')->with('success', 'Körperliche Wirkung wurde erfolgreich gelöscht!');
     }
 }

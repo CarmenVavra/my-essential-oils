@@ -19,6 +19,7 @@ use App\Models\Merchant;
 use App\Models\Method;
 use App\Models\Physicaleffect;
 use App\Models\Plantpart;
+use Exception;
 use Illuminate\Http\Request;
 
 class EssentialoilController extends Controller
@@ -32,7 +33,7 @@ class EssentialoilController extends Controller
     {
         $essentialOils = Essentialoil::join('merchants as merch', 'merchant_id', '=', 'merch.id')
                                         ->join('methods as meth', 'method_id', '=', 'meth.id')
-                                        ->select('essentialoils.*', 'merch.name as merchant_name', 'meth.name as method_name')->get();
+                                        ->select('essentialoils.*', 'merch.name as merchant_name', 'meth.short_name as method_short_name')->get();
 
         // TODO: hope it works ... check this
         // it seems that this does not work 
@@ -82,6 +83,7 @@ class EssentialoilController extends Controller
      */
     public function store(Request $request){
 
+        //dd($request);
         $essentialOils['name_german'] = $request['name_german'] ?? '';
         $essentialOils['name_latin'] = $request['name_latin'] ?? '';
         $essentialOils['name_english'] = $request['name_english'] ?? '';
@@ -172,6 +174,7 @@ class EssentialoilController extends Controller
      */
     public function edit(Essentialoil $essentialoil)
     {
+        //dd($essentialoil->plantparts);
         $data = [
             'merchants' => Merchant::all(),
             'methods' => Method::all(),
@@ -188,19 +191,61 @@ class EssentialoilController extends Controller
         // TODO check this ... i am confused 
         //dd(EssentialoilPlantpart::where('essentialoil_id', $essentialoil->id)->get());
 
-/*         $pivotIds = [
-            'essentialoil_plantparts' => EssentialoilPlantpart::where('essentialoil_id', $essentialoil->id)->get(), 
-            'essentialoil_incredients' => EssentialoilIncredient::where('essentialoil_id', $essentialoil->id)->get(),
-            'essentialoil_fragrancenotes' => EssentialoilFragrancenote::where('essentialoil_id', $essentialoil->id)->get(),
-            'attention_essentialoils' => AttentionEssentialoil::where('essentialoil_id', $essentialoil->id)->get(),
-            'applicationscope_essentialoils' => ApplicationscopeEssentialoil::where('essentialoil_id', $essentialoil->id)->get(),
-            'essentialoil_physicaleffects' => EssentialoilPhysicaleffect::where('essentialoil_id', $essentialoil->id)->get(),
-            'essentialoil_mentaleffects' => EssentialoilMentaleffect::where('essentialoil_id', $essentialoil->id)->get(),
+        $constraintsIds = [
+            'essentialoil_plantparts' => EssentialoilPlantpart::where('essentialoil_id', $essentialoil->id)->select('plantpart_id')->get(), 
+            'essentialoil_incredients' => EssentialoilIncredient::where('essentialoil_id', $essentialoil->id)->select('incredient_id')->get(),
+            'essentialoil_fragrancenotes' => EssentialoilFragrancenote::where('essentialoil_id', $essentialoil->id)->select('fragrancenote_id')->get(),
+            'attention_essentialoils' => AttentionEssentialoil::where('essentialoil_id', $essentialoil->id)->select('attention_id')->get(),
+            'applicationscope_essentialoils' => ApplicationscopeEssentialoil::where('essentialoil_id', $essentialoil->id)->select('applicationscope_id')->get(),
+            'essentialoil_physicaleffects' => EssentialoilPhysicaleffect::where('essentialoil_id', $essentialoil->id)->select('physicaleffect_id')->get(),
+            'essentialoil_mentaleffects' => EssentialoilMentaleffect::where('essentialoil_id', $essentialoil->id)->select('mentaleffect_id')->get(),
         ];
-        
-        dd('pivotIds',$data); */
 
-        return view('admin.essentialoils.edit', compact('essentialoil', 'data'/* , 'pivotIds' */));
+        $pivotIds = [];
+        $plantPartsIds = [];
+        foreach($essentialoil->plantparts as $essPlantPart){
+           $plantPartsIds[] = $essPlantPart['id'];
+        }
+        $pivotIds['essentialoil_plantparts'] = $plantPartsIds;
+
+        $incredientsIds = [];
+        foreach($essentialoil->incredients as $essIncredient){
+           $incredientsIds[] = $essIncredient['id'];
+        }
+        $pivotIds['essentialoil_incredients'] = $incredientsIds;
+        
+        $fragranceNotesIds = [];
+        foreach($essentialoil->fragrancenotes as $essFragranceNote){
+           $fragranceNotesIds[] = $essFragranceNote['id'];
+        }
+        $pivotIds['essentialoil_fragrancenotes'] = $fragranceNotesIds;
+
+        $attentionsIds = [];
+        foreach($essentialoil->attentions as $essAttention){
+            $attentionsIds[] = $essAttention['id'];
+        }
+        $pivotIds['attention_essentialoils'] = $attentionsIds;
+        
+        $applicationScopesIds = [];
+        foreach($essentialoil->applicationscopes as $essApplicationScope){
+           $applicationScopesIds[] = $essApplicationScope['id'];
+        }
+        $pivotIds['applicationscope_essentialoils'] = $applicationScopesIds;
+
+        $physicalEffectIds = [];
+        foreach($essentialoil->physicaleffects as $essPhysicalEffect){
+           $physicalEffectIds[] = $essPhysicalEffect['id'];
+        }
+        $pivotIds['essentialoil_physicaleffects'] = $physicalEffectIds;
+
+        $mentalEffectIds = [];
+        foreach($essentialoil->mentaleffects as $essMentalEffect){
+           $mentalEffectIds[] = $essMentalEffect['id'];
+        }
+        $pivotIds['essentialoil_mentaleffects'] = $mentalEffectIds;
+
+        //dd($pivotIds);
+        return view('admin.essentialoils.edit', compact('essentialoil', 'data' , 'pivotIds'));
     }
 
     /**
@@ -397,6 +442,9 @@ class EssentialoilController extends Controller
         }
     }
     
+    /**
+     * 
+     */
     private function updateEssentialOilPhysicalEffects(Request $request, EssentialOil $essentialoil){
         if(is_null($request['PhysicalEffectRequest'])){
 
@@ -469,6 +517,13 @@ class EssentialoilController extends Controller
      */
     public function destroy(Essentialoil $essentialoil)
     {
+        $essentialoil->attentions()->delete();
+        $essentialoil->applicationscopes()->delete();
+        $essentialoil->incredients()->delete();
+        $essentialoil->plantparts()->delete();
+        $essentialoil->fragrancenotes()->delete();
+        $essentialoil->physicaleffects()->delete();
+        $essentialoil->mentaleffects()->delete();
         $essentialoil->delete();
         return redirect()->route('admin.essentialoils.index')->with('success', 'Das ätherische Öl wurde erfolgreich gelöscht!');
     }
