@@ -33,9 +33,9 @@
                   </label>
                 </div>
                 <div class="form-check">
-                  <input class="form-check-input" type="radio" name="radioApplicationSection" id="radioApplicationSectionDivers" value="divers">
-                  <label class="form-check-label" for="radioApplicationSectionDivers">
-                    sonstiges
+                  <input class="form-check-input" type="radio" name="radioApplicationSection" id="radioApplicationSectionBoth" value="both">
+                  <label class="form-check-label" for="radioApplicationSectionBoth">
+                    beides
                   </label>
                 </div>
               </div>
