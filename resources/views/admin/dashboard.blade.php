@@ -2,18 +2,112 @@
 
 @section('content')
 
-<ul>
-  <li class="list-item"><a href="{{ route('admin.merchants.index') }}">Merchants</a></li>
-  <li class="list-item"><a href="{{ route('admin.essentialoils.index') }}">Essential Oils</a></li>
-  <li class="list-item"><a href="{{ route('admin.basicoils.index') }}">Basic Oils</a></li>
-  <li class="list-item"><a href="{{ route('admin.incredients.index') }}">Incredients</a></li>
-  <li class="list-item"><a href="{{ route('admin.plantparts.index') }}">Plantparts</a></li>
-  <li class="list-item"><a href="{{ route('admin.applicationscopes.index') }}">Application Scopes</a></li>
-  <li class="list-item"><a href="{{ route('admin.methods.index') }}">Methods</a></li>
-  <li class="list-item"><a href="{{ route('admin.fragrancenotes.index') }}">Frangrance Notes</a></li>
-  <li class="list-item"><a href="{{ route('admin.attentions.index') }}">Attentions</a></li>
-  <li class="list-item"><a href="{{ route('admin.physicaleffects.index') }}">Physical Effects</a></li>
-  <li class="list-item"><a href="{{ route('admin.mentaleffects.index') }}">Mental Effects</a></li>
-</ul>
+<div class="container">
+  <div class="row py-4">
+    <div class="col-md">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Ätherische Öle</h5>
+          {{-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> --}}
+          <a href="{{ route('admin.essentialoils.index') }}" class="btn btn-primary btn-sm">enter</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row py-4">
+    <div class="col-md">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Merchants</h5>
+          {{-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> --}}
+          <a href="{{ route('admin.merchants.index') }}" class="btn btn-primary btn-sm">Enter</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Basisöle</h5>
+          {{-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> --}}
+          <a href="{{ route('admin.basicoils.index') }}" class="btn btn-primary btn-sm">Enter</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Inhaltsstoffe</h5>
+          {{-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> --}}
+          <a href="{{ route('admin.incredients.index') }}" class="btn btn-primary btn-sm">Enter</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Pflanzenteile</h5>
+          {{-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> --}}
+          <a href="{{ route('admin.plantparts.index') }}" class="btn btn-primary btn-sm">Enter</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Anwendungsbereiche</h5>
+          {{-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> --}}
+          <a href="{{ route('admin.applicationscopes.index') }}" class="btn btn-primary btn-sm">Enter</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row py-4">
+    <div class="col-md">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Körperliche Wirkungen</h5>
+          {{-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> --}}
+          <a href="{{ route('admin.physicaleffects.index') }}" class="btn btn-primary btn-sm">Enter</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Psychische Wirkungen</h5>
+          {{-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> --}}
+          <a href="{{ route('admin.mentaleffects.index') }}" class="btn btn-primary btn-sm">Enter</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Verfahren</h5>
+          {{-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> --}}
+          <a href="{{ route('admin.methods.index') }}" class="btn btn-primary btn-sm">Enter</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Durftnoten</h5>
+          {{-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> --}}
+          <a href="{{ route('admin.fragrancenotes.index') }}" class="btn btn-primary btn-sm">Enter</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Gefahrenhinweise</h5>
+          {{-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> --}}
+          <a href="{{ route('admin.attentions.index') }}" class="btn btn-primary btn-sm">Enter</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
     
 @endsection

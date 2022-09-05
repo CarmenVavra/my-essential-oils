@@ -37,8 +37,7 @@ class AttentionController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => '|min:2|max:255|',
-            'description' => '|min:2|max:255|',
+            'name' => '|min:2|max:255|'
         ]);
 
         Attention::create($request->all());

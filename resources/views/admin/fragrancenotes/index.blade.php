@@ -8,7 +8,7 @@
 @if(!empty(session('success')))
   <div class="alert alert-success">{{ session('success') }}</div>
 @endif
-<div>
+<div class="container">
   <h1>Duftnoten</h1>
   <a href="{{ route('admin.fragrancenote.create') }}" class="btn btn-secondary">Neu</a>
   @if(isset($fragrancenotes))

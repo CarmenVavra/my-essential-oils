@@ -9,13 +9,12 @@
   <div class="alert alert-success">{{ session('success') }}</div>
 @endif
 @if(isset($basicoils))
-  <div>
+  <div class="container">
     <h1>Basisöle</h1>
     <a href="{{ route('admin.basicoil.create') }}" class="btn btn-secondary">Neu</a>
-    <table class="table table-hover table-dark">
+    <table class="table table-hover table-secondary table-striped">
       <thead>
         <tr>
-          <th>#</th>
           <th>Name</th>
           <th>Hauttyp</th>
           <th>Hautbereich</th>
@@ -27,7 +26,6 @@
       <tbody>
         @foreach($basicoils as $basicoil)
         <tr>
-          <td>{{ $basicoil->id }}</td>
           <td>{{ $basicoil->name }}</td>
           <td>{{ $basicoil->skintype }}</td>
           <td>{{ $basicoil->skinarea }}</td>
