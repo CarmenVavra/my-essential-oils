@@ -14,7 +14,7 @@ class PlantpartController extends Controller
      */
     public function index()
     {
-        $plantparts = Plantpart::all();
+        $plantparts = Plantpart::all()->sortBy('part');
         return view('admin.plantparts.index', compact('plantparts'));
     }
 

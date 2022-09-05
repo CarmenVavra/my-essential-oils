@@ -92,7 +92,7 @@
     <div class="col-md">
       <div class="card">
         <div class="card-body">
-          <h5 class="card-title">Durftnoten</h5>
+          <h5 class="card-title">Duftnoten</h5>
           {{-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> --}}
           <a href="{{ route('admin.fragrancenotes.index') }}" class="btn btn-primary btn-sm">Enter</a>
         </div>
