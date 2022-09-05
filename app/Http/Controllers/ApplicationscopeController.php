@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Applicationscope;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ApplicationscopeController extends Controller
 {
@@ -15,7 +16,11 @@ class ApplicationscopeController extends Controller
     public function index()
     {
         $applicationscopes = Applicationscope::all();
-        return view('admin.applicationscopes.index', compact('applicationscopes'));
+
+        if(Auth::user()->id === 1){
+            return view('admin.applicationscopes.index', compact('applicationscopes'));
+        }
+        return view('user.applicationscopes.index', compact('applicationscopes'));
     }
 
     /**
@@ -39,6 +44,8 @@ class ApplicationscopeController extends Controller
         $request->validate([
             'name' => '|min:2|max:255|',
         ]);
+        $request['section_name'] = $request['radioApplicationSection'] ?? '';
+        $request['section_short'] = isset($request['radioApplicationSection']) ? substr(strtoupper($request['radioApplicationSection']), 0, 1) : '';
 
         Applicationscope::create($request->all());
         return redirect()->route('admin.applicationscopes.index')->with('success', 'Der Anwendungsbereich wurde erfolgreich erstellt!');
@@ -78,7 +85,9 @@ class ApplicationscopeController extends Controller
         $request->validate([
             'name' => '|min:2|max:255|',
         ]);
-
+        $request['section_name'] = $request['radioApplicationSection'] ?? '';
+        $request['section_short'] = isset($request['radioApplicationSection']) ? substr(strtoupper($request['radioApplicationSection']), 0, 1) : '';
+        
         $applicationscope->update($request->all());
         return redirect()->route('admin.applicationscopes.index')->with('success', 'Der Anwendungsbereich wurde erfolgreich geändert!');
     }

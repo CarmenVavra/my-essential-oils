@@ -17,6 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('name')->nullable();
             $table->string('name_latin')->nullable();
+            $table->string('section_name')->nullable()->default(null);
+            $table->string('section_short')->nullable()->default(null);
             $table->timestamps();
         });
     }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Physicaleffect;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PhysicaleffectController extends Controller
 {
@@ -15,7 +16,10 @@ class PhysicaleffectController extends Controller
     public function index()
     {
         $physicaleffects = Physicaleffect::all();
-        return view('admin.physicaleffects.index', compact('physicaleffects'));
+        if(Auth::user()->id === 1){
+            return view('admin.physicaleffects.index', compact('physicaleffects'));
+        }
+        return view('user.physicaleffects.index', compact('physicaleffects'));
     }
 
     /**

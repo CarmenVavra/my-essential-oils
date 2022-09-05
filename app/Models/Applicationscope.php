@@ -11,6 +11,8 @@ class Applicationscope extends Model
 
     protected $fillable = [
         'name',
-        'name_latin', 
+        'name_latin',
+        'section_name',
+        'section_short',    // TODO: put these fields into form as inputfields type=text
     ];
 }

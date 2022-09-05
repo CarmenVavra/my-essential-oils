@@ -120,3 +120,40 @@ Route::delete('/plantpart/{plantpart}', [PlantpartController::class, 'destroy'])
 
 
 /* Admin END-Section */
+
+/* User Section */
+Route::get('/user/essentialoils', [EssentialoilController::class, 'index'])->name('user.essentialoils.index');
+/* Route::get('/user/essentialoil/create', [EssentialoilController::class, 'create'])->name('user.essentialoil.create');
+Route::post('/user/essentialoil', [EssentialoilController::class, 'store'])->name('user.essentialoil.store'); */
+Route::get('/user/essentialoil/{essentialoil}', [EssentialoilController::class, 'show'])->name('user.essentialoil.show');
+/* Route::get('/user/essentialoil/{essentialoil}/edit', [EssentialoilController::class, 'edit'])->name('user.essentialoil.edit');
+Route::put('/user/essentialoil/{essentialoil}', [EssentialoilController::class, 'update'])->name('user.essentialoil.update');
+Route::delete('/user/essentialoil/{essentialoil}', [EssentialoilController::class, 'destroy'])->name('user.essentialoil.delete'); */
+
+Route::get('/user/applicationscopes', [ApplicationscopeController::class, 'index'])->name('user.applicationscopes.index');
+//Route::get('/user/applicationscope/{applicationscope}', [ApplicationscopeController::class, 'show'])->name('user.applicationscope.show');
+/* Route::post('/user/applicationscope', [ApplicationscopeController::class, 'store'])->name('user.applicationscope.store');*/
+Route::get('/user/applicationscope/{applicationscope}', [ApplicationscopeController::class, 'show'])->name('user.applicationscope.show');
+/*Route::get('/user/applicationscope/{applicationscope}/edit', [ApplicationscopeController::class, 'edit'])->name('user.applicationscope.edit');
+Route::put('/user/applicationscope/{applicationscope}', [ApplicationscopeController::class, 'update'])->name('user.applicationscope.update');
+Route::delete('/user/applicationscope/{applicationscope}', [ApplicationscopeController::class, 'destroy'])->name('user.applicationscope.delete'); */
+
+Route::get('/user/physicaleffects', [PhysicaleffectController::class, 'index'])->name('user.physicaleffects.index');
+//Route::get('/user/physicaleffect/{physicaleffect}', [PhysicaleffectController::class, 'show'])->name('user.physicaleffect.show');
+/* Route::post('/user/physicaleffect', [PhysicaleffectController::class, 'store'])->name('user.physicaleffect.store');*/
+Route::get('/user/physicaleffect/{physicaleffect}', [PhysicaleffectController::class, 'show'])->name('user.physicaleffect.show');
+/*Route::get('/user/physicaleffect/{physicaleffect}/edit', [PhysicaleffectController::class, 'edit'])->name('user.physicaleffect.edit');
+Route::put('/user/physicaleffect/{physicaleffect}', [PhysicaleffectController::class, 'update'])->name('user.physicaleffect.update');
+Route::delete('/user/physicaleffect/{physicaleffect}', [PhysicaleffectController::class, 'destroy'])->name('user.physicaleffect.delete');
+ */
+
+Route::get('/user/mentaleffects', [MentaleffectController::class, 'index'])->name('user.mentaleffects.index');
+/* Route::get('/user/mentaleffect/create', [MentaleffectController::class, 'create'])->name('user.mentaleffect.create');
+Route::post('/user/mentaleffect', [MentaleffectController::class, 'store'])->name('user.mentaleffect.store'); */
+Route::get('/mentaleffect/{mentaleffect}', [MentaleffectController::class, 'show'])->name('user.mentaleffect.show');
+/* Route::get('/user/mentaleffect/{mentaleffect}/edit', [MentaleffectController::class, 'edit'])->name('user.mentaleffect.edit');
+Route::put('/user/mentaleffect/{mentaleffect}', [MentaleffectController::class, 'update'])->name('user.mentaleffect.update');
+Route::delete('/user/mentaleffect/{mentaleffect}', [MentaleffectController::class, 'destroy'])->name('user.mentaleffect.delete'); */
+
+
+/* User END-Section */

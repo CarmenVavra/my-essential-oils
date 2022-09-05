@@ -21,6 +21,7 @@ use App\Models\Physicaleffect;
 use App\Models\Plantpart;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class EssentialoilController extends Controller
 {
@@ -35,7 +36,10 @@ class EssentialoilController extends Controller
                                         ->join('methods as meth', 'method_id', '=', 'meth.id')
                                         ->select('essentialoils.*', 'merch.name as merchant_name', 'meth.short_name as method_short_name')->orderBy('name_english')->get();
 
-        return view('admin.essentialoils.index', compact('essentialOils'));
+        if(Auth::user()->id === 1){
+            return view('admin.essentialoils.index', compact('essentialOils'));
+        }
+        return view('user.essentialoils.index', compact('essentialOils'));
     }
 
     /**
@@ -550,7 +554,6 @@ class EssentialoilController extends Controller
             EssentialoilMentaleffect::where('essentialoil_id', $essentialoil->id)->delete();
         }
     }
-
 
     /**
      * Remove the specified resource from storage.

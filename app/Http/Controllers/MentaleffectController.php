@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Mentaleffect;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MentaleffectController extends Controller
 {
@@ -15,7 +16,11 @@ class MentaleffectController extends Controller
     public function index()
     {
         $mentaleffects = Mentaleffect::all();
-        return view('admin.mentaleffects.index', compact('mentaleffects'));
+
+        if(Auth::user()->id === 1){
+            return view('admin.mentaleffects.index', compact('mentaleffects'));
+        }
+        return view('user.mentaleffects.index', compact('mentaleffects'));
     }
 
     /**

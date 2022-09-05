@@ -1,20 +1,50 @@
 @extends('layouts.main')
 
 @section('content')
-    <div>
+    <div class="container">
       <form action="{{ route('admin.applicationscope.store') }}" method="post">
         @csrf
-        <div class="row">
-          <div class="col">
-            <label for="name">Name</label>
-            <input type="text" class="form-control" name="name" id="name" placeholder="Name">
-          </div>
-          <div class="col">
-            <label for="name_latin">Name Latein</label>
-            <input type="text" class="form-control" name="name_latin" id="name_latin" placeholder="Name Latein">
-          </div>
-          <div class="col">
-            <button type="submit" class="btn btn-dark">anlegen</button>
+        <div class="card"">
+          <div class="card-body">
+            <h5 class="card-title">Anwendungsbereich</h5>
+            <div class="row py-4">
+              <div class="col-md-4">
+                <input type="text" class="form-control" name="name" id="name" placeholder="Name">
+              </div>
+            </div>
+            <div class="row py-4">
+              <div class="col-md-4">
+                <input type="text" class="form-control" name="name_latin" id="name_latin" placeholder="Name Latein">
+              </div>
+            </div>
+            <h6>Sektion</h6>
+            <div class="row py-2">
+              <div class="col">
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="radioApplicationSection" id="radioApplicationSectionPhysical" value="physical">
+                  <label class="form-check-label" for="radioApplicationScopePhysical">
+                    körperlich
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="radioApplicationSection" id="radioApplicationSectionMental" value="mental">
+                  <label class="form-check-label" for="radioApplicationSectionMental">
+                    psychisch
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="radioApplicationSection" id="radioApplicationSectionDivers" value="divers">
+                  <label class="form-check-label" for="radioApplicationSectionDivers">
+                    sonstiges
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="row py-4">
+              <div class="col">
+                <button type="submit" class="btn btn-dark">anlegen</button>
+              </div>
+            </div>
           </div>
         </div>
       </form>

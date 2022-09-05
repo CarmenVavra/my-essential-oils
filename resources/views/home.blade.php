@@ -2,22 +2,36 @@
 
 @section('content')
 <div class="container">
+    <h1>Essential Oils Web by Carmen Vavra</h1>
+    <hr>
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md">
             <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
-
+                <img src="{{ asset('/img/essentialoils.jpg') }}" class="card-img-top" alt="...">
                 <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    {{ __('You are logged in!') }}
-                    <div>
-                        <a href="{{ route('admin.dashboard') }}" class="btn btn-primary">zum Dashboard</a>
-                    </div>
+                  <h5 class="card-title">Ätherische Öle</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  <a href="{{ route('user.essentialoils.index') }}" class="btn btn-primary">Enter</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md">
+            <div class="card">
+                <img src="{{ asset('/img/physical.jpg') }}" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">Körperliche Anwendungsbereiche</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  <a href="{{ route('user.physicaleffects.index') }}" class="btn btn-primary">Enter</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md">
+            <div class="card">
+                <img src="{{ asset('/img/mental.jpg') }}" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">Psychische Anwendungsbereiche</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  <a href="{{ route('user.mentaleffects.index') }}" class="btn btn-primary">Enter</a>
                 </div>
             </div>
         </div>
