@@ -5,6 +5,7 @@ use App\Http\Controllers\AttentionController;
 use App\Http\Controllers\BasicoilController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EssentialoilController;
+use App\Http\Controllers\EssentialoilUserController;
 use App\Http\Controllers\FragrancenoteController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\IncredientController;
@@ -13,6 +14,7 @@ use App\Http\Controllers\MerchantController;
 use App\Http\Controllers\MethodController;
 use App\Http\Controllers\PhysicaleffectController;
 use App\Http\Controllers\PlantpartController;
+use App\Http\Controllers\PlaygroundController;
 use App\Http\Controllers\UsagetypeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -38,7 +40,7 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 
 /* Admin-Section */
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
+Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
 
 Route::get('/applicationscopes', [ApplicationscopeController::class, 'index'])->name('admin.applicationscopes.index');
 Route::get('/applicationscope/create', [ApplicationscopeController::class, 'create'])->name('admin.applicationscope.create');
@@ -122,9 +124,10 @@ Route::delete('/plantpart/{plantpart}', [PlantpartController::class, 'destroy'])
 /* Admin END-Section */
 
 /* User Section */
+
 Route::get('/user/essentialoils', [EssentialoilController::class, 'index'])->name('user.essentialoils.index');
-/* Route::get('/user/essentialoil/create', [EssentialoilController::class, 'create'])->name('user.essentialoil.create');
-Route::post('/user/essentialoil', [EssentialoilController::class, 'store'])->name('user.essentialoil.store'); */
+Route::get('/user/essentialoil/create', [EssentialoilUserController::class, 'create'])->name('user.essentialoil.create');
+Route::post('/user/essentialoil', [EssentialoilUserController::class, 'store'])->name('user.essentialoil.store');
 Route::get('/user/essentialoil/{essentialoil}', [EssentialoilController::class, 'show'])->name('user.essentialoil.show');
 /* Route::get('/user/essentialoil/{essentialoil}/edit', [EssentialoilController::class, 'edit'])->name('user.essentialoil.edit');
 Route::put('/user/essentialoil/{essentialoil}', [EssentialoilController::class, 'update'])->name('user.essentialoil.update');
@@ -150,10 +153,17 @@ Route::delete('/user/physicaleffect/{physicaleffect}', [PhysicaleffectController
 Route::get('/user/mentaleffects', [MentaleffectController::class, 'index'])->name('user.mentaleffects.index');
 /* Route::get('/user/mentaleffect/create', [MentaleffectController::class, 'create'])->name('user.mentaleffect.create');
 Route::post('/user/mentaleffect', [MentaleffectController::class, 'store'])->name('user.mentaleffect.store'); */
-Route::get('/mentaleffect/{mentaleffect}', [MentaleffectController::class, 'show'])->name('user.mentaleffect.show');
+Route::get('/user/mentaleffect/{mentaleffect}', [MentaleffectController::class, 'show'])->name('user.mentaleffect.show');
 /* Route::get('/user/mentaleffect/{mentaleffect}/edit', [MentaleffectController::class, 'edit'])->name('user.mentaleffect.edit');
 Route::put('/user/mentaleffect/{mentaleffect}', [MentaleffectController::class, 'update'])->name('user.mentaleffect.update');
 Route::delete('/user/mentaleffect/{mentaleffect}', [MentaleffectController::class, 'destroy'])->name('user.mentaleffect.delete'); */
+Route::get('/user/dashboard', function () {
+    return view('user.dashboard');
+});
 
+Route::get('/user/playground', [PlaygroundController::class, 'index'])->name('user.playground.index');
+
+Route::get('/playground/essentialoils', [EssentialoilController::class, 'index'])->name('playground.essentialoils.index');
+Route::get('/playground/create', [EssentialoilController::class, 'create'])->name('playground.essentialoil.create');
 
 /* User END-Section */

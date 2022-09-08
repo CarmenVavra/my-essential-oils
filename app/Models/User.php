@@ -41,4 +41,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function essentialoils(){
+        return $this->belongsToMany(Essentialoil::class, 'essentialoil_users', 'essentialoil_id', 'user_id');
+    }
 }

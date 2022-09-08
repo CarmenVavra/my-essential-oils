@@ -87,3 +87,14 @@ select.style::-webkit-scrollbar-thumb {
   padding: 5px 10px;
   margin: 10px 0;
 }
+
+.hide{
+  display: none;
+}
+
+.minus, .plus, .count{
+  font-weight: bold;
+  user-select: none;
+  cursor: pointer;
+  font-size: 16px;
+}

@@ -37,7 +37,10 @@
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="{{ route('home') }}">Home</a>
                         </li>
-                        @if(!empty(Auth::user()) && Auth::user()->id === 1)
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('/user/dashboard') }}">Mein Bereich</a>
+                        </li>
+                        @if(!empty(Auth::user()) && Auth::user()->role === 1)
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('admin.dashboard') }}">Dashboard</a>
                         </li>
@@ -89,5 +92,6 @@
     <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
     <script src="{{ asset('js/bootstrap-multiselect.min.js') }}"></script>
     <script src="{{ asset('js/global.js') }}"></script>
+    @yield('js')
 </body>
 </html>

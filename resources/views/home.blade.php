@@ -11,7 +11,7 @@
                 <div class="card-body">
                   <h5 class="card-title">Ätherische Öle</h5>
                   <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  <a href="{{ route('user.essentialoils.index') }}" class="btn btn-primary">Enter</a>
+                  <a href="{{ route('admin.essentialoils.index') }}" class="btn btn-primary">Enter</a>
                 </div>
             </div>
         </div>
