@@ -129,6 +129,7 @@ Route::get('/user/essentialoils', [EssentialoilController::class, 'index'])->nam
 Route::get('/user/essentialoil/create', [EssentialoilUserController::class, 'create'])->name('user.essentialoil.create');
 Route::post('/user/essentialoil', [EssentialoilUserController::class, 'store'])->name('user.essentialoil.store');
 Route::put('/user/essentialoil', [EssentialoilUserController::class, 'update'])->name('user.essentialoil.update');
+Route::delete('/user/essentialoil/{essentialoil}', [EssentialoilUserController::class, 'destroy'])->name('user.essentialoil.delete');
 Route::get('/user/essentialoil/{essentialoil}', [EssentialoilController::class, 'show'])->name('user.essentialoil.show');
 /* Route::get('/user/essentialoil/{essentialoil}/edit', [EssentialoilController::class, 'edit'])->name('user.essentialoil.edit');
 Route::put('/user/essentialoil/{essentialoil}', [EssentialoilController::class, 'update'])->name('user.essentialoil.update');

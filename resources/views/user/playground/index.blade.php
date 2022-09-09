@@ -29,10 +29,7 @@
             <th class="align-center">Anzahl</th>
             <th class="align-center">Favorit</th>
           @endif
-          @if(!empty(Auth::user()) && Auth::user()->role === 1)
-            <th class="align-center">edit</th>
-            <th class="align-center">delete</th>
-          @endif
+          <th class="align-center">delete</th>
         </tr>
       </thead>
       <tbody>
@@ -68,16 +65,13 @@
           <td id="essentialoilCounter" class="align-center">{{ $essentialOil->count }}</td>
           <td class="align-center"><button type="button" class="btn @if($essentialOil->favourite) btn-warning @else btn-success @endif btn-sm btn-fav">Favorit</a></td>
           @endif
-          @if(!empty(Auth::user()) && Auth::user()->role === 1)
-          <td class="align-center"><a href="{{ route('user.essentialoil.edit', $essentialOil->id) }}" class="btn btn-warning">edit</a></td>
           <td class="align-center">
             <form action="{{ route('user.essentialoil.delete', $essentialOil->id) }}" method="post">
               @csrf
               @method('delete')
-              <button type="submit" class="btn btn-danger">löschen</button>
+              <button type="submit" class="btn btn-danger btn-sm">löschen</button>
             </form>
           </td>
-          @endif
         </tr>
         @endforeach
       </tbody>
@@ -112,7 +106,6 @@
             data:{essentialoil_name:essentialoilName , essentialoil_merchant:essentialoilMerchant},
             success:function(data){
               if(data){
-                //console.log(data);
                 if(e.target.classList.contains('btn-success')){
                   e.target.classList.remove('btn-success');
                   e.target.classList.add('btn-warning');

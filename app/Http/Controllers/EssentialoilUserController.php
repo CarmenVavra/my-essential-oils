@@ -150,8 +150,15 @@ class EssentialoilUserController extends Controller
      * @param  \App\Models\EssentialoilUser  $essentialoilUser
      * @return \Illuminate\Http\Response
      */
-    public function destroy(EssentialoilUser $essentialoilUser)
+    public function destroy(Essentialoil $essentialoil)
     {
-        //
+        //dd($essentialoil);
+        $essentialoilUser = EssentialoilUser::where('essentialoil_id', $essentialoil->id)
+                                            ->where('user_id', Auth::user()->id)->first();
+        // dd($essentialoilUser);  
+        if(null !== $essentialoilUser){
+            $essentialoilUser->delete();
+        }                                  
+        return redirect()->route('user.playground.index')->with('success', 'Die Verbindung wurde erfolgreich gelöscht!');
     }
 }
