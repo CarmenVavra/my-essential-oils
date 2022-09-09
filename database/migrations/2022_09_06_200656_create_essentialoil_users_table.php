@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('essentialoil_id')->nullable();
             $table->foreignId('user_id')->nullable();
+            $table->integer('count')->default(0);
             $table->boolean('favourite')->nullable();
             $table->timestamps();
         });

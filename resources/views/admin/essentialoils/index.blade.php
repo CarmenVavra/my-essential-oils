@@ -149,58 +149,25 @@
           value.onclick = function(e){
             let btnAdd = e.target;
             saveCount = btnAdd.parentElement.previousElementSibling.firstElementChild.nextElementSibling.innerText;
-            console.log(saveCount);
-            //e.preventDefault();
+            let tr = btnAdd.closest('tr');
+            let essentialoilName = tr.firstElementChild.innerText;
+            let essentialoilMerchant = tr.childNodes[15].innerText;
+
             $.ajax({
               type:'POST',
               url:"{{ route('user.essentialoil.store') }}",
               datatype:"json",
-              data:{saveCount:saveCount/* , essentialoil_name:end, essentialoil_merchant:merchant */},
+              data:{saveCount:saveCount, essentialoil_name:essentialoilName, essentialoil_merchant:essentialoilMerchant},
               success:function(data){
                 console.log(data);                
 
               }
             });
 
- 
- 
           }
         });
 
-
-
-
-
-
-
       });
-
-
-
-/* 
-      $(function(){
-        $('.minus').hide();
-        $('.plus').each(function(index){
-          $(this).on('click', function(e){
-            console.log($(this).siblings('count').text());
-          })
-          
-        }); */
-        // $('.plus').on('click', function(event){
-          // console.log($(this).siblings('.count').text()+1);
-          //console.log(event.target.className);
-        // })
-
-
-
-
-        
-
-
-
-
-
-      // });
 
     </script>
 @endsection

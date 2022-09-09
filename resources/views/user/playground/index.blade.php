@@ -8,11 +8,11 @@
 @if(!empty(session('success')))
   <div class="alert alert-success">{{ session('success') }}</div>
 @endif
-{{-- @if(isset($essentialOils)) --}}
+@if(isset($essentialOils))
 
   <div class="container">
-    <h1>Ätherische Öle!!!!!!!!!!!!!!!!!!!!!!</h1>
-{{--     <table id="essentialOils" class="table table-hover table-secondary table-striped">
+    <h1>Ätherische Öle</h1>
+    <table id="essentialOils" class="table table-hover table-secondary table-striped">
       <thead>
         <tr>
           <th>Name</th>
@@ -25,7 +25,11 @@
           <th>Merchant</th>
           <th>Verfahren</th>
           <th class="align-center">show</th>
-          @if(!empty(Auth::user()) && Auth::user()->id === 1)
+          @if(!empty(Auth::user()) && Auth::user()->role === 2)
+            <th class="align-center">Anzahl</th>
+            <th class="align-center">Favorit</th>
+          @endif
+          @if(!empty(Auth::user()) && Auth::user()->role === 1)
             <th class="align-center">edit</th>
             <th class="align-center">delete</th>
           @endif
@@ -59,11 +63,15 @@
           </td>
           <td>{{ $essentialOil->merchant_name }}</td>
           <td>{{ $essentialOil->method_short_name }}</td>
-          <td class="align-center"><a href="{{ route('admin.essentialoil.show', $essentialOil->id) }}" class="btn btn-info">show</a></td>
-          @if(!empty(Auth::user()) && Auth::user()->id === 1)
-          <td class="align-center"><a href="{{ route('admin.essentialoil.edit', $essentialOil->id) }}" class="btn btn-warning">edit</a></td>
+          <td class="align-center"><a href="{{ route('admin.essentialoil.show', $essentialOil->id) }}" class="btn btn-info btn-sm">show</a></td>
+          @if(!empty(Auth::user()) && Auth::user()->role === 2)
+          <td id="essentialoilCounter" class="align-center">{{ $essentialOil->count }}</td>
+          <td class="align-center"><button type="button" class="btn @if($essentialOil->favourite) btn-warning @else btn-success @endif btn-sm btn-fav">Favorit</a></td>
+          @endif
+          @if(!empty(Auth::user()) && Auth::user()->role === 1)
+          <td class="align-center"><a href="{{ route('user.essentialoil.edit', $essentialOil->id) }}" class="btn btn-warning">edit</a></td>
           <td class="align-center">
-            <form action="{{ route('admin.essentialoil.delete', $essentialOil->id) }}" method="post">
+            <form action="{{ route('user.essentialoil.delete', $essentialOil->id) }}" method="post">
               @csrf
               @method('delete')
               <button type="submit" class="btn btn-danger">löschen</button>
@@ -73,11 +81,54 @@
         </tr>
         @endforeach
       </tbody>
-    </table> --}}
+    </table>
   </div>
-{{-- @endif --}}
+@endif
 @endsection
 
 @section('js')
-    
+    <script>
+      "use strict";
+
+      let $btnsFav = document.querySelectorAll('.btn-fav');
+      $btnsFav.forEach(function(value, index){
+        value.onclick = function(e){
+          
+          let btnFav = e.target;
+          let tr = btnFav.closest('tr');
+          let essentialoilName = tr.firstElementChild.innerText;
+          let essentialoilMerchant = tr.childNodes[15].innerText;
+
+          $.ajaxSetup({
+              headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+              }
+          });
+
+          $.ajax({
+            type:'PUT',
+            url:"{{ route('user.essentialoil.update') }}",
+            datatype:"json",
+            data:{essentialoil_name:essentialoilName , essentialoil_merchant:essentialoilMerchant},
+            success:function(data){
+              if(data){
+                //console.log(data);
+                if(e.target.classList.contains('btn-success')){
+                  e.target.classList.remove('btn-success');
+                  e.target.classList.add('btn-warning');
+                }else if(e.target.classList.contains('btn-warning')){
+                  e.target.classList.remove('btn-warning');
+                  e.target.classList.add('btn-success');
+                }
+
+              }
+
+            }
+          });
+        };
+      });
+      
+      
+
+    </script>
 @endsection

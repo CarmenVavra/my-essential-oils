@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Applicationscope;
 use App\Models\Attention;
+use App\Models\Essentialoil;
 use App\Models\EssentialoilUser;
 use App\Models\Fragrancenote;
 use App\Models\Incredient;
@@ -13,6 +14,7 @@ use App\Models\Method;
 use App\Models\Physicaleffect;
 use App\Models\Plantpart;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class EssentialoilUserController extends Controller
 {
@@ -60,12 +62,32 @@ class EssentialoilUserController extends Controller
         header('Content-Type: application/json; charset = utf-8');
 
         if(strtolower($_SERVER['REQUEST_METHOD']) == 'post'){
-            
+            if(isset($request->essentialoil_name) && isset($request->essentialoil_merchant)){
+                $merchant = Merchant::where('name', $request->essentialoil_merchant)->first();
+                $essentialoil = Essentialoil::where('name_english', $request->essentialoil_name)
+                                            ->where('merchant_id', $merchant->id)->first();
+                $data = [
+                    'essentialoil_id' => $essentialoil->id,
+                    'user_id' => Auth::user()->id,
+                    'count' => $request->saveCount,
+                ];
+                $error = '';
+                $essentialoilUser = EssentialoilUser::where('essentialoil_id', $essentialoil->id)
+                                                    ->where('user_id', Auth::user()->id)->first();
+                if(null === $essentialoilUser){
+                    EssentialoilUser::create($data);
+                }else{
+                    $count = $essentialoilUser->count + $request->saveCount;
+                    $essentialoilUser->update(['count' => $count]);
+                }
+            }
 
 
 
             return response()->json([
-                'respone'=>'success',
+                'respone'=>$request->saveCount,
+                'essname' => $request->essentialoil_name,
+                'essmerchant' => $request->essentialoil_merchant,
             ]);
         }
     }
@@ -101,7 +123,25 @@ class EssentialoilUserController extends Controller
      */
     public function update(Request $request, EssentialoilUser $essentialoilUser)
     {
-        //
+        header('Content-Type: application/json; charset = utf-8');
+
+        if(strtolower($_SERVER['REQUEST_METHOD']) == 'put'){
+
+            $merchant = Merchant::where('name', $request->essentialoil_merchant)->first();
+            $essentialoil = Essentialoil::where('name_english', $request->essentialoil_name)
+                                        ->where('merchant_id', $merchant->id)->first();
+
+            $essentialoilUser = EssentialoilUser::where('essentialoil_id', $essentialoil->id)
+                                                ->where('user_id', Auth::user()->id)->first();
+
+            $favourite = $essentialoilUser->favourite ? false : true; 
+
+            $essentialoilUser->update(['favourite' => $favourite]);
+
+            return response()->json([
+                'respone'=>$favourite,
+            ]);
+        }
     }
 
     /**

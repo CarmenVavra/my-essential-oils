@@ -12,6 +12,7 @@ class EssentialoilUser extends Model
     protected $fillable = [
         'essentialoil_id',
         'user_id',
+        'count',
         'favourite',
     ];
 

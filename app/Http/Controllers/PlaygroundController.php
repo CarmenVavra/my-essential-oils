@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Essentialoil;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PlaygroundController extends Controller
 {
@@ -13,7 +15,13 @@ class PlaygroundController extends Controller
      */
     public function index()
     {
-        return view('user.playground.index');
+        $essentialOils = Essentialoil::join('merchants as merch', 'merchant_id', '=', 'merch.id')
+                                        ->join('methods as meth', 'method_id', '=', 'meth.id')
+                                        ->join('essentialoil_users as essuser', 'essuser.essentialoil_id', '=', 'essentialoils.id')
+                                        ->select('essentialoils.*', 'merch.name as merchant_name', 'meth.short_name as method_short_name', 'essuser.count', 'essuser.favourite')
+                                        ->where('essuser.user_id', Auth::user()->id)->orderBy('name_english')->get();
+
+        return view('user.playground.index', compact('essentialOils'));
     }
 
     /**
