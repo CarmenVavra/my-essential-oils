@@ -73,7 +73,7 @@
             <span class="minus">- </span><span class="count">0</span><span class="plus"> +</span>
           </td>
           <td class="align-center"><button type="button" class="btn btn-success btn-sm btn-add">hinzufügen</a></td>
-          <td class="align-center"><a href="#" class="btn btn-primary btn-sm btn-notice">merken</a></td>
+          <td class="align-center"><a href="#" class="btn @if($essentialOil->notice) btn-warning @else btn-primary @endif btn-sm btn-notice">merken</a></td>
           @endif
           @if(!empty(Auth::user()) && Auth::user()->role === 1)
           <td class="align-center"><a href="{{ route('admin.essentialoil.edit', $essentialOil->id) }}" class="btn btn-warning btn-sm">edit</a></td>
@@ -168,6 +168,48 @@
         });
 
       });
+  
 
-    </script>
+      /* das ist der Code von Favorit .. auf merken umschreiben */
+        let $btnsNotice = document.querySelectorAll('.btn-notice');
+        $btnsNotice.forEach(function(value, index){
+          value.onclick = function(e){
+            e.preventDefault();
+            let btnNotice = e.target;
+            let tr = btnNotice.closest('tr');
+            let essentialoilName = tr.firstElementChild.innerText;
+            let essentialoilMerchant = tr.childNodes[15].innerText;
+
+            $.ajaxSetup({
+                headers: {
+                  'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+  
+            $.ajax({
+              type:'PUT',
+              url:"{{ route('user.essentialoil.notice.update') }}",
+              datatype:"json",
+              data:{notice:'notice',essentialoil_name:essentialoilName , essentialoil_merchant:essentialoilMerchant},
+              success:function(data){
+                console.log('data: ', data);
+                if(data){
+                  if(e.target.classList.contains('btn-primary')){
+                    e.target.classList.remove('btn-primary');
+                    e.target.classList.add('btn-warning');
+                  }else if(e.target.classList.contains('btn-warning')){
+                    e.target.classList.remove('btn-warning');
+                    e.target.classList.add('btn-primary');
+                  }
+  
+                }
+  
+              }
+            });
+          };
+        });
+        
+        
+    
+        </script>
 @endsection

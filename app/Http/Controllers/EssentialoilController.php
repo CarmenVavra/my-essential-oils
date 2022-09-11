@@ -36,8 +36,9 @@ class EssentialoilController extends Controller
         // if(!empty(Auth::user()) && Auth::user()->role === 1){
             $essentialOils = Essentialoil::join('merchants as merch', 'merchant_id', '=', 'merch.id')
                                             ->join('methods as meth', 'method_id', '=', 'meth.id')
-                                            ->select('essentialoils.*', 'merch.name as merchant_name', 'meth.short_name as method_short_name')->orderBy('name_english')->get();
-            
+                                            ->join('essentialoil_user_notices', 'essentialoil_id', '=', 'essentialoils.id')
+                                            ->select('essentialoils.*', 'merch.name as merchant_name', 'meth.short_name as method_short_name', 'notice', 'user_id')->orderBy('name_english')->get();
+
             return view('admin.essentialoils.index', compact('essentialOils'));
 /*         }else{
             $essentialOils = Essentialoil::join('merchants as merch', 'merchant_id', '=', 'merch.id')

@@ -6,6 +6,7 @@ use App\Http\Controllers\BasicoilController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EssentialoilController;
 use App\Http\Controllers\EssentialoilUserController;
+use App\Http\Controllers\EssentialoilUserNoticeController;
 use App\Http\Controllers\FragrancenoteController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\IncredientController;
@@ -134,6 +135,8 @@ Route::get('/user/essentialoil/{essentialoil}', [EssentialoilController::class, 
 /* Route::get('/user/essentialoil/{essentialoil}/edit', [EssentialoilController::class, 'edit'])->name('user.essentialoil.edit');
 Route::put('/user/essentialoil/{essentialoil}', [EssentialoilController::class, 'update'])->name('user.essentialoil.update');
 Route::delete('/user/essentialoil/{essentialoil}', [EssentialoilController::class, 'destroy'])->name('user.essentialoil.delete'); */
+
+Route::put('/user/essentialoil/notice', [EssentialoilUserNoticeController::class, 'update'])->name('user.essentialoil.notice.update');
 
 Route::get('/user/applicationscopes', [ApplicationscopeController::class, 'index'])->name('user.applicationscopes.index');
 //Route::get('/user/applicationscope/{applicationscope}', [ApplicationscopeController::class, 'show'])->name('user.applicationscope.show');
