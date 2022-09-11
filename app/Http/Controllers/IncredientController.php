@@ -14,7 +14,7 @@ class IncredientController extends Controller
      */
     public function index()
     {
-        $incredients = Incredient::all();
+        $incredients = Incredient::all()->sortBy('name');
         return view('admin.incredients.index', compact('incredients'));
     }
 

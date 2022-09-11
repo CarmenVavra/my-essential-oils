@@ -14,7 +14,7 @@ class AttentionController extends Controller
      */
     public function index()
     {
-        $attentions = Attention::all();
+        $attentions = Attention::all()->sortBy('name');
         return view('admin.attentions.index', compact('attentions'));
     }
 

@@ -13,7 +13,7 @@
   <div class="container">
     <h1>Ätherische Öle</h1>
     @if(!empty(Auth::user()) && Auth::user()->role === 1)
-      <a href="{{ route('admin.essentialoil.create') }}" class="btn btn-secondary">Neu</a>
+      <a href="{{ route('admin.essentialoil.create') }}" class="btn btn-secondary btn-sm">Neu</a>
     @endif
     <table id="essentialOils" class="table table-hover table-secondary table-striped">
       <thead>
@@ -24,7 +24,7 @@
           <th class="align-center">Pur</th>
           <th class="align-center">Verdünnt</th>
           <th class="align-center">Empfindlich</th>
-          <th class="align-center">Einnahme</th>
+          <th class="align-center">Intern</th>
           <th>Merchant</th>
           <th>Verfahren</th>
           <th class="align-center">show</th>
@@ -76,12 +76,12 @@
           <td class="align-center"><a href="#" class="btn btn-primary btn-sm btn-notice">merken</a></td>
           @endif
           @if(!empty(Auth::user()) && Auth::user()->role === 1)
-          <td class="align-center"><a href="{{ route('admin.essentialoil.edit', $essentialOil->id) }}" class="btn btn-warning">edit</a></td>
+          <td class="align-center"><a href="{{ route('admin.essentialoil.edit', $essentialOil->id) }}" class="btn btn-warning btn-sm">edit</a></td>
           <td class="align-center">
             <form action="{{ route('admin.essentialoil.delete', $essentialOil->id) }}" method="post">
               @csrf
               @method('delete')
-              <button type="submit" class="btn btn-danger">löschen</button>
+              <button type="submit" class="btn btn-danger btn-sm">löschen</button>
             </form>
           </td>
           @endif

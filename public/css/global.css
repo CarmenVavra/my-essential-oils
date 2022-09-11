@@ -115,3 +115,21 @@ select.style::-webkit-scrollbar-thumb {
   color: #EFF1EF;
   border: none;
 }
+
+#cardSingleOil li, #cardApplicationScopes li, #cardPhysicalEffects li, #cardMentalEffects li{
+  padding: 4px 16px;
+}
+
+#cardApplicationScopes li:hover, #cardPhysicalEffects li:hover, #cardMentalEffects li:hover{
+  background-color: #8C9B88;
+  color: #EFF1EF;
+}
+
+.bg-sage{
+  background-color: #8C9B88;
+  color: #EFF1EF;
+}
+
+.list-group-item-sage{
+  border: none;
+}

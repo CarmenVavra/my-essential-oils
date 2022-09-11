@@ -14,7 +14,7 @@ class MethodController extends Controller
      */
     public function index()
     {
-        $methods = Method::all();
+        $methods = Method::all()->sortBy('name');
         return view('admin.methods.index', compact('methods'));
     }
 

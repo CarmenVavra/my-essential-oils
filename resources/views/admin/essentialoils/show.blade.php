@@ -70,42 +70,42 @@
             </div>
           </div>
           <div class="col-md-3">
-            <div class="card">
+            <div id="cardApplicationScopes" class="card bg-sage">
               <h5 class="card-header">Anwendungsbereiche</h5>
               <div class="card-body">
                 <h5 class="card-title">{{ $essentialoil->name_english }}</h5>
                 <p class="card-text">Ein Text</p>
                 <ul class="list-group">
                   @foreach($data['applicationscopes'] as $applicationscope)
-                    <li class="list-group-item">{{ $applicationscope->name }}</li>
+                    <li class="list-group-item list-group-item-sage">{{ $applicationscope->name }}</li>
                   @endforeach
                 </ul>
               </div>
             </div>
           </div>
           <div class="col-md-3">
-            <div class="card">
+            <div id="cardPhysicalEffects" class="card bg-sage">
               <h5 class="card-header">Körperliche Wirkungen</h5>
               <div class="card-body">
                 <h5 class="card-title">{{ $essentialoil->name_english }}</h5>
                 <p class="card-text">Ein Text</p>
                 <ul class="list-group">
                   @foreach($data['physicaleffects'] as $physicaleffect)
-                    <li class="list-group-item">{{ $physicaleffect->name }}</li>
+                    <li class="list-group-item list-group-item-sage">{{ $physicaleffect->name }}</li>
                   @endforeach
                 </ul>
               </div>
             </div>
           </div>
           <div class="col-md-3">
-            <div class="card">
+            <div id="cardMentalEffects" class="card bg-sage">
               <h5 class="card-header">Psychische Wirkungen</h5>
               <div class="card-body">
                 <h5 class="card-title">{{ $essentialoil->name_english }}</h5>
                 <p class="card-text">Ein Text</p>
                 <ul class="list-group">
                   @foreach($data['mentaleffects'] as $mentaleffect)
-                    <li class="list-group-item">{{ $mentaleffect->name }}</li>
+                    <li class="list-group-item list-group-item-sage">{{ $mentaleffect->name }}</li>
                   @endforeach
                 </ul>
               </div>

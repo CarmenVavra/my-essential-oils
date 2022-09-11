@@ -15,7 +15,7 @@ class PhysicaleffectController extends Controller
      */
     public function index()
     {
-        $physicaleffects = Physicaleffect::all();
+        $physicaleffects = Physicaleffect::all()->sortBy('name');
         if(Auth::user()->id === 1){
             return view('admin.physicaleffects.index', compact('physicaleffects'));
         }

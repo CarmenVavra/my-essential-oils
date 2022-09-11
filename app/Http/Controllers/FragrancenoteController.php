@@ -14,7 +14,7 @@ class FragrancenoteController extends Controller
      */
     public function index()
     {
-        $fragrancenotes = Fragrancenote::all();
+        $fragrancenotes = Fragrancenote::all()->sortBy('name');
         return view('admin.fragrancenotes.index', compact('fragrancenotes'));
     }
 

@@ -15,7 +15,7 @@ class MentaleffectController extends Controller
      */
     public function index()
     {
-        $mentaleffects = Mentaleffect::all();
+        $mentaleffects = Mentaleffect::all()->sortBy('name');
 
         if(Auth::user()->id === 1){
             return view('admin.mentaleffects.index', compact('mentaleffects'));

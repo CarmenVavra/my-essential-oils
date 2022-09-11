@@ -153,13 +153,13 @@ class EssentialoilController extends Controller
         $data = [
             'merchant' => $essentialoil->merchant()->first(),
             'method' => $essentialoil->method()->first(),
-            'attentions' => $essentialoil->attentions,
-            'applicationscopes' => $essentialoil->applicationscopes,
-            'plantparts' => $essentialoil->plantparts,
-            'incredients' => $essentialoil->incredients,
-            'fragrancenotes' => $essentialoil->fragrancenotes,
-            'physicaleffects' => $essentialoil->physicaleffects,
-            'mentaleffects' => $essentialoil->mentaleffects,
+            'attentions' => $essentialoil->attentions->sortBy('name'),
+            'applicationscopes' => $essentialoil->applicationscopes->sortBy('name'),
+            'plantparts' => $essentialoil->plantparts->sortBy('part'),
+            'incredients' => $essentialoil->incredients->sortBy('name'),
+            'fragrancenotes' => $essentialoil->fragrancenotes->sortBy('name'),
+            'physicaleffects' => $essentialoil->physicaleffects->sortBy('name'),
+            'mentaleffects' => $essentialoil->mentaleffects->sortBy('name'),
         ];
 
         return view('admin.essentialoils.show', compact('essentialoil', 'data'));

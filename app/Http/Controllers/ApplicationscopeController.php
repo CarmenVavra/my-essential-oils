@@ -15,7 +15,7 @@ class ApplicationscopeController extends Controller
      */
     public function index()
     {
-        $applicationscopes = Applicationscope::all();
+        $applicationscopes = Applicationscope::all()->sortBy('name');
 
         if(Auth::user()->id === 1){
             return view('admin.applicationscopes.index', compact('applicationscopes'));

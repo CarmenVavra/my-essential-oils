@@ -14,7 +14,7 @@ class MerchantController extends Controller
      */
     public function index()
     {
-        $merchants = Merchant::all();
+        $merchants = Merchant::all()->sortBy('name');
         return view('admin.merchants.index', compact('merchants'));
     }
 

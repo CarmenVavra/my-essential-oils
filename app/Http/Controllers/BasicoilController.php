@@ -14,7 +14,7 @@ class BasicoilController extends Controller
      */
     public function index()
     {
-        $basicoils = Basicoil::all();
+        $basicoils = Basicoil::all()->sortBy('name');
         return view('admin.basicoils.index', compact('basicoils'));
     }
 
