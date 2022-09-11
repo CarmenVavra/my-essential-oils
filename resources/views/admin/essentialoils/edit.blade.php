@@ -47,6 +47,11 @@
                 </div>
                 <div class="row py-2">
                   <div class="col">
+                    <textarea class="form-control" name="description_long" id="description_long" cols="30" rows="10">{{ old('description_long', $essentialoil->description_long) }}</textarea>
+                  </div>
+                </div>
+                <div class="row py-2">
+                  <div class="col">
                     <div class="form-check form-switch">
                       <input class="form-check-input" type="checkbox" name="pur" id="pur" @if($essentialoil->pur === 1) checked @endif>
                       <label class="form-check-label" for="pur">Pur</label>

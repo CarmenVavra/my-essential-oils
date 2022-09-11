@@ -73,7 +73,7 @@
             <span class="minus">- </span><span class="count">0</span><span class="plus"> +</span>
           </td>
           <td class="align-center"><button type="button" class="btn btn-success btn-sm btn-add">hinzufügen</a></td>
-          <td class="align-center"><a href="#" class="btn btn-primary btn-sm">merken</a></td>
+          <td class="align-center"><a href="#" class="btn btn-primary btn-sm btn-notice">merken</a></td>
           @endif
           @if(!empty(Auth::user()) && Auth::user()->role === 1)
           <td class="align-center"><a href="{{ route('admin.essentialoil.edit', $essentialOil->id) }}" class="btn btn-warning">edit</a></td>

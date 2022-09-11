@@ -84,6 +84,8 @@ select.style::-webkit-scrollbar-thumb {
 
 .list-header{
   background-color: #dccdf9;
+  color: #735E93;
+  font-weight: bold;
   padding: 5px 10px;
   margin: 10px 0;
 }
@@ -97,4 +99,19 @@ select.style::-webkit-scrollbar-thumb {
   user-select: none;
   cursor: pointer;
   font-size: 16px;
+}
+
+.card-show-single-oil{
+  background-color: #735E93;
+  color: #EFF1EF;
+}
+
+.card-text-single-oil{
+  font-style: italic;
+}
+
+#cardSingleOil .list-group-item{
+  background-color: #735E93;
+  color: #EFF1EF;
+  border: none;
 }

@@ -14,6 +14,7 @@ class EssentialoilUser extends Model
         'user_id',
         'count',
         'favourite',
+        'notice',
     ];
 
     public function essentialoils(){

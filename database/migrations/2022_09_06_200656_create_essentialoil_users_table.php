@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreignId('user_id')->nullable();
             $table->integer('count')->default(0);
             $table->boolean('favourite')->nullable();
+            $table->boolean('notice')->default(0);
             $table->timestamps();
         });
     }

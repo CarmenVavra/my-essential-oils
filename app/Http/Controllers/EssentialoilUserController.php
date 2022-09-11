@@ -134,9 +134,15 @@ class EssentialoilUserController extends Controller
             $essentialoilUser = EssentialoilUser::where('essentialoil_id', $essentialoil->id)
                                                 ->where('user_id', Auth::user()->id)->first();
 
-            $favourite = $essentialoilUser->favourite ? false : true; 
+            if(isset($request->favourite)){
+                $favourite = $essentialoilUser->favourite ? false : true; 
+                $essentialoilUser->update(['favourite' => $favourite]);
+            }
 
-            $essentialoilUser->update(['favourite' => $favourite]);
+            if(isset($request->notice)){
+                $notice = $essentialoilUser->notice ? false : true; 
+                $essentialoilUser->update(['notice' => $notice]);
+            }
 
             return response()->json([
                 'respone'=>$favourite,

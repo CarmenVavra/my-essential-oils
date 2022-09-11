@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('name_latin')->nullable();
             $table->string('name_english')->nullable();
             $table->string('description')->nullable();
+            $table->text('description_long')->nullable();
             $table->boolean('pur')->default(false);
             $table->boolean('dilute')->default(false);
             $table->boolean('sensitive')->default(false);

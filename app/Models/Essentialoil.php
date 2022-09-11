@@ -15,6 +15,7 @@ class Essentialoil extends Model
         'name_latin',
         'name_english',
         'description',
+        'description_long',
         'pur',
         'dilute',
         'sensitive',

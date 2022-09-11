@@ -37,7 +37,7 @@ class EssentialoilController extends Controller
             $essentialOils = Essentialoil::join('merchants as merch', 'merchant_id', '=', 'merch.id')
                                             ->join('methods as meth', 'method_id', '=', 'meth.id')
                                             ->select('essentialoils.*', 'merch.name as merchant_name', 'meth.short_name as method_short_name')->orderBy('name_english')->get();
-
+            
             return view('admin.essentialoils.index', compact('essentialOils'));
 /*         }else{
             $essentialOils = Essentialoil::join('merchants as merch', 'merchant_id', '=', 'merch.id')
@@ -86,6 +86,7 @@ class EssentialoilController extends Controller
         $essentialOils['name_latin'] = $request['name_latin'] ?? '';
         $essentialOils['name_english'] = $request['name_english'] ?? '';
         $essentialOils['description'] = $request['description'] ?? '';
+        $essentialOils['description_long'] = $request['description_long'] ?? '';
         $essentialOils['pur'] = isset($request['pur']) ? true : false;
         $essentialOils['dilute'] = isset($request['dilute']) ? true : false;
         $essentialOils['sensitive'] = isset($request['sensitive']) ? true : false;
@@ -256,6 +257,7 @@ class EssentialoilController extends Controller
         $essentialOils['name_latin'] = $request['name_latin'] ?? '';
         $essentialOils['name_english'] = $request['name_english'] ?? '';
         $essentialOils['description'] = $request['description'] ?? '';
+        $essentialOils['description_long'] = $request['description_long'] ?? '';
         $essentialOils['pur'] = isset($request['pur']) ? true : false;
         $essentialOils['dilute'] = isset($request['dilute']) ? true : false;
         $essentialOils['sensitive'] = isset($request['sensitive']) ? true : false;

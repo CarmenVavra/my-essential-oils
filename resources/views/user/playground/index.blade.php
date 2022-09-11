@@ -103,8 +103,9 @@
             type:'PUT',
             url:"{{ route('user.essentialoil.update') }}",
             datatype:"json",
-            data:{essentialoil_name:essentialoilName , essentialoil_merchant:essentialoilMerchant},
+            data:{favourite:'favourite',essentialoil_name:essentialoilName , essentialoil_merchant:essentialoilMerchant},
             success:function(data){
+              console.log('data: ', data);
               if(data){
                 if(e.target.classList.contains('btn-success')){
                   e.target.classList.remove('btn-success');
