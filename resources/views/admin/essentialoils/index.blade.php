@@ -73,7 +73,7 @@
             <span class="minus">- </span><span class="count">0</span><span class="plus"> +</span>
           </td>
           <td class="align-center"><button type="button" class="btn btn-success btn-sm btn-add">hinzufügen</a></td>
-          <td class="align-center"><a href="#" class="btn @if($essentialOil->notice) btn-warning @else btn-primary @endif btn-sm btn-notice">merken</a></td>
+          <td class="align-center"><a href="" class="btn @if($essentialOil->eun_notice) btn-warning @else btn-primary @endif btn-sm btn-notice">merken</a></td>
           @endif
           @if(!empty(Auth::user()) && Auth::user()->role === 1)
           <td class="align-center"><a href="{{ route('admin.essentialoil.edit', $essentialOil->id) }}" class="btn btn-warning btn-sm">edit</a></td>
