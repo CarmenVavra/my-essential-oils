@@ -74,4 +74,8 @@ class Essentialoil extends Model
         return $this->belongsToMany(User::class, 'essentialoil_users', 'essentialoil_id', 'user_id');
     }
 
+    public function scentdirections(){
+        return $this->belongsToMany(Scentdirection::class, 'essentialoil_scentdirection', 'essentialoil_id', 'scentdirection_id');
+    }
+
 }

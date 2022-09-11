@@ -101,6 +101,15 @@
     <div class="col-md">
       <div class="card">
         <div class="card-body">
+          <h5 class="card-title">Duftrichtungen</h5>
+          {{-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> --}}
+          <a href="{{ route('admin.scentdirections.index') }}" class="btn btn-primary btn-sm">Enter</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md">
+      <div class="card">
+        <div class="card-body">
           <h5 class="card-title">Gefahrenhinweise</h5>
           {{-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> --}}
           <a href="{{ route('admin.attentions.index') }}" class="btn btn-primary btn-sm">Enter</a>

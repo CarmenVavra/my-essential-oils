@@ -16,6 +16,7 @@ use App\Http\Controllers\MethodController;
 use App\Http\Controllers\PhysicaleffectController;
 use App\Http\Controllers\PlantpartController;
 use App\Http\Controllers\PlaygroundController;
+use App\Http\Controllers\ScentdirectionController;
 use App\Http\Controllers\UsagetypeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -78,6 +79,13 @@ Route::post('/fragrancenote', [FragrancenoteController::class, 'store'])->name('
 Route::get('/fragrancenote/{fragrancenote}/edit', [FragrancenoteController::class, 'edit'])->name('admin.fragrancenote.edit');
 Route::put('/fragrancenote/{fragrancenote}', [FragrancenoteController::class, 'update'])->name('admin.fragrancenote.update');
 Route::delete('/fragrancenote/{fragrancenote}', [FragrancenoteController::class, 'destroy'])->name('admin.fragrancenote.delete');
+
+Route::get('/scentdirections', [ScentdirectionController::class, 'index'])->name('admin.scentdirections.index');
+Route::get('/scentdirection/create', [ScentdirectionController::class, 'create'])->name('admin.scentdirection.create');
+Route::post('/scentdirection', [ScentdirectionController::class, 'store'])->name('admin.scentdirection.store');
+Route::get('/scentdirection/{scentdirection}/edit', [ScentdirectionController::class, 'edit'])->name('admin.scentdirection.edit');
+Route::put('/scentdirection/{scentdirection}', [ScentdirectionController::class, 'update'])->name('admin.scentdirection.update');
+Route::delete('/scentdirection/{scentdirection}', [ScentdirectionController::class, 'destroy'])->name('admin.scentdirection.delete');
 
 Route::get('/incredients', [IncredientController::class, 'index'])->name('admin.incredients.index');
 Route::get('/incredient/create', [IncredientController::class, 'create'])->name('admin.incredient.create');
