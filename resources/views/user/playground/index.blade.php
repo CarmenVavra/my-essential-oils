@@ -21,7 +21,7 @@
           <th class="align-center">Pur</th>
           <th class="align-center">Verdünnt</th>
           <th class="align-center">Empfindlich</th>
-          <th class="align-center">Einnahme</th>
+          <th class="align-center">Intern</th>
           <th>Merchant</th>
           <th>Verfahren</th>
           <th class="align-center">show</th>

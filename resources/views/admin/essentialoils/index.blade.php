@@ -12,10 +12,17 @@
 
   <div class="container">
     <h1>Ätherische Öle</h1>
+    <hr>
     @if(!empty(Auth::user()) && Auth::user()->role === 1)
-      <a href="{{ route('admin.essentialoil.create') }}" class="btn btn-secondary btn-sm">Neu</a>
+
+    <a href="{{ route('admin.essentialoil.create') }}">
+      <button class="icon-btn add-btn">
+        <div class="add-icon"></div>
+        <div class="btn-txt">Add Essential-Oil</div>
+      </button>
+    </a>
     @endif
-    <table id="essentialOils" class="table table-hover table-secondary table-striped">
+    <table id="essentialOils" class="table table-hover table-oils table-striped">
       <thead>
         <tr>
           <th>Name</th>
@@ -67,7 +74,7 @@
           </td>
           <td>{{ $essentialOil->merchant_name }}</td>
           <td>{{ $essentialOil->method_short_name }}</td>
-          <td class="align-center"><a href="{{ route('admin.essentialoil.show', $essentialOil->id) }}" class="btn btn-info btn-sm">show</a></td>
+          <td class="align-center"><a href="{{ route('admin.essentialoil.show', $essentialOil->id) }}" class="btn btn-show btn-sm">show</a></td>
           @if(!empty(Auth::user()) && Auth::user()->role === 2)
           <td id="essentialoilCounter" class="align-center">
             <span class="minus">- </span><span class="count">0</span><span class="plus"> +</span>
@@ -76,12 +83,12 @@
           <td class="align-center"><a href="" class="btn @if($essentialOil->eun_notice) btn-warning @else btn-primary @endif btn-sm btn-notice">merken</a></td>
           @endif
           @if(!empty(Auth::user()) && Auth::user()->role === 1)
-          <td class="align-center"><a href="{{ route('admin.essentialoil.edit', $essentialOil->id) }}" class="btn btn-warning btn-sm">edit</a></td>
+          <td class="align-center"><a href="{{ route('admin.essentialoil.edit', $essentialOil->id) }}" class="btn btn-edit btn-sm">edit</a></td>
           <td class="align-center">
             <form action="{{ route('admin.essentialoil.delete', $essentialOil->id) }}" method="post">
               @csrf
               @method('delete')
-              <button type="submit" class="btn btn-danger btn-sm">löschen</button>
+              <button type="submit" class="btn btn-delete btn-sm"><strong>X</strong></button>
             </form>
           </td>
           @endif

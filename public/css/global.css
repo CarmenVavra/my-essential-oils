@@ -9,7 +9,91 @@ Purple
 #735E93
 
 Ivory
-#EFF1EF */
+#EFF1EF
+
+rot
+#d72631
+
+helltürkis / meerschaum
+#a2d5c6
+
+dunkeltürkis / jade
+#077b8a
+
+violett
+#5c3c92
+
+Himbeere und Blautöne
+violett
+#8a307f
+
+hellblau
+#79a7d3
+
+dünkleres blau
+#6883bc
+
+gelb
+#e8d71e
+
+dunkles türkisgrün
+#05716c
+
+dunkles blau
+#315f72
+
+grau
+#ced7d8
+
+sehr helles blasses grün
+#e7e8d1
+
+*/
+
+.btn-edit{
+  background-color: #05716c;
+  color: #e5e5dc;
+}
+
+.btn-new{
+  background-color: #735E93;
+  color: #e5e5dc;
+}
+
+.btn-delete{
+  background-color: #d72631;
+  color: #e5e5dc;
+}
+
+.btn-show{
+  background-color: #1868ae;
+  color: #e5e5dc;
+}
+
+.btn-add{
+
+}
+
+.btn-fav{
+
+}
+
+.btn-notice{
+
+}
+
+.btn-default{
+
+}
+
+.table-oils{
+  background-color: #d9cfe7;
+}
+
+.table-oils th{
+  background-color: #8a307f;
+  color: #e5e5dc;
+}
 
 body{
   background-color: #EFF1EF;
@@ -33,6 +117,10 @@ body{
 .btn.btn-ivory{
   background-color: #EFF1EF;
   color: #735E93;
+}
+
+.bg-nav{
+  background-color: #5c3c92;
 }
 
 .bg-purple{
@@ -133,3 +221,105 @@ select.style::-webkit-scrollbar-thumb {
 .list-group-item-sage{
   border: none;
 }
+
+
+
+/* From uiverse.io by @mrhyddenn */
+.icon-btn {
+  width: 50px;
+  height: 50px;
+  border: 1px solid #cdcdcd;
+  background: #77bca9;
+  border-radius: 25px;
+  overflow: hidden;
+  position: relative;
+  transition: width 0.2s ease-in-out;
+  font-weight: 500;
+  font-family: inherit;
+  margin-bottom: 16px;
+}
+
+.add-btn:hover {
+  width: 200px;
+}
+
+.add-btn::before,
+.add-btn::after {
+  transition: width 0.2s ease-in-out, border-radius 0.2s ease-in-out;
+  content: "";
+  position: absolute;
+  height: 4px;
+  width: 10px;
+  top: calc(50% - 2px);
+  background: seagreen;
+}
+
+.add-btn::after {
+  right: 14px;
+  overflow: hidden;
+  border-top-right-radius: 2px;
+  border-bottom-right-radius: 2px;
+}
+
+.add-btn::before {
+  left: 14px;
+  border-top-left-radius: 2px;
+  border-bottom-left-radius: 2px;
+}
+
+.icon-btn:focus {
+  outline: none;
+}
+
+.btn-txt {
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.add-btn:hover::before,
+.add-btn:hover::after {
+  width: 4px;
+  border-radius: 2px;
+}
+
+.add-btn:hover .btn-txt {
+  opacity: 1;
+}
+
+.add-icon::after,
+.add-icon::before {
+  transition: all 0.2s ease-in-out;
+  content: "";
+  position: absolute;
+  height: 20px;
+  width: 2px;
+  top: calc(50% - 10px);
+  background: seagreen;
+  overflow: hidden;
+}
+
+.add-icon::before {
+  left: 22px;
+  border-top-left-radius: 2px;
+  border-bottom-left-radius: 2px;
+}
+
+.add-icon::after {
+  right: 22px;
+  border-top-right-radius: 2px;
+  border-bottom-right-radius: 2px;
+}
+
+.add-btn:hover .add-icon::before {
+  left: 15px;
+  height: 4px;
+  top: calc(50% - 2px);
+}
+
+.add-btn:hover .add-icon::after {
+  right: 15px;
+  height: 4px;
+  top: calc(50% - 2px);
+}
+
+/* End From uiverse.io by @mrhyddenn */
