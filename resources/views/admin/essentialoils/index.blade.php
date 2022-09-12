@@ -28,10 +28,38 @@
           <th>Name</th>
           <th>Name Latein</th>
           <th>Name Deutsch</th>
-          <th class="align-center">Pur</th>
-          <th class="align-center">Verdünnt</th>
-          <th class="align-center">Empfindlich</th>
-          <th class="align-center">Intern</th>
+          <th class="align-center">
+            <div class="uiverse">
+              <span class="tooltip">Pur</span>
+              <span>
+                P
+              </span>
+            </div>
+          </th>
+          <th class="align-center">
+            <div class="uiverse">
+              <span class="tooltip">Verdünnen</span>
+              <span>
+                V
+              </span>
+            </div>
+          </th>
+          <th class="align-center">
+            <div class="uiverse">
+              <span class="tooltip">Empfindlich</span>
+              <span>
+                E
+              </span>
+            </div>
+          </th>
+          <th class="align-center">
+            <div class="uiverse">
+              <span class="tooltip">Intern</span>
+              <span>
+                I
+              </span>
+            </div>
+          </th>
           <th>Merchant</th>
           <th>Verfahren</th>
           <th class="align-center">show</th>

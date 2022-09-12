@@ -1,52 +1,28 @@
 /* 
-Sage
-#8C9B88
 
-Cream
-#F5E8DA
-
-Purple
-#735E93
-
-Ivory
-#EFF1EF
-
-rot
-#d72631
-
-helltürkis / meerschaum
-#a2d5c6
-
-dunkeltürkis / jade
-#077b8a
-
-violett
-#5c3c92
-
-Himbeere und Blautöne
-violett
-#8a307f
-
-hellblau
-#79a7d3
-
-dünkleres blau
-#6883bc
-
-gelb
-#e8d71e
-
-dunkles türkisgrün
-#05716c
-
-dunkles blau
-#315f72
-
-grau
-#ced7d8
-
-sehr helles blasses grün
-#e7e8d1
+.div{
+  background-color: #92617e;
+  background-color: #3c1832;
+  background-color: #e7e8d1;
+  background-color: #ced7d8;
+  background-color: #315f72;
+  background-color: #05716c;
+  background-color: #e8d71e;
+  background-color: #6883bc;
+  background-color: #79a7d3;
+  background-color: #8a307f;
+  background-color: #5c3c92;
+  background-color: #077b8a;
+  background-color: #a2d5c6;
+  background-color: #d72631;
+  background-color: #EFF1EF;
+  background-color: #735E93;
+  background-color: #9e5165;
+  background-color: #dcc1b0;
+  background-color: #869dab;
+  background-color: #847072;
+  background-color: #3d313f;
+}
 
 */
 
@@ -93,6 +69,7 @@ sehr helles blasses grün
 .table-oils th{
   background-color: #8a307f;
   color: #e5e5dc;
+  vertical-align: middle;
 }
 
 body{
@@ -119,12 +96,32 @@ body{
   color: #735E93;
 }
 
+.bg-jade{
+  background-color: #077b8a;
+}
+
 .bg-nav{
   background-color: #5c3c92;
 }
 
 .bg-purple{
   background-color: #735E93;
+}
+
+.bg-card-singleoil{
+  background-color: #3d313f;
+}
+
+.bg-card-applicationscope{
+  background-color: #847072;
+}
+
+.bg-card-physical{
+  background-color: #869dab;
+}
+
+.bg-card-mental{
+  background-color: #dcc1b0;
 }
 
 .navbar-brand, .nav-link{
@@ -171,10 +168,11 @@ select.style::-webkit-scrollbar-thumb {
 }
 
 .list-header{
-  background-color: #dccdf9;
-  color: #735E93;
-  font-weight: bold;
-  padding: 5px 10px;
+  background-color: #847072;
+  color: #dcc1b0;
+  font-size: 18px;
+  font-weight: 450;
+  padding: 3px 10px;
   margin: 10px 0;
 }
 
@@ -190,7 +188,7 @@ select.style::-webkit-scrollbar-thumb {
 }
 
 .card-show-single-oil{
-  background-color: #735E93;
+  background-color: #3D313F;
   color: #EFF1EF;
 }
 
@@ -199,7 +197,7 @@ select.style::-webkit-scrollbar-thumb {
 }
 
 #cardSingleOil .list-group-item{
-  background-color: #735E93;
+  background-color: #3D313F;
   color: #EFF1EF;
   border: none;
 }
@@ -320,6 +318,73 @@ select.style::-webkit-scrollbar-thumb {
   right: 15px;
   height: 4px;
   top: calc(50% - 2px);
+}
+
+/* End From uiverse.io by @mrhyddenn */
+
+/* From uiverse.io by @mrhyddenn button mit tooltip*/
+.uiverse {
+  position: relative;
+  background: #ffffff;
+  color: #000;
+  padding: 15px;
+  margin: 10px;
+  border-radius: 10px;
+  width: 30px;
+  height: 20px;
+  font-size: 17px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.tooltip {
+  position: absolute;
+  top: 0;
+  font-size: 14px;
+  background: #ffffff;
+  color: #ffffff;
+  padding: 5px 8px;
+  border-radius: 5px;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.tooltip::before {
+  position: absolute;
+  content: "";
+  height: 8px;
+  width: 8px;
+  background: #ffffff;
+  bottom: -3px;
+  left: 50%;
+  transform: translate(-50%) rotate(45deg);
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.uiverse:hover .tooltip {
+  top: -45px;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+svg:hover span,
+svg:hover .tooltip {
+  text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.1);
+}
+
+.uiverse:hover,
+.uiverse:hover .tooltip,
+.uiverse:hover .tooltip::before {
+  background: linear-gradient(320deg, rgb(3, 77, 146), rgb(0, 60, 255));
+  color: #ffffff;
 }
 
 /* End From uiverse.io by @mrhyddenn */

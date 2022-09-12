@@ -70,8 +70,9 @@
             </div>
           </div>
           <div class="col-md-3">
-            <div id="cardApplicationScopes" class="card bg-sage">
+            <div id="cardApplicationScopes" class="card bg-card-applicationscope">
               <h5 class="card-header">Anwendungsbereiche</h5>
+              <img src="{{ asset('/img/anwendungsbereiche.jpg') }}" class="card-img-top">
               <div class="card-body">
                 <h5 class="card-title">{{ $essentialoil->name_english }}</h5>
                 <p class="card-text">Ein Text</p>
@@ -84,8 +85,9 @@
             </div>
           </div>
           <div class="col-md-3">
-            <div id="cardPhysicalEffects" class="card bg-sage">
+            <div id="cardPhysicalEffects" class="card bg-card-physical">
               <h5 class="card-header">Körperliche Wirkungen</h5>
+              <img src="{{ asset('/img/koerperlicheWirkung.jpg') }}" class="card-img-top">
               <div class="card-body">
                 <h5 class="card-title">{{ $essentialoil->name_english }}</h5>
                 <p class="card-text">Ein Text</p>
@@ -98,8 +100,9 @@
             </div>
           </div>
           <div class="col-md-3">
-            <div id="cardMentalEffects" class="card bg-sage">
+            <div id="cardMentalEffects" class="card bg-card-mental">
               <h5 class="card-header">Psychische Wirkungen</h5>
+              <img src="{{ asset('/img/psychischeWirkung.jpg') }}" class="card-img-top">
               <div class="card-body">
                 <h5 class="card-title">{{ $essentialoil->name_english }}</h5>
                 <p class="card-text">Ein Text</p>
