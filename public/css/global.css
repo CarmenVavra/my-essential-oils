@@ -206,9 +206,20 @@ select.style::-webkit-scrollbar-thumb {
   padding: 4px 16px;
 }
 
-#cardApplicationScopes li:hover, #cardPhysicalEffects li:hover, #cardMentalEffects li:hover{
-  background-color: #8C9B88;
+#cardApplicationScopes li:hover{
+  background-color: #847072;
   color: #EFF1EF;
+  font-weight: 500;
+}
+
+#cardPhysicalEffects li:hover{
+  background-color: #869dab;
+  font-weight: 500;
+}
+
+#cardMentalEffects li:hover{
+  background-color: #dcc1b0;
+  font-weight: 500;
 }
 
 .bg-sage{
