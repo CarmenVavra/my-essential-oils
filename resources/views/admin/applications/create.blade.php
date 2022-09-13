@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-      <h5>How-To erstellen</h5>
+      <h5>Anwendung erstellen</h5>
       <hr>
       <div class="row py-2">
         <div class="col-md-4">

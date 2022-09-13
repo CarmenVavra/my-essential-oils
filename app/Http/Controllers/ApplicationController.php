@@ -14,7 +14,7 @@ class ApplicationController extends Controller
      */
     public function index()
     {
-        $applications = Application::all();
+        $applications = Application::all()->sortBy('name');
         return view('admin.applications.index', compact('applications'));
     }
 
