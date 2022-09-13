@@ -17,6 +17,7 @@
   <div class="row py-4">
     <div class="col-md">
       <div class="card">
+        <img src="{{ asset('/img/merchant.jpg') }}" class="card-img-top">
         <div class="card-body">
           <h5 class="card-title">Merchants</h5>
           {{-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> --}}
@@ -26,6 +27,7 @@
     </div>
     <div class="col-md">
       <div class="card">
+        <img src="{{ asset('/img/basicoil.jpg') }}" class="card-img-top">
         <div class="card-body">
           <h5 class="card-title">Basisöle</h5>
           {{-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> --}}
@@ -109,6 +111,7 @@
     </div>
     <div class="col-md">
       <div class="card">
+        <img src="{{ asset('/img/Gefahrenhinweis.jpg') }}" class="card-img-top">
         <div class="card-body">
           <h5 class="card-title">Gefahrenhinweise</h5>
           {{-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> --}}
