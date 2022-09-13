@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\ApplicationscopeController;
 use App\Http\Controllers\AttentionController;
 use App\Http\Controllers\BasicoilController;
@@ -50,6 +51,13 @@ Route::post('/applicationscope', [ApplicationscopeController::class, 'store'])->
 Route::get('/applicationscope/{applicationscope}/edit', [ApplicationscopeController::class, 'edit'])->name('admin.applicationscope.edit');
 Route::put('/applicationscope/{applicationscope}', [ApplicationscopeController::class, 'update'])->name('admin.applicationscope.update');
 Route::delete('/applicationscope/{applicationscope}', [ApplicationscopeController::class, 'destroy'])->name('admin.applicationscope.delete');
+
+Route::get('/applications', [ApplicationController::class, 'index'])->name('admin.applications.index');
+Route::get('/application/create', [ApplicationController::class, 'create'])->name('admin.application.create');
+Route::post('/application', [ApplicationController::class, 'store'])->name('admin.application.store');
+Route::get('/application/{application}/edit', [ApplicationController::class, 'edit'])->name('admin.application.edit');
+Route::put('/application/{application}', [ApplicationController::class, 'update'])->name('admin.application.update');
+Route::delete('/application/{application}', [ApplicationController::class, 'destroy'])->name('admin.application.delete');
 
 Route::get('/attentions', [AttentionController::class, 'index'])->name('admin.attentions.index');
 Route::get('/attention/create', [AttentionController::class, 'create'])->name('admin.attention.create');

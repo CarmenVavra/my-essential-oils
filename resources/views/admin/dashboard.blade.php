@@ -13,8 +13,16 @@
         </div>
       </div>
     </div>
-  </div>
-  <div class="row py-4">
+    <div class="col-md">
+      <div class="card">
+        <img src="{{ asset('/img/basicoil.jpg') }}" class="card-img-top">
+        <div class="card-body">
+          <h5 class="card-title">Basisöle</h5>
+          {{-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> --}}
+          <a href="{{ route('admin.basicoils.index') }}" class="btn btn-primary btn-sm">Enter</a>
+        </div>
+      </div>
+    </div>
     <div class="col-md">
       <div class="card">
         <img src="{{ asset('/img/merchant.jpg') }}" class="card-img-top">
@@ -27,14 +35,15 @@
     </div>
     <div class="col-md">
       <div class="card">
-        <img src="{{ asset('/img/basicoil.jpg') }}" class="card-img-top">
         <div class="card-body">
-          <h5 class="card-title">Basisöle</h5>
+          <h5 class="card-title">Verfahren</h5>
           {{-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> --}}
-          <a href="{{ route('admin.basicoils.index') }}" class="btn btn-primary btn-sm">Enter</a>
+          <a href="{{ route('admin.methods.index') }}" class="btn btn-primary btn-sm">Enter</a>
         </div>
       </div>
     </div>
+  </div>
+  <div class="row py-4">
     <div class="col-md">
       <div class="card">
         <div class="card-body">
@@ -56,14 +65,32 @@
     <div class="col-md">
       <div class="card">
         <div class="card-body">
+          <h5 class="card-title">Duftrichtungen</h5>
+          {{-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> --}}
+          <a href="{{ route('admin.scentdirections.index') }}" class="btn btn-primary btn-sm">Enter</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Duftnoten</h5>
+          {{-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> --}}
+          <a href="{{ route('admin.fragrancenotes.index') }}" class="btn btn-primary btn-sm">Enter</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row py-4">
+    <div class="col-md">
+      <div class="card">
+        <div class="card-body">
           <h5 class="card-title">Anwendungsbereiche</h5>
           {{-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> --}}
           <a href="{{ route('admin.applicationscopes.index') }}" class="btn btn-primary btn-sm">Enter</a>
         </div>
       </div>
     </div>
-  </div>
-  <div class="row py-4">
     <div class="col-md">
       <div class="card">
         <div class="card-body">
@@ -84,28 +111,40 @@
     </div>
     <div class="col-md">
       <div class="card">
+        <img src="{{ asset('/img/Gefahrenhinweis.jpg') }}" class="card-img-top">
         <div class="card-body">
-          <h5 class="card-title">Verfahren</h5>
+          <h5 class="card-title">Gefahrenhinweise</h5>
           {{-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> --}}
-          <a href="{{ route('admin.methods.index') }}" class="btn btn-primary btn-sm">Enter</a>
+          <a href="{{ route('admin.attentions.index') }}" class="btn btn-primary btn-sm">Enter</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row py-4">
+    <div class="col-md">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Anwendungen</h5>
+          {{-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> --}}
+          <a href="{{ route('admin.applications.index') }}" class="btn btn-primary btn-sm">Enter</a>
         </div>
       </div>
     </div>
     <div class="col-md">
       <div class="card">
         <div class="card-body">
-          <h5 class="card-title">Duftnoten</h5>
+          <h5 class="card-title">Rezepte</h5>
           {{-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> --}}
-          <a href="{{ route('admin.fragrancenotes.index') }}" class="btn btn-primary btn-sm">Enter</a>
+          <a href="#" class="btn btn-primary btn-sm">Enter</a>
         </div>
       </div>
     </div>
     <div class="col-md">
       <div class="card">
         <div class="card-body">
-          <h5 class="card-title">Duftrichtungen</h5>
+          <h5 class="card-title">Empty Item</h5>
           {{-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> --}}
-          <a href="{{ route('admin.scentdirections.index') }}" class="btn btn-primary btn-sm">Enter</a>
+          <a href="#" class="btn btn-primary btn-sm">Enter</a>
         </div>
       </div>
     </div>
@@ -113,9 +152,9 @@
       <div class="card">
         <img src="{{ asset('/img/Gefahrenhinweis.jpg') }}" class="card-img-top">
         <div class="card-body">
-          <h5 class="card-title">Gefahrenhinweise</h5>
+          <h5 class="card-title">Empty Item</h5>
           {{-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> --}}
-          <a href="{{ route('admin.attentions.index') }}" class="btn btn-primary btn-sm">Enter</a>
+          <a href="#" class="btn btn-primary btn-sm">Enter</a>
         </div>
       </div>
     </div>
