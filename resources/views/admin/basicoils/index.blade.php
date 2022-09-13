@@ -11,8 +11,15 @@
 @if(isset($basicoils))
   <div class="container">
     <h1>Basisöle</h1>
-    <a href="{{ route('admin.basicoil.create') }}" class="btn btn-secondary">Neu</a>
-    <table class="table table-hover table-secondary table-striped">
+    <hr>
+    <a href="{{ route('admin.basicoil.create') }}">
+      <button class="icon-btn add-btn">
+        <div class="add-icon"></div>
+        <div class="btn-txt">Add Basicoil</div>
+      </button>
+    </a>
+    {{-- <a href="{{ route('admin.basicoil.create') }}" class="btn btn-secondary">Neu</a> --}}
+    <table class="table table-hover table-oils table-striped">
       <thead>
         <tr>
           <th>Name</th>
@@ -30,12 +37,12 @@
           <td>{{ $basicoil->skintype }}</td>
           <td>{{ $basicoil->skinarea }}</td>
           <td>{{ $basicoil->description }}</td>
-          <td><a href="{{ route('admin.basicoil.edit', $basicoil->id) }}" class="btn btn-warning">edit</a></td>
+          <td><a href="{{ route('admin.basicoil.edit', $basicoil->id) }}" class="btn btn-edit btn-sm">edit</a></td>
           <td>
             <form action="{{ route('admin.basicoil.delete', $basicoil->id) }}" method="post">
               @csrf
               @method('delete')
-              <button type="submit" class="btn btn-danger">löschen</button>
+              <button type="submit" class="btn btn-delete btn-sm"><strong>X</strong></button>
             </form>
           </td>
         </tr>
