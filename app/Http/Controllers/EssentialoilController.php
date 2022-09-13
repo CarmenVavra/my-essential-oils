@@ -12,6 +12,7 @@ use App\Models\EssentialoilIncredient;
 use App\Models\EssentialoilMentaleffect;
 use App\Models\EssentialoilPhysicaleffect;
 use App\Models\EssentialoilPlantpart;
+use App\Models\EssentialoilScentdirection;
 use App\Models\EssentialoilUserNotice;
 use App\Models\Fragrancenote;
 use App\Models\Incredient;
@@ -20,6 +21,7 @@ use App\Models\Merchant;
 use App\Models\Method;
 use App\Models\Physicaleffect;
 use App\Models\Plantpart;
+use App\Models\Scentdirection;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
@@ -67,6 +69,7 @@ class EssentialoilController extends Controller
             'plantparts' => Plantpart::all(),
             'attentions' => Attention::all(),
             'incredients' => Incredient::all(),
+            'scentdirections' => Scentdirection::all(),
             'fragrancenotes' => Fragrancenote::all(),
             'applicationscopes' => Applicationscope::all(),
             'physicaleffects' => Physicaleffect::all(),
@@ -135,6 +138,12 @@ class EssentialoilController extends Controller
             }
         }
         
+        if(isset($request['scentdirectionSelect'])){
+            foreach($request['scentdirectionSelect'] as $scentdirectionId){
+                EssentialoilScentdirection::create(['essentialoil_id' => $essentialOilId, 'scentdirection_id' => $scentdirectionId]);
+            }
+        }
+
         if(isset($request['fragrancenoteSelect'])){
             foreach($request['fragrancenoteSelect'] as $fragrancenoteId){
                 EssentialoilFragrancenote::create(['essentialoil_id' => $essentialOilId, 'fragrancenote_id' => $fragrancenoteId]);
@@ -159,6 +168,7 @@ class EssentialoilController extends Controller
             'applicationscopes' => $essentialoil->applicationscopes->sortBy('name'),
             'plantparts' => $essentialoil->plantparts->sortBy('part'),
             'incredients' => $essentialoil->incredients->sortBy('name'),
+            'scentdirections' => $essentialoil->scentdirections->sortBy('name'),
             'fragrancenotes' => $essentialoil->fragrancenotes->sortBy('name'),
             'physicaleffects' => $essentialoil->physicaleffects->sortBy('name'),
             'mentaleffects' => $essentialoil->mentaleffects->sortBy('name'),
@@ -182,6 +192,7 @@ class EssentialoilController extends Controller
             'plantparts' => Plantpart::all(),
             'attentions' => Attention::all(),
             'incredients' => Incredient::all(),
+            'scentdirections' => Scentdirection::all(),
             'fragrancenotes' => Fragrancenote::all(),
             'applicationscopes' => Applicationscope::all(),
             'physicaleffects' => Physicaleffect::all(),
@@ -191,6 +202,7 @@ class EssentialoilController extends Controller
         $constraintsIds = [
             'essentialoil_plantparts' => EssentialoilPlantpart::where('essentialoil_id', $essentialoil->id)->select('plantpart_id')->get(), 
             'essentialoil_incredients' => EssentialoilIncredient::where('essentialoil_id', $essentialoil->id)->select('incredient_id')->get(),
+            'essentialoil_scentdirections' => EssentialoilScentdirection::where('essentialoil_id', $essentialoil->id)->select('scentdirection_id')->get(),
             'essentialoil_fragrancenotes' => EssentialoilFragrancenote::where('essentialoil_id', $essentialoil->id)->select('fragrancenote_id')->get(),
             'attention_essentialoils' => AttentionEssentialoil::where('essentialoil_id', $essentialoil->id)->select('attention_id')->get(),
             'applicationscope_essentialoils' => ApplicationscopeEssentialoil::where('essentialoil_id', $essentialoil->id)->select('applicationscope_id')->get(),
@@ -210,7 +222,13 @@ class EssentialoilController extends Controller
            $incredientsIds[] = $essIncredient['id'];
         }
         $pivotIds['essentialoil_incredients'] = $incredientsIds;
-        
+                
+        $scentDirectionsIds = [];
+        foreach($essentialoil->scentdirections as $essScentDirection){
+           $scentDirectionsIds[] = $essScentDirection['id'];
+        }
+        $pivotIds['essentialoil_scentdirections'] = $scentDirectionsIds;
+
         $fragranceNotesIds = [];
         foreach($essentialoil->fragrancenotes as $essFragranceNote){
            $fragranceNotesIds[] = $essFragranceNote['id'];
@@ -272,6 +290,7 @@ class EssentialoilController extends Controller
 
         $this->updateEssentialOilPlantParts($request, $essentialoil);
         $this->updateEssentialOilIncredients($request, $essentialoil);
+        $this->updateEssentialOilScentDirections($request, $essentialoil);
         $this->updateEssentialOilFragranceNotes($request, $essentialoil);
         $this->updateAttentionEssentialOils($request, $essentialoil);
         $this->updateApplicationScopeEssentialOils($request, $essentialoil);
@@ -363,6 +382,45 @@ class EssentialoilController extends Controller
             }
         }else{
             EssentialoilIncredient::where('essentialoil_id', $essentialoil->id)->delete();
+        }
+    }
+
+    private function updateEssentialOilScentDirections(Request $request, EssentialOil $essentialoil){
+        if(isset($request['scentdirectionSelect'])){
+            $pivotScentDirections = [];
+            $pivotScentDirectionsIds = [];
+            foreach($scentDirectionsRequest = $request['scentdirectionSelect'] as $scentDirectionId){
+                $pivotScentDirections[] = $essentialoil->scentdirections;
+                foreach($pivotScentDirections as $pivotScentDirection){
+                    foreach($pivotScentDirection as $pivScentDir){
+                        $pivotScentDirectionsIds[] = $pivScentDir['id'];
+                    }
+                }
+
+                if(!in_array($scentDirectionId, $pivotScentDirectionsIds)){
+                    EssentialoilScentdirection::create([
+                        'essentialoil_id' => $essentialoil->id,
+                        'scentdirection_id' => $scentDirectionId,
+                    ])->session_commit;
+                }            
+            }
+
+            $pivotEssentialOilScentDirectionsIds = [];
+            foreach($essentialoil->scentdirections as $essentialScentDirection){
+                $pivotEssentialOilScentDirectionsIds[] = $essentialScentDirection->id;
+            }
+
+            foreach($pivotEssentialOilScentDirectionsIds as $pivotId){
+                if(!in_array($pivotId, $scentDirectionsRequest)){
+                    $deletePivotId = EssentialoilScentDirection::where('essentialoil_id', $essentialoil->id)
+                                                                ->where('scentdirection_id', $pivotId)->first();
+                    if(!is_null($deletePivotId)){
+                        $deletePivotId->delete();
+                    }
+                }
+            }
+        }else{
+            EssentialoilScentdirection::where('essentialoil_id', $essentialoil->id)->delete();
         }
     }
 
@@ -581,6 +639,7 @@ class EssentialoilController extends Controller
         $essentialoil->applicationscopes()->delete();
         $essentialoil->incredients()->delete();
         $essentialoil->plantparts()->delete();
+        $essentialoil->scentdirections()->delete();
         $essentialoil->fragrancenotes()->delete();
         $essentialoil->physicaleffects()->delete();
         $essentialoil->mentaleffects()->delete(); */

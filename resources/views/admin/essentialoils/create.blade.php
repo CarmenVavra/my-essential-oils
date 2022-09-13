@@ -117,6 +117,16 @@
                 </div>
                 <div class="row py-2">
                   <div class="col">
+                    <label for="scentdirectionSelect">Duftrichtung</label>
+                    <select class="form-control style widthHeight" name="scentdirectionSelect[]" id="scentdirectionSelect" multiple size="5">
+                      @foreach($data['scentdirections'] as $key => $scentdirection)
+                        <option name="{{ $scentdirection->id }}" value="{{ $scentdirection->id }}">{{ $scentdirection->name }}</option>
+                      @endforeach
+                    </select>
+                  </div>
+                </div>
+                <div class="row py-2">
+                  <div class="col">
                     <label for="fragrancenoteSelect">Duftnoten</label>
                     <select class="form-control style widthHeight" name="fragrancenoteSelect[]" id="fragrancenoteSelect" multiple size="5">
                       @foreach($data['fragrancenotes'] as $key => $fragrancenote)
