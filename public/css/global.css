@@ -124,6 +124,14 @@ body{
   background-color: #dcc1b0;
 }
 
+.bg-card-application{
+  background-color: #d5c5e9;
+}
+
+.bg-card-public-recipes{
+  background-color: #eded84;
+}
+
 .navbar-brand, .nav-link{
   color: #EFF1EF;
 }

@@ -4,6 +4,7 @@ use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\ApplicationscopeController;
 use App\Http\Controllers\AttentionController;
 use App\Http\Controllers\BasicoilController;
+use App\Http\Controllers\ComponentController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EssentialoilController;
 use App\Http\Controllers\EssentialoilUserController;
@@ -17,6 +18,7 @@ use App\Http\Controllers\MethodController;
 use App\Http\Controllers\PhysicaleffectController;
 use App\Http\Controllers\PlantpartController;
 use App\Http\Controllers\PlaygroundController;
+use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\ScentdirectionController;
 use App\Http\Controllers\UsagetypeController;
 use Illuminate\Support\Facades\Auth;
@@ -181,6 +183,27 @@ Route::delete('/user/mentaleffect/{mentaleffect}', [MentaleffectController::clas
 Route::get('/user/dashboard', function () {
     return view('user.dashboard');
 });
+
+Route::get('/user/recipes', [RecipeController::class, 'index'])->name('user.recipes.index');
+Route::get('/user/recipe/{recipe}', [RecipeController::class, 'show'])->name('user.recipe.show');
+
+Route::get('/admin/recipes', [RecipeController::class, 'index'])->name('admin.recipes.index');
+Route::get('/admin/recipe/create', [RecipeController::class, 'create'])->name('admin.recipe.create');
+Route::post('/admin/recipe', [RecipeController::class, 'store'])->name('admin.recipe.store');
+Route::get('/admin/recipe/{recipe}/edit', [RecipeController::class, 'edit'])->name('admin.recipe.edit');
+Route::put('/admin/recipe/{recipe}', [RecipeController::class, 'update'])->name('admin.recipe.update');
+Route::delete('/admin/recipe/{recipe}', [RecipeController::class, 'destroy'])->name('admin.recipe.delete');
+
+Route::get('/admin/components', [ComponentController::class, 'index'])->name('admin.components.index');
+Route::get('/admin/component/create', [ComponentController::class, 'create'])->name('admin.component.create');
+Route::post('/admin/component', [ComponentController::class, 'store'])->name('admin.component.store');
+Route::get('/admin/component/{component}/edit', [ComponentController::class, 'edit'])->name('admin.component.edit');
+Route::put('/admin/component/{component}', [ComponentController::class, 'update'])->name('admin.component.update');
+Route::delete('/admin/component/{component}', [ComponentController::class, 'destroy'])->name('admin.component.delete');
+
+Route::get('/user/components', [ComponentController::class, 'index'])->name('user.components.index');
+Route::get('/user/component/{component}', [ComponentController::class, 'show'])->name('user.component.show');
+
 
 Route::get('/user/playground', [PlaygroundController::class, 'index'])->name('user.playground.index');
 

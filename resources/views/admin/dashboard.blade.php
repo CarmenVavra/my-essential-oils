@@ -135,16 +135,16 @@
         <div class="card-body">
           <h5 class="card-title">Rezepte</h5>
           {{-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> --}}
-          <a href="#" class="btn btn-primary btn-sm">Enter</a>
+          <a href="{{ route('admin.recipes.index') }}" class="btn btn-primary btn-sm">Enter</a>
         </div>
       </div>
     </div>
     <div class="col-md">
       <div class="card">
         <div class="card-body">
-          <h5 class="card-title">Empty Item</h5>
+          <h5 class="card-title">Zutaten</h5>
           {{-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> --}}
-          <a href="#" class="btn btn-primary btn-sm">Enter</a>
+          <a href="{{ route('admin.components.index') }}" class="btn btn-primary btn-sm">Enter</a>
         </div>
       </div>
     </div>

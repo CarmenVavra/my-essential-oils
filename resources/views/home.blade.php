@@ -29,9 +29,9 @@
             <div class="card">
                 <img src="{{ asset('/img/mental.jpg') }}" class="card-img-top" alt="...">
                 <div class="card-body">
-                  <h5 class="card-title">Psychische Anwendungsbereiche</h5>
+                  <h5 class="card-title">Rezepte</h5>
                   <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  <a href="{{ route('user.mentaleffects.index') }}" class="btn btn-primary">Enter</a>
+                  <a href="{{ route('user.recipes.index') }}" class="btn btn-primary">Enter</a>
                 </div>
             </div>
         </div>
