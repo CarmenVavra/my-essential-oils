@@ -6,6 +6,7 @@
   <div class="row py-4">
     <div class="col-md">
       <div class="card">
+        <img src="{{ asset('/img/essentialoils_02.jpg') }}" class="card-img-top">
         <div class="card-body">
           <h5 class="card-title">Ätherische Öle</h5>
           {{-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> --}}
@@ -35,6 +36,7 @@
     </div>
     <div class="col-md">
       <div class="card">
+        <img src="{{ asset('/img/methods.jpg') }}" class="card-img-top">
         <div class="card-body">
           <h5 class="card-title">Verfahren</h5>
           {{-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> --}}
@@ -46,6 +48,7 @@
   <div class="row py-4">
     <div class="col-md">
       <div class="card">
+        <img src="{{ asset('/img/incredients.jpg') }}" class="card-img-top">
         <div class="card-body">
           <h5 class="card-title">Inhaltsstoffe</h5>
           {{-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> --}}
@@ -55,6 +58,7 @@
     </div>
     <div class="col-md">
       <div class="card">
+        <img src="{{ asset('/img/plantparts.jpg') }}" class="card-img-top">
         <div class="card-body">
           <h5 class="card-title">Pflanzenteile</h5>
           {{-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> --}}
@@ -64,6 +68,7 @@
     </div>
     <div class="col-md">
       <div class="card">
+        <img src="{{ asset('/img/scentdirections.jpg') }}" class="card-img-top">
         <div class="card-body">
           <h5 class="card-title">Duftrichtungen</h5>
           {{-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> --}}
@@ -73,6 +78,7 @@
     </div>
     <div class="col-md">
       <div class="card">
+        <img src="{{ asset('/img/fragrancenotes.jpg') }}" class="card-img-top">
         <div class="card-body">
           <h5 class="card-title">Duftnoten</h5>
           {{-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> --}}
@@ -84,6 +90,7 @@
   <div class="row py-4">
     <div class="col-md">
       <div class="card">
+        <img src="{{ asset('/img/applicationscopes.jpg') }}" class="card-img-top">
         <div class="card-body">
           <h5 class="card-title">Anwendungsbereiche</h5>
           {{-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> --}}
@@ -93,6 +100,7 @@
     </div>
     <div class="col-md">
       <div class="card">
+        <img src="{{ asset('/img/physical_02.jpg') }}" class="card-img-top">
         <div class="card-body">
           <h5 class="card-title">Körperliche Wirkungen</h5>
           {{-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> --}}
@@ -102,6 +110,7 @@
     </div>
     <div class="col-md">
       <div class="card">
+        <img src="{{ asset('/img/mental_02.jpg') }}" class="card-img-top">
         <div class="card-body">
           <h5 class="card-title">Psychische Wirkungen</h5>
           {{-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> --}}
@@ -123,6 +132,7 @@
   <div class="row py-4">
     <div class="col-md">
       <div class="card">
+        <img src="{{ asset('/img/applications.jpg') }}" class="card-img-top">
         <div class="card-body">
           <h5 class="card-title">Anwendungen</h5>
           {{-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> --}}
@@ -132,6 +142,7 @@
     </div>
     <div class="col-md">
       <div class="card">
+        <img src="{{ asset('/img/recipes.jpg') }}" class="card-img-top">
         <div class="card-body">
           <h5 class="card-title">Rezepte</h5>
           {{-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> --}}
@@ -141,6 +152,7 @@
     </div>
     <div class="col-md">
       <div class="card">
+        <img src="{{ asset('/img/components.jpg') }}" class="card-img-top">
         <div class="card-body">
           <h5 class="card-title">Zutaten</h5>
           {{-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> --}}
