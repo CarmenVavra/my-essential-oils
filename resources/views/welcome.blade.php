@@ -11,8 +11,16 @@
         @section('content')
             <div class="container">
                 <div class="row py-4">
-                    <div class="col-md-2">
-                        
+                    <div class="col">
+                        <h1>Ätherische Öle</h1>
+                        <hr>
+                    </div>
+                </div>
+                <div class="row py-4">
+                    <div class="col-md-2 wdr-bg-row2-transparent">
+                        <h3>Überschrift</h3>
+                        <p class="welcome-left-text">Scent is our most primitive sense. It's the closest thing to the emotional brain. </p>
+                        <p class="welcome-left-text">Es gibt für Alles ein Öl.</p>
                     </div>
                     <div class="col-md-8">
                         <div class="card">
@@ -38,9 +46,9 @@
                                     <div class="col-md-4"></div>
                                     <div class="col-md-4"></div>                                    
                                 </div>
-                                <div class="welcome-deco-right row">
-                                    <div class="col wdr-bg-row5 ">
-                                        <p class="welcome_brand_text">Essential Oils by Carmen Vavra</p>
+                                <div class="welcome-deco-right row background">
+                                    <div class="col wdr-bg-row5 transbox">
+                                        <p class="welcome_brand_text">Essential Oils App - Carmen Vavra</p>
                                     </div>
                                 </div>
 

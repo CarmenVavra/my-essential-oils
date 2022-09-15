@@ -71,9 +71,9 @@
   padding: 0px 10px;
 }
 
-.card-img-overlay .transparent{
-  opacity: 1; 
-}
+/* .card-img-overlay .transparent{
+  opacity: 0.5; 
+} */
 
 .wdr-bg-row1{
   background-color: #735E93;
@@ -91,11 +91,38 @@
   background-color: #7a2d59;
 }
 
+.wdr-bg-row2-transparent{
+  background-color: #e5ba22;
+  filter:opacity(0.6);
+}
+
+div.background {
+  background-color: #7a2d59;
+  border: 2px solid #7a2d59;
+  filter:opacity(0.6)
+}
+
+/* div.transbox {
+  background-color: #7a2d59;
+}
+
+div.transbox p {
+
+  font-weight: bold;
+  color: #fff;
+} */
+
+.welcome-left-text{
+  font-size: 1.5rem;
+}
+
 .welcome_brand_text{
-  padding-top: 1rem;
-  font-size: 3.5rem;
-  color: #e5e5dc;
+  padding-top: 1.5rem;
+  font-size: 2.6rem;
+  color: #fff;
   text-align: center;
+  font-weight: bold;
+  font-style: italic;
 }
 
 row .py-2-top{
