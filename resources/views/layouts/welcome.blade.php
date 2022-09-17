@@ -21,9 +21,9 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-purple bg-purple">
+        <nav class="navbar navbar-expand-md navbar-purple bg-nav">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a class="navbar-brand" href="{{ url('/login') }}">
                     {{ config('app.name', 'Essential Oils') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -42,16 +42,13 @@
                                 <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                             </li>
                         @endif
-                    @else
+{{--                     @else
                         <li class="nav-item text-light">
-                            {{ Auth::user()->name }}
+                            <span class="badge badge-pill badge-primary">{{ Auth::user()->name }}</span>
                         </li>
                         <li class="nav-item">
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST">
-                                @csrf
-                                <button type="submit" class="btn btn-delete">Logout</button>
-                            </form>
-                        </li>
+                            <a href="{{ route('user.back') }}" class="btn btn-delete">Back ></a>
+                        </li> --}}
                     @endguest
                 </ul>
 

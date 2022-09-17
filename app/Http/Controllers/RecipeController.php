@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Application;
+use App\Models\Basicoil;
+use App\Models\Component;
+use App\Models\Essentialoil;
 use App\Models\Recipe;
 use Illuminate\Http\Request;
 
@@ -25,7 +29,12 @@ class RecipeController extends Controller
      */
     public function create()
     {
-        return view('admin.recipes.create');
+        $essentialoils = Essentialoil::all()->sortBy('name_english');
+        $basicoils = Basicoil::all()->sortBy('name');
+        $components = Component::all()->sortBy('name');
+        $applications = Application::all()->sortBy('name');
+
+        return view('admin.recipes.create', compact('essentialoils', 'basicoils', 'components', 'applications'));
     }
 
     /**
@@ -40,6 +49,7 @@ class RecipeController extends Controller
             'name' => 'min:2|max:255',
         ]);
 
+        dd($request);
         Recipe::create($request->all());
         return redirect()->route('admin.recipes.index')->with('success', 'Das Rezept wurde erfolgreich erstellt!');
     }

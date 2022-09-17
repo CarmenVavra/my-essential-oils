@@ -10,17 +10,14 @@
         @extends('layouts.welcome')
         @section('content')
             <div class="container">
-                <div class="row py-4">
-                    <div class="col">
-                        <h1>Ätherische Öle</h1>
-                        <hr>
-                    </div>
-                </div>
+                <h1>Ätherische Öle</h1>
+                <hr>
+
                 <div class="row py-4">
                     <div class="col-md-2 wdr-bg-row2-transparent">
                         <h3>Überschrift</h3>
                         <p class="welcome-left-text">Scent is our most primitive sense. It's the closest thing to the emotional brain. </p>
-                        <p class="welcome-left-text">Es gibt für Alles ein Öl.</p>
+                        <p class="welcome-left-text">I have an oil for that.</p>
                     </div>
                     <div class="col-md-8">
                         <div class="card">

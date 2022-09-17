@@ -102,6 +102,17 @@ div.background {
   filter:opacity(0.6)
 }
 
+.badge-nav-name{
+  background-color: #e5ba22;
+  font-size: 16px;
+  margin-right: 10px;
+  margin-bottom: 0px;
+  font-weight: normal;
+  height: 100%;
+  padding-top: 10px;
+  border-radius: 2px;
+}
+
 /* div.transbox {
   background-color: #7a2d59;
 }

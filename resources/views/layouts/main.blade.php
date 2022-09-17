@@ -33,7 +33,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto">
+{{--                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="{{ route('home') }}">Home</a>
                         </li>
@@ -45,17 +45,17 @@
                             <a class="nav-link" href="{{ route('admin.dashboard') }}">Dashboard</a>
                         </li>
                         @endif
-                    </ul>
+                    </ul> --}}
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
-                        <li>    
+{{--                         <li>    
                             <form class="d-flex">
                                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                                 <button class="btn btn-secondary" type="submit">Search</button>
                               </form>
-                        </li>
+                        </li> --}}
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
@@ -69,8 +69,8 @@
                                 </li>
                             @endif
                         @else
-                            <li class="nav-item text-light">
-                                {{ Auth::user()->name }}
+                            <li class="nav-item">
+                                <span class="badge badge-nav-name">{{ Auth::user()->name }}</span>
                             </li>
                             <li class="nav-item">
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST">

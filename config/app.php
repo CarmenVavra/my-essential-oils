@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'EssentialOils'),
+    'name' => env('APP_NAME', 'Essential Oils'),
 
     /*
     |--------------------------------------------------------------------------

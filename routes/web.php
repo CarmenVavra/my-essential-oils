@@ -5,6 +5,7 @@ use App\Http\Controllers\ApplicationscopeController;
 use App\Http\Controllers\AttentionController;
 use App\Http\Controllers\BasicoilController;
 use App\Http\Controllers\ComponentController;
+use App\Http\Controllers\ComponentRecipeController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EssentialoilController;
 use App\Http\Controllers\EssentialoilUserController;
@@ -141,7 +142,7 @@ Route::delete('/plantpart/{plantpart}', [PlantpartController::class, 'destroy'])
 
 
 /* Admin END-Section */
-
+Route::post('/componentrecipe', [ComponentRecipeController::class, 'createOrUpdate'])->name('componentrecipe.createorupdate');
 /* User Section */
 
 Route::get('/user/essentialoils', [EssentialoilController::class, 'index'])->name('user.essentialoils.index');
@@ -210,4 +211,8 @@ Route::get('/user/playground', [PlaygroundController::class, 'index'])->name('us
 Route::get('/playground/essentialoils', [EssentialoilController::class, 'index'])->name('playground.essentialoils.index');
 Route::get('/playground/create', [EssentialoilController::class, 'create'])->name('playground.essentialoil.create');
 
+
+Route::get('/user/back', function () {
+    return back();
+})->name('user.back');
 /* User END-Section */
