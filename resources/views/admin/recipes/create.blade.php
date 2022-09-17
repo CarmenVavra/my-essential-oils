@@ -151,9 +151,9 @@
         componentSelect.onclick = function(e){
           selectedValue = e.target.getAttribute('name');
           components.forEach(function(value, index){
-          	console.log('value', value.getAttribute('id'));
             componentsValue = value.getAttribute('id');
               if(componentsValue == selectedValue){
+                $('#components').show();
                 $('#'+componentsValue).show();
               }
 
@@ -196,7 +196,7 @@
             }
           }); */
 
-          $('#components').show();
+          // $('#components').show();
           
         
         
