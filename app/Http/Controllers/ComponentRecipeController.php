@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Component;
 use App\Models\ComponentRecipe;
 use App\Models\Recipe;
 use Illuminate\Http\Request;
@@ -36,7 +37,30 @@ class ComponentRecipeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        header('Content-Type: application/json; charset = utf-8');
+
+        if(strtolower($_SERVER['REQUEST_METHOD']) == 'post'){
+
+            $component = Component::where('name', $request->name)->first();
+            $componentRecipe = ComponentRecipe::where('recipe_id', $request->recipeId)
+                                                ->where('component_id', $component->id)->first();
+
+            $data = [
+                'recipe_id' => $request->recipeId,
+                'component_id' => $component->id,
+            ];
+
+            if(is_null($componentRecipe)){
+                $recipe = ComponentRecipe::create($data);
+                $recipe = $recipe->recipe_id;
+            }else{
+                $recipe = $componentRecipe->recipe_id;
+            }
+
+            return response()->json([
+                'recipeId'=>$recipe,  
+            ]);
+        }
     }
 
     /**

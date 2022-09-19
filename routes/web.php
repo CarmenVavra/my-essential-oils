@@ -142,7 +142,7 @@ Route::delete('/plantpart/{plantpart}', [PlantpartController::class, 'destroy'])
 
 
 /* Admin END-Section */
-Route::post('/componentrecipe', [ComponentRecipeController::class, 'createOrUpdate'])->name('componentrecipe.createorupdate');
+Route::post('/componentrecipe', [ComponentRecipeController::class, 'store'])->name('admin.component.recipe.store');
 /* User Section */
 
 Route::get('/user/essentialoils', [EssentialoilController::class, 'index'])->name('user.essentialoils.index');

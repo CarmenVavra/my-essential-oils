@@ -45,14 +45,36 @@ class RecipeController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+
+        header('Content-Type: application/json; charset = utf-8');
+
+        if(strtolower($_SERVER['REQUEST_METHOD']) == 'post'){
+
+            $data = [
+                'name' => $request->recipeName,
+                'description' => $request->description,
+                'annotation' => $request->annotation,
+            ];
+
+            $recipe = Recipe::create($data);
+
+            return response()->json([
+                'recipe'=>$recipe,
+                
+            ]);
+        }
+
+
+
+/*         $request->validate([
             'name' => 'min:2|max:255',
         ]);
 
+        //Todo: hier weitermachen
         dd($request);
         Recipe::create($request->all());
         return redirect()->route('admin.recipes.index')->with('success', 'Das Rezept wurde erfolgreich erstellt!');
-    }
+ */    }
 
     /**
      * Display the specified resource.
