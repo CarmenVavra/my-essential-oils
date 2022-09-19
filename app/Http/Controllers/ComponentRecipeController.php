@@ -58,7 +58,8 @@ class ComponentRecipeController extends Controller
             }
 
             return response()->json([
-                'recipeId'=>$recipe,  
+                'recipeId'=>$recipe,
+                'componentName' => $component->name,
             ]);
         }
     }

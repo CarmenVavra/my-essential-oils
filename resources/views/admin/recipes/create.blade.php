@@ -254,24 +254,24 @@
         
         componentSelect.onclick = function(e){
           componentSelectboxValue = e.target.getAttribute('name');
-          components.forEach(function(value, index){
+          //components.forEach(function(value, index){
             $.ajax({
               type:'POST',
               url:"{{ route('admin.component.recipe.store') }}",
               datatype:"json",
               data:{recipeId:recipeId, name:componentSelectboxValue},
               success:function(data){
-                console.log(data);                
+                //console.log(data['componentName']);                
+                componentsValue = data['componentName'].replaceAll('_', ' ');
+                if(componentsValue == componentSelectboxValue){
+                  $('#components').show();
+                  $('#'+componentsValue.replaceAll(' ', '_')).show();
+                }
 
               }
             });
 
-            componentsValue = value.getAttribute('id');
-            if(componentsValue == componentSelectboxValue){
-              $('#components').show();
-              $('#'+componentsValue).show();
-            }
-          });
+          //});
         };
 
         $('#basicoils').hide();
@@ -291,16 +291,15 @@
               data:{recipeId:recipeId, name:basicoilSelectboxValue},
               success:function(data){
                 console.log(data);                
+                basicoilsValue = data['basicoilName'].replaceAll('_', ' ');
+                if(basicoilsValue == basicoilSelectboxValue){
+                    $('#basicoils').show();
+                    $('#'+basicoilSelectboxValue.replaceAll(' ', '_')).show();
+                  }
 
               }
             });
 
-            basicoilsValue = value.getAttribute('id').replaceAll('_', ' ');
-            if(basicoilsValue == basicoilSelectboxValue){
-                $('#basicoils').show();
-                $('#'+basicoilsValue.replaceAll(' ', '_')).show();
-                
-              }
 
             //});
         };
@@ -323,15 +322,15 @@
               data:{recipeId:recipeId, name:essentialoilSelectboxValue},
               success:function(data){
                 console.log(data);                
+                essentialoilsValue = data['essentialoilName'].replaceAll('_', ' ');
+                if(essentialoilsValue == essentialoilSelectboxValue){
+                  $('#essentialoils').show();
+                  $('#'+essentialoilsValue.replaceAll(' ', '_')).show();
+                }
 
               }
             });
 
-            essentialoilsValue = value.getAttribute('id').replaceAll('_', ' ');
-            if(essentialoilsValue == essentialoilSelectboxValue){
-              $('#essentialoils').show();
-              $('#'+essentialoilsValue.replaceAll(' ', '_')).show();
-            }
 
           //});
         };

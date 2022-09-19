@@ -57,7 +57,8 @@ class BasicoilRecipeController extends Controller
             }
 
             return response()->json([
-                'recipeId'=>$basicoil->id,  
+                'recipeId'=>$recipe,
+                'basicoilName' => $basicoil->name,  
             ]);
         }
     }

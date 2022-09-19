@@ -57,7 +57,8 @@ class EssentialoilRecipeController extends Controller
             }
 
             return response()->json([
-                'recipeId'=>$essentialoil,  
+                'recipeId'=>$recipe,
+                'essentialoilName' => $essentialoil->name_english,  
             ]);
         }
     }
