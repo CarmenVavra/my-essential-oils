@@ -10,9 +10,10 @@ class BasicoilRecipe extends Model
     use HasFactory;
 
     protected $fillable = [
-        'basicoil',
+        'basicoil_id',
         'recipe_id',
         'amount',
+        'unit',
     ];
     
     public function basicoils(){

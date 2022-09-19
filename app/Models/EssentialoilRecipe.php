@@ -13,6 +13,7 @@ class EssentialoilRecipe extends Model
         'essentialoil_id',
         'recipe_id',
         'amount',
+        'unit',
     ];
     
     public function essentialoils(){

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Basicoil;
 use App\Models\BasicoilRecipe;
 use Illuminate\Http\Request;
 
@@ -35,7 +36,30 @@ class BasicoilRecipeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        header('Content-Type: application/json; charset = utf-8');
+
+        if(strtolower($_SERVER['REQUEST_METHOD']) == 'post'){
+
+            $basicoil = Basicoil::where('name', $request->name)->first();
+            $basicoilRecipe = BasicoilRecipe::where('recipe_id', $request->recipeId)
+                                            ->where('basicoil_id', $basicoil->id)->first();
+
+            $data = [
+                'basicoil_id' => $basicoil->id,
+                'recipe_id' => $request->recipeId,
+            ];
+
+            if(is_null($basicoilRecipe)){
+                $recipe = BasicoilRecipe::create($data);
+                $recipe = $recipe->recipe_id;
+            }else{
+                $recipe = $basicoilRecipe->recipe_id;
+            }
+
+            return response()->json([
+                'recipeId'=>$basicoil->id,  
+            ]);
+        }
     }
 
     /**

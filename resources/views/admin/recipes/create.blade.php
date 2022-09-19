@@ -208,6 +208,7 @@
       $(function(){
 
         let recipeId = 0;
+
         $.ajaxSetup({
           headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -230,8 +231,6 @@
         btnRecipeForm.onclick = function(e){
           e.preventDefault();
 
-
-  
           $.ajax({
             type:'POST',
             url:"{{ route('admin.recipe.store') }}",
@@ -256,23 +255,23 @@
         componentSelect.onclick = function(e){
           componentSelectboxValue = e.target.getAttribute('name');
           components.forEach(function(value, index){
-          $.ajax({
-            type:'POST',
-            url:"{{ route('admin.component.recipe.store') }}",
-            datatype:"json",
-            data:{recipeId:recipeId, name:componentSelectboxValue},
-            success:function(data){
-              console.log(data);                
+            $.ajax({
+              type:'POST',
+              url:"{{ route('admin.component.recipe.store') }}",
+              datatype:"json",
+              data:{recipeId:recipeId, name:componentSelectboxValue},
+              success:function(data){
+                console.log(data);                
 
-            }
-          }); 
-            componentsValue = value.getAttribute('id');
-              if(componentsValue == componentSelectboxValue){
-                $('#components').show();
-                $('#'+componentsValue).show();
               }
-
             });
+
+            componentsValue = value.getAttribute('id');
+            if(componentsValue == componentSelectboxValue){
+              $('#components').show();
+              $('#'+componentsValue).show();
+            }
+          });
         };
 
         $('#basicoils').hide();
@@ -284,7 +283,18 @@
         
         basicoilSelect.onclick = function(e){
           basicoilSelectboxValue = e.target.getAttribute('name');
-          basicoils.forEach(function(value, index){
+          //basicoils.forEach(function(value, index){
+            $.ajax({
+              type:'POST',
+              url:"{{ route('admin.basicoil.recipe.store') }}",
+              datatype:"json",
+              data:{recipeId:recipeId, name:basicoilSelectboxValue},
+              success:function(data){
+                console.log(data);                
+
+              }
+            });
+
             basicoilsValue = value.getAttribute('id').replaceAll('_', ' ');
             if(basicoilsValue == basicoilSelectboxValue){
                 $('#basicoils').show();
@@ -292,7 +302,7 @@
                 
               }
 
-            });
+            //});
         };
 
           
@@ -305,15 +315,25 @@
         
         essentialoilSelect.onclick = function(e){
           essentialoilSelectboxValue = e.target.getAttribute('name');
-          essentialoils.forEach(function(value, index){
+          //essentialoils.forEach(function(value, index){
+            $.ajax({
+              type:'POST',
+              url:"{{ route('admin.essentialoil.recipe.store') }}",
+              datatype:"json",
+              data:{recipeId:recipeId, name:essentialoilSelectboxValue},
+              success:function(data){
+                console.log(data);                
+
+              }
+            });
+
             essentialoilsValue = value.getAttribute('id').replaceAll('_', ' ');
             if(essentialoilsValue == essentialoilSelectboxValue){
-                $('#essentialoils').show();
-                $('#'+essentialoilsValue.replaceAll(' ', '_')).show();
-                
-              }
+              $('#essentialoils').show();
+              $('#'+essentialoilsValue.replaceAll(' ', '_')).show();
+            }
 
-            });
+          //});
         };
           
           

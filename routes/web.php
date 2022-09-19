@@ -4,10 +4,12 @@ use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\ApplicationscopeController;
 use App\Http\Controllers\AttentionController;
 use App\Http\Controllers\BasicoilController;
+use App\Http\Controllers\BasicoilRecipeController;
 use App\Http\Controllers\ComponentController;
 use App\Http\Controllers\ComponentRecipeController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EssentialoilController;
+use App\Http\Controllers\EssentialoilRecipeController;
 use App\Http\Controllers\EssentialoilUserController;
 use App\Http\Controllers\EssentialoilUserNoticeController;
 use App\Http\Controllers\FragrancenoteController;
@@ -143,6 +145,8 @@ Route::delete('/plantpart/{plantpart}', [PlantpartController::class, 'destroy'])
 
 /* Admin END-Section */
 Route::post('/componentrecipe', [ComponentRecipeController::class, 'store'])->name('admin.component.recipe.store');
+Route::post('/basicoilrecipe', [BasicoilRecipeController::class, 'store'])->name('admin.basicoil.recipe.store');
+Route::post('/essentialoilrecipe', [EssentialoilRecipeController::class, 'store'])->name('admin.essentialoil.recipe.store');
 /* User Section */
 
 Route::get('/user/essentialoils', [EssentialoilController::class, 'index'])->name('user.essentialoils.index');
