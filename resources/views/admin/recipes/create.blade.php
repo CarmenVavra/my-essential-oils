@@ -4,12 +4,13 @@
     <div class="container">
       <h5>Rezept erstellen</h5>
       <hr>
-      <form id="recipeForm" method="post">
-      @csrf
-        <div class="row py-2">
-          <div class="col-md-4">
-            <div class="card">
-              <div class="card-body">
+      <div class="row py-4">
+        <div class="col-md-3">
+          <div class="card">
+            <div class="card-body">
+
+              <form id="recipeForm" action="" method="post">
+                @csrf
                 <div class="row py-2">
                   <div class="col">
                     <label class="inp" for="name">
@@ -43,8 +44,9 @@
                   </div>
                 </div>
               </form>
+
               <form id="componentsForm" action="" method="post">
-              @csrf
+                @csrf
                 <div class="row py-2">
                   <div class="col">
                     <label for="componentSelect">Zutaten</label>
@@ -56,7 +58,9 @@
                   </div>
                 </div>
               </form>
-              <form id="basicoilsForm" action="" method="post">
+  
+  
+               <form id="basicoilsForm" action="" method="post">
                 @csrf
                 <div class="row py-2">
                   <div class="col">
@@ -69,7 +73,9 @@
                   </div>
                 </div>
               </form>
-              <form id="essentialoilsForm" action="" method="post">
+
+  
+                <form id="essentialoilsForm" action="" method="post">
                 @csrf
                 <div class="row py-2">
                   <div class="col">
@@ -82,123 +88,119 @@
                   </div>
                 </div>
               </form>
-              <form id="applicationsForm" action="" method="post">
-                <div class="row py-2">
-                  <div class="col">
-                    <label for="applicationSelect">Anwendungen</label>
-                    <select class="form-control style widthHeight" name="applicationSelect[]" id="applicationSelect" multiple size="5">
-                      @foreach($applications as $key => $application)
-                        <option name="{{ $application->name }}" value="{{ $application->id }}">{{ $application->name }}</option>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          {{-- Zutaten Menge Unit --}}
+          <div id="componentsCard" class="card">
+            <div class="card-body">
+              <div class="row py-2">
+                <div class="col">
+                  <div class="group">
+                    <div id="components" class="group-label">
+                      <h4>Zutaten</h4>
+                      @foreach($components as $component)
+                      <div id="{{ $component->name }}">
+                        <h6>{{ $component->name }}</h6>
+                        <label class="inp" for="amount">
+                          <input type="text" class="form-control" name="amount">
+                          <span class="label">Menge</span>
+                          <span class="focus-bg"></span>
+                        </label>
+                        <label class="inp" for="unit">
+                          <input type="text" class="form-control" name="unit">
+                          <span class="label">Einheit</span>
+                          <span class="focus-bg"></span>
+                        </label>
+                      </div>
                       @endforeach
-                    </select>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card">
-              <div class="card-body">
-                <div class="row py-2">
-                  <div class="col">
-                    <div class="group">
-                      <div id="components" class="group-label">
-                        <h4>Zutaten</h4>
-                        @foreach($components as $component)
-                        <div id="{{ $component->name }}">
-                          <h6>{{ $component->name }}</h6>
-                          <label class="inp" for="amount">
-                            <input type="text" class="form-control" name="amount">
-                            <span class="label">Menge</span>
-                            <span class="focus-bg"></span>
-                          </label>
-                          <label class="inp" for="unit">
-                            <input type="text" class="form-control" name="unit">
-                            <span class="label">Einheit</span>
-                            <span class="focus-bg"></span>
-                          </label>
-                        </div>
-                        @endforeach
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="row py-2">
-                  <div class="col">
-                    <div class="group">
-                      <div id="basicoils" class="group-label">
-                        <h4>Basis-Öle</h4>
-                        @foreach($basicoils as $basicoil)
-                        <div id="{{ str_replace(' ', '_', $basicoil->name) }}">
-                          <h6>{{ $basicoil->name }}</h6>
-                          <label class="inp" for="amount">
-                            <input type="text" class="form-control" name="amount">
-                            <span class="label">Menge</span>
-                            <span class="focus-bg"></span>
-                          </label>
-                          <label class="inp" for="unit">
-                            <input type="text" class="form-control" name="unit">
-                            <span class="label">Einheit</span>
-                            <span class="focus-bg"></span>
-                          </label>
-                        </div>
-                        @endforeach
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="row py-2">
-                  <div class="col">
-                    <div class="group">
-                      <div id="essentialoils" class="group-label">
-                        <h4>Ätherische-Öle</h4>
-                        @foreach($essentialoils as $essentialoil)
-                        <div id="{{ str_replace(' ', '_', $essentialoil->name_english) }}">
-                          <h6>{{ $essentialoil->name_english }}</h6>
-                          <label class="inp" for="amount">
-                            <input type="text" class="form-control" name="amount">
-                            <span class="label">Menge</span>
-                            <span class="focus-bg"></span>
-                          </label>
-                          <label class="inp" for="unit">
-                            <input type="text" class="form-control" name="unit">
-                            <span class="label">Einheit</span>
-                            <span class="focus-bg"></span>
-                          </label>
-                        </div>
-                        @endforeach
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="row py-2">
-                  <div class="col">
-                    <label class="inp" for="description">
-                      <input class="form-control" name="description" id="description" type="text">
-                      <span class="label">Beschreibung</span>
-                      <span class="focus-bg"></span>
-                    </label>
-                  </div>
-                </div>
-                <div class="row py-2">
-                  <div class="col">
-                    <label class="inp" for="annotation">
-                      <input type="text" class="form-control" name="annotation" id="annotation">
-                      <span class="label">Anmerkung</span>
-                      <span class="focus-bg"></span>
-                    </label>
-                  </div>
-                </div>
-                <div class="row py-2">
-                  <div class="col">
-                    <button type="submit" class="btn btn-dark">anlegen</button>
-                  </div>
+              <div class="row py-2">
+                <div class="col">
+                  <a href="" id="btnComponents" class="btn btn-dark">anlegen</a>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </form>
+        <div class="col-md-3">
+          {{-- Basicoil Menge Unit --}}
+          <div id="basicoilsCard" class="card">
+            <div class="card-body">
+              <div class="row py-2">
+                <div class="col">
+                  <div class="group">
+                    <div id="basicoils" class="group-label">
+                      <h4>Basis-Öle</h4>
+                      @foreach($basicoils as $basicoil)
+                      <div id="{{ str_replace(' ', '_', $basicoil->name) }}">
+                        <h6>{{ $basicoil->name }}</h6>
+                        <label class="inp" for="amount">
+                          <input type="text" class="form-control" name="amount">
+                          <span class="label">Menge</span>
+                          <span class="focus-bg"></span>
+                        </label>
+                        <label class="inp" for="unit">
+                          <input type="text" class="form-control" name="unit">
+                          <span class="label">Einheit</span>
+                          <span class="focus-bg"></span>
+                        </label>
+                      </div>
+                      @endforeach
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row py-2">
+                <div class="col">
+                  <a href="" id="btnBasicoils" class="btn btn-dark">anlegen</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          {{-- Essentialoil Menge Unit --}}
+          <div id="essentialoilsCard" class="card">
+            <div class="card-body">
+              <div class="row py-2">
+                <div class="col">
+                  <div class="group">
+                    <div id="essentialoils" class="group-label">
+                      <h4>Ätherische-Öle</h4>
+                      @foreach($essentialoils as $essentialoil)
+                      <div id="{{ str_replace(' ', '_', $essentialoil->name_english) }}">
+                        <h6>{{ $essentialoil->name_english }}</h6>
+                        <label class="inp" for="amount">
+                          <input type="text" class="form-control" name="amount">
+                          <span class="label">Menge</span>
+                          <span class="focus-bg"></span>
+                        </label>
+                        <label class="inp" for="unit">
+                          <input type="text" class="form-control" name="unit">
+                          <span class="label">Einheit</span>
+                          <span class="focus-bg"></span>
+                        </label>
+                      </div>
+                      @endforeach
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row py-2">
+                <div class="col">
+                  <a href="" id="btnEssentialoils" class="btn btn-dark">anlegen</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 @endsection
 
@@ -219,7 +221,7 @@
         $('#basicoilsForm').hide();
         $('#essentialoilsForm').hide();
         $('#applicationsForm').hide();
-        $('#components').hide();
+        $('#componentsCard').hide();
         $('#components div').hide();
 
         let recipeForm = document.querySelector('#recipeForm');
@@ -254,7 +256,7 @@
         
         componentSelect.onclick = function(e){
           componentSelectboxValue = e.target.getAttribute('name');
-          //components.forEach(function(value, index){
+
             $.ajax({
               type:'POST',
               url:"{{ route('admin.component.recipe.store') }}",
@@ -264,17 +266,15 @@
                 //console.log(data['componentName']);                
                 componentsValue = data['componentName'].replaceAll('_', ' ');
                 if(componentsValue == componentSelectboxValue){
-                  $('#components').show();
+                  $('#componentsCard').show();
                   $('#'+componentsValue.replaceAll(' ', '_')).show();
                 }
 
               }
             });
-
-          //});
         };
 
-        $('#basicoils').hide();
+        $('#basicoilsCard').hide();
         $('#basicoils div').hide();
         let basicoils = document.querySelectorAll('#basicoils div');
         let basicoilSelect = document.querySelector('#basicoilSelect');
@@ -283,7 +283,6 @@
         
         basicoilSelect.onclick = function(e){
           basicoilSelectboxValue = e.target.getAttribute('name');
-          //basicoils.forEach(function(value, index){
             $.ajax({
               type:'POST',
               url:"{{ route('admin.basicoil.recipe.store') }}",
@@ -293,19 +292,16 @@
                 console.log(data);                
                 basicoilsValue = data['basicoilName'].replaceAll('_', ' ');
                 if(basicoilsValue == basicoilSelectboxValue){
-                    $('#basicoils').show();
+                    $('#basicoilsCard').show();
                     $('#'+basicoilSelectboxValue.replaceAll(' ', '_')).show();
                   }
 
               }
             });
-
-
-            //});
         };
 
           
-        $('#essentialoils').hide();
+        $('#essentialoilsCard').hide();
         $('#essentialoils div').hide();
         let essentialoils = document.querySelectorAll('#essentialoils div');
         let essentialoilSelect = document.querySelector('#essentialoilSelect');
@@ -324,7 +320,7 @@
                 console.log(data);                
                 essentialoilsValue = data['essentialoilName'].replaceAll('_', ' ');
                 if(essentialoilsValue == essentialoilSelectboxValue){
-                  $('#essentialoils').show();
+                  $('#essentialoilsCard').show();
                   $('#'+essentialoilsValue.replaceAll(' ', '_')).show();
                 }
 
