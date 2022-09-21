@@ -47,7 +47,7 @@
         </div>
       </div>
       <div class="row py-2">
-        <div class="col-md-4">
+        <div class="col">
           <div class="card">
             <div class="card-header">Anmerkung</div>
             <div class="card-body">{{ $recipe->annotation }}</div>
