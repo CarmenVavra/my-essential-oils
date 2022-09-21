@@ -94,7 +94,27 @@ class BasicoilRecipeController extends Controller
      */
     public function update(Request $request, BasicoilRecipe $basicoilRecipe)
     {
-        //
+        header('Content-Type: application/json; charset = utf-8');
+
+        if(strtolower($_SERVER['REQUEST_METHOD']) == 'put'){
+            if(isset($request->dataArray[0])){
+                $basicoilName = $request->dataArray[0];
+                $basicoil = Basicoil::where('name', $basicoilName)->first();
+                $basicoilRecipe = BasicoilRecipe::where('basicoil_id', $basicoil->id)
+                                                    ->where('recipe_id', $request->recipeId)->first();
+
+                if(!is_null($basicoilRecipe)){
+                    $basicoilRecipe->update([
+                        'amount' => $request->dataArray[1],
+                        'unit' => $request->dataArray[2],
+                    ]);
+                }
+            }
+
+            return response()->json([
+                'response' => 'success',
+            ]);
+        }
     }
 
     /**

@@ -93,9 +93,29 @@ class ComponentRecipeController extends Controller
      * @param  \App\Models\ComponentRecipe  $componentRecipe
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ComponentRecipe $componentRecipe)
+    public function update(Request $request)
     {
-        //
+        header('Content-Type: application/json; charset = utf-8');
+
+        if(strtolower($_SERVER['REQUEST_METHOD']) == 'put'){
+            if(isset($request->dataArray[0])){
+                $componentName = $request->dataArray[0];
+                $component = Component::where('name', $componentName)->first();
+                $componentRecipe = ComponentRecipe::where('component_id', $component->id)
+                                                    ->where('recipe_id', $request->recipeId)->first();
+
+                if(!is_null($componentRecipe)){
+                    $componentRecipe->update([
+                        'amount' => $request->dataArray[1],
+                        'unit' => $request->dataArray[2],
+                    ]);
+                }
+            }
+
+            return response()->json([
+                'response' => 'success',
+            ]);
+        }
     }
 
     /**

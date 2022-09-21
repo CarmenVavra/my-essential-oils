@@ -229,15 +229,14 @@
         let recipeFormName = document.querySelector('#name');
         let recipeFormDescription = document.querySelector('#description');
         let recipeFormAnnotation = document.querySelector('#annotation');
-
+        
         btnRecipeForm.onclick = function(e){
           e.preventDefault();
-
           $.ajax({
             type:'POST',
             url:"{{ route('admin.recipe.store') }}",
             datatype:"json",
-            data:{recipeName:recipeFormName.value, recipeDescription: recipeFormDescription.value, recipeAnnotation: recipeFormAnnotation.value},
+            data:{recipeName:recipeFormName.value, recipeDescription:recipeFormDescription.value, recipeAnnotation:recipeFormAnnotation.value},
             success:function(data){
               $('#componentsForm').show();
               $('#basicoilsForm').show();
@@ -331,17 +330,101 @@
           //});
         };
           
-          
-          
-          
+        let btnAddComponents = document.querySelector('#btnComponents');
+        let requestArray = [];
+        let tmpArray = [];
+        btnAddComponents.onclick = function(e){
+          e.preventDefault();
+          components.forEach(function(value, index){
+            let comp = document.querySelectorAll('#'+value.id+' input');
+            comp.forEach(function(value, index){
+              if(value.value != ''){
+                if(!tmpArray.includes(value.parentElement.parentElement.id)){
+                  tmpArray.push(value.parentElement.parentElement.id);
+                }
+                tmpArray.push(value.value);
+              }
+            });
+
+            $.ajax({
+              type:'PUT',
+              url:"{{ route('admin.component.recipe.update') }}",
+              datatype:"json",
+              data:{recipeId:recipeId, dataArray:tmpArray},
+              success:function(data){
+                console.log(data);                
+              }
+            });
+            tmpArray = [];
+          });
+        };
+
+
+        let btnAddBasicoils = document.querySelector('#btnBasicoils');
+        let boRequestArray = [];
+        let boTmpArray = [];
+        btnAddBasicoils.onclick = function(e){
+          e.preventDefault();
+          basicoils.forEach(function(value, index){
+            let bo = document.querySelectorAll('#'+value.id+' input');
+            bo.forEach(function(value, index){
+              if(value.value != ''){
+                if(!boTmpArray.includes(value.parentElement.parentElement.id)){
+                  boTmpArray.push(value.parentElement.parentElement.id);
+                }
+                boTmpArray.push(value.value);
+              }
+            });
+
+            $.ajax({
+              type:'PUT',
+              url:"{{ route('admin.basicoil.recipe.update') }}",
+              datatype:"json",
+              data:{recipeId:recipeId, dataArray:boTmpArray},
+              success:function(data){
+                console.log(data);                
+              }
+            });
+            boTmpArray = [];
+          });
+        };
+
+        let btnAddEssentialoils = document.querySelector('#btnEssentialoils');
+        let eoRequestArray = [];
+        let eoTmpArray = [];
+        btnAddEssentialoils.onclick = function(e){
+          e.preventDefault();
+          essentialoils.forEach(function(value, index){
+            let eo = document.querySelectorAll('#'+value.id+' input');
+            eo.forEach(function(value, index){
+              if(value.value != ''){
+                if(!eoTmpArray.includes(value.parentElement.parentElement.id)){
+                  eoTmpArray.push(value.parentElement.parentElement.id);
+                }
+                eoTmpArray.push(value.value);
+              }
+            });
+
+            $.ajax({
+              type:'PUT',
+              url:"{{ route('admin.essentialoil.recipe.update') }}",
+              datatype:"json",
+              data:{recipeId:recipeId, dataArray:eoTmpArray},
+              success:function(data){
+                console.log(data);     
+              }
+            });
+            eoTmpArray = [];
+          });
+        };
+
+
 
 
       });
 
 
+      
 
-
-
-
-    </script>
+</script>
 @endsection

@@ -52,8 +52,8 @@ class RecipeController extends Controller
 
             $data = [
                 'name' => $request->recipeName,
-                'description' => $request->description,
-                'annotation' => $request->annotation,
+                'description' => $request->recipeDescription,
+                'annotation' => $request->recipeAnnotation,
             ];
 
             $recipe = Recipe::create($data);
@@ -63,18 +63,7 @@ class RecipeController extends Controller
                 
             ]);
         }
-
-
-
-/*         $request->validate([
-            'name' => 'min:2|max:255',
-        ]);
-
-        //Todo: hier weitermachen
-        dd($request);
-        Recipe::create($request->all());
-        return redirect()->route('admin.recipes.index')->with('success', 'Das Rezept wurde erfolgreich erstellt!');
- */    }
+    }
 
     /**
      * Display the specified resource.

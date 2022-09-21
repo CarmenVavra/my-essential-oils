@@ -94,7 +94,30 @@ class EssentialoilRecipeController extends Controller
      */
     public function update(Request $request, EssentialoilRecipe $essentialoilRecipe)
     {
-        //
+        header('Content-Type: application/json; charset = utf-8');
+
+        if(strtolower($_SERVER['REQUEST_METHOD']) == 'put'){
+            
+            $essentialoilRecipe = '';
+            if(isset($request->dataArray)){
+                $essentialoil = Essentialoil::where('name_english', $request->dataArray[0])->first();
+                $essentialoilRecipe = EssentialoilRecipe::where('recipe_id', $request->recipeId)
+                                                        ->where('essentialoil_id', $essentialoil->id)->first();
+            
+                if(!is_null($essentialoilRecipe)){
+                    $essentialoilRecipe->update([
+                        'recipe_id' => $request->recipeId,
+                        'essentialoil_id' => $essentialoil->id,
+                        'amount' => $request->dataArray[1],
+                        'unit' => $request->dataArray[2],
+                    ]);
+                }
+            }
+        
+            return response()->json([
+                'response' => 'success',
+            ]);
+        }
     }
 
     /**
