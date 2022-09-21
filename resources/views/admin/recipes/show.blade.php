@@ -39,12 +39,14 @@
             </div>
           </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-8">
           <div class="card">
             <div class="card-header">Beschreibung</div>
             <div class="card-body"><pre>{{ $recipe->description }}</pre></div>
           </div>
         </div>
+      </div>
+      <div class="row py-2">
         <div class="col-md-4">
           <div class="card">
             <div class="card-header">Anmerkung</div>
