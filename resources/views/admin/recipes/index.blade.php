@@ -27,6 +27,7 @@
           <th>Name</th>
           <th>Beschreibung</th>
           <th>Anmerkung</th>
+          <th>show</th>
           <th>edit</th>
           <th>delete</th>
         </tr>
@@ -37,6 +38,7 @@
           <td>{{ $recipe->name }}</td>
           <td>{{ $recipe->description }}</td>
           <td>{{ $recipe->annotation }}</td>
+          <td><a href="{{ route('admin.recipe.show', $recipe->id) }}" class="btn btn-show btn-sm">show</a></td>
           <td><a href="{{ route('admin.recipe.edit', $recipe->id) }}" class="btn btn-edit btn-sm">edit</a></td>
           <td>
             <form action="{{ route('admin.recipe.delete', $recipe->id) }}" method="post">

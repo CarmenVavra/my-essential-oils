@@ -33,19 +33,18 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     
                     <!-- Left Side Of Navbar -->
-{{--                     <ul class="navbar-nav me-auto">
+                    <ul class="navbar-nav me-auto">
+                        @if(!empty(Auth::user()) && Auth::user()->role != 1)
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{{ route('home') }}">Home</a>
+                            <a class="nav-link" href="{{ url('/user/dashboard') }}">Dashboard</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/user/dashboard') }}">Mein Bereich</a>
-                        </li>
+                        @endif
                         @if(!empty(Auth::user()) && Auth::user()->role === 1)
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('admin.dashboard') }}">Dashboard</a>
                         </li>
                         @endif
-                    </ul> --}}
+                    </ul>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">

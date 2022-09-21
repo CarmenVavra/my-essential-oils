@@ -200,6 +200,7 @@ Route::get('/user/recipe/{recipe}', [RecipeController::class, 'show'])->name('us
 Route::get('/admin/recipes', [RecipeController::class, 'index'])->name('admin.recipes.index');
 Route::get('/admin/recipe/create', [RecipeController::class, 'create'])->name('admin.recipe.create');
 Route::post('/admin/recipe', [RecipeController::class, 'store'])->name('admin.recipe.store');
+Route::get('/admin/recipe/{recipe}', [RecipeController::class, 'show'])->name('admin.recipe.show');
 Route::get('/admin/recipe/{recipe}/edit', [RecipeController::class, 'edit'])->name('admin.recipe.edit');
 Route::put('/admin/recipe/{recipe}', [RecipeController::class, 'update'])->name('admin.recipe.update');
 Route::delete('/admin/recipe/{recipe}', [RecipeController::class, 'destroy'])->name('admin.recipe.delete');

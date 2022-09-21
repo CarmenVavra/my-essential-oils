@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Application;
 use App\Models\Basicoil;
+use App\Models\BasicoilRecipe;
 use App\Models\Component;
+use App\Models\ComponentRecipe;
 use App\Models\Essentialoil;
+use App\Models\EssentialoilRecipe;
 use App\Models\Recipe;
 use Illuminate\Http\Request;
 
@@ -73,7 +76,41 @@ class RecipeController extends Controller
      */
     public function show(Recipe $recipe)
     {
-        //
+        //components, basicoils, essentialoils from pivottables
+        $componentRecipes = ComponentRecipe::where('recipe_id', $recipe->id)->get();
+        if(!is_null($componentRecipes)){
+            $components = [];
+            foreach($componentRecipes as $compRec){
+                $components[] = Component::join('component_recipes', 'component_id', '=', 'components.id')
+                                            ->where('component_id', $compRec->component_id)
+                                            ->where('recipe_id', $recipe->id)
+                                            ->select('components.*', 'amount', 'unit')->get();
+                }
+        }
+
+        $basicoilRecipes = BasicoilRecipe::where('recipe_id', $recipe->id)->get();
+        if(!is_null($basicoilRecipes)){
+            $basicoils = [];
+            foreach($basicoilRecipes as $boRec){
+                $basicoils[] = Basicoil::join('basicoil_recipes', 'basicoil_id', '=', 'basicoils.id')
+                                            ->where('basicoil_id', $boRec->basicoil_id)
+                                            ->where('recipe_id', $recipe->id)
+                                            ->select('basicoils.*', 'amount', 'unit')->get();
+            }
+        }
+
+        $essentialoilRecipes = EssentialoilRecipe::where('recipe_id', $recipe->id)->get();
+        if(!is_null($essentialoilRecipes)){
+            $essentialoils = [];
+            foreach($essentialoilRecipes as $eoRec){
+                $essentialoils[] = Essentialoil::join('essentialoil_recipes', 'essentialoil_id', '=', 'essentialoils.id')
+                                                ->where('essentialoil_id', $eoRec->essentialoil_id)
+                                                ->where('recipe_id', $recipe->id)
+                                                ->select('essentialoils.*', 'amount', 'unit')->get();
+            }
+        }
+
+        return view('admin.recipes.show', compact('recipe', 'components', 'basicoils', 'essentialoils'));
     }
 
     /**
