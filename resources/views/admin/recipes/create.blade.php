@@ -22,11 +22,8 @@
                 </div>
                 <div class="row py-2">
                   <div class="col">
-                    <label class="inp" for="description">
-                      <input class="form-control" name="description" id="description" type="text">
-                      <span class="label">Beschreibung</span>
-                      <span class="focus-bg"></span>
-                    </label>
+                    <label for="description">Beschreibung</label>
+                    <textarea class="form-control" name="description" id="description" rows="5"></textarea>
                   </div>
                 </div>
                 <div class="row py-2">
