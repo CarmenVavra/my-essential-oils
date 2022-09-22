@@ -98,9 +98,10 @@ class EssentialoilRecipeController extends Controller
 
         if(strtolower($_SERVER['REQUEST_METHOD']) == 'put'){
             
-            $essentialoilRecipe = '';
             if(isset($request->dataArray)){
-                $essentialoil = Essentialoil::where('name_english', $request->dataArray[0])->first();
+                $essentialoilName = $request->dataArray[0];
+                $essentialoilName = str_replace('_', ' ', $essentialoilName);
+                $essentialoil = Essentialoil::where('name_english', $essentialoilName)->first();
                 $essentialoilRecipe = EssentialoilRecipe::where('recipe_id', $request->recipeId)
                                                         ->where('essentialoil_id', $essentialoil->id)->first();
             

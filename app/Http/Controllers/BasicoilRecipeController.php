@@ -99,6 +99,7 @@ class BasicoilRecipeController extends Controller
         if(strtolower($_SERVER['REQUEST_METHOD']) == 'put'){
             if(isset($request->dataArray[0])){
                 $basicoilName = $request->dataArray[0];
+                $basicoilName = str_replace('_', ' ', $basicoilName);
                 $basicoil = Basicoil::where('name', $basicoilName)->first();
                 $basicoilRecipe = BasicoilRecipe::where('basicoil_id', $basicoil->id)
                                                     ->where('recipe_id', $request->recipeId)->first();

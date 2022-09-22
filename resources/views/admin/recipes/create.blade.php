@@ -99,7 +99,7 @@
                     <div id="components" class="group-label">
                       <h4>Zutaten</h4>
                       @foreach($components as $component)
-                      <div id="{{ $component->name }}">
+                      <div id="{{ str_replace(' ', '_', $component->name) }}">
                         <h6>{{ $component->name }}</h6>
                         <label class="inp" for="amount">
                           <input type="text" class="form-control" name="amount">
@@ -244,7 +244,6 @@
           }); 
         };
 
-
         let components = document.querySelectorAll('#components div');
         let componentSelect = document.querySelector('#componentSelect');
         let componentsValue = '';
@@ -252,7 +251,7 @@
         
         componentSelect.onclick = function(e){
           componentSelectboxValue = e.target.getAttribute('name');
-
+          console.log(componentSelectboxValue);
             $.ajax({
               type:'POST',
               url:"{{ route('admin.component.recipe.store') }}",
@@ -263,7 +262,7 @@
                 componentsValue = data['componentName'].replaceAll('_', ' ');
                 if(componentsValue == componentSelectboxValue){
                   $('#componentsCard').show();
-                  $('#'+componentsValue.replaceAll(' ', '_')).show();
+                  $('#'+componentSelectboxValue.replaceAll(' ', '_')).show();
                 }
 
               }

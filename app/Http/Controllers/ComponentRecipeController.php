@@ -100,6 +100,7 @@ class ComponentRecipeController extends Controller
         if(strtolower($_SERVER['REQUEST_METHOD']) == 'put'){
             if(isset($request->dataArray[0])){
                 $componentName = $request->dataArray[0];
+                $componentName = str_replace('_', ' ', $componentName);
                 $component = Component::where('name', $componentName)->first();
                 $componentRecipe = ComponentRecipe::where('component_id', $component->id)
                                                     ->where('recipe_id', $request->recipeId)->first();
