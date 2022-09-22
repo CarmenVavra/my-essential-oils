@@ -34,7 +34,7 @@
       </thead>
       <tbody>
         @foreach($recipes as $recipe)
-        <tr>
+        <tr class="textoverflow">
           <td>{{ $recipe->name }}</td>
           <td>{{ $recipe->description }}</td>
           <td>{{ $recipe->annotation }}</td>

@@ -71,6 +71,14 @@
   padding: 0px 10px;
 }
 
+.textoverflow td { 
+	width:48%;
+	max-width: 220px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow:ellipsis;
+}
+
 /* .card-img-overlay .transparent{
   opacity: 0.5; 
 } */
