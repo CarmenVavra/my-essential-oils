@@ -120,8 +120,26 @@ class RecipeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(Recipe $recipe)
-    {
-        return view('admin.recipes.edit', compact('recipe'));
+    {   
+        $componentsList = Component::all()->sortBy('name');
+        $components = Component::select('components.*', 'amount', 'unit')
+                                ->leftjoin('component_recipes', 'components.id', '=', 'component_id')
+                                ->where('recipe_id', $recipe->id)
+                                ->orderBy('name')->get();
+        // dd($components);
+        $basicoilsList = Basicoil::all()->sortBy('name');
+        $basicoils = Basicoil::join('basicoil_recipes', 'basicoil_id', '=', 'basicoils.id')
+                                ->where('recipe_id', $recipe->id)
+                                ->select('basicoils.*', 'amount', 'unit')->orderBy('name')->get();
+
+        $essentialoilsList = Essentialoil::all()->sortBy('name_english');
+        $essentialoils = Essentialoil::join('essentialoil_recipes', 'essentialoil_id', '=', 'essentialoils.id')
+                                ->where('recipe_id', $recipe->id)
+                                ->select('essentialoils.*', 'amount', 'unit')->orderBy('name_english')->get();
+
+        //$components = Component::all()->sortBy('name');
+
+        return view('admin.recipes.edit', compact('recipe', 'essentialoils', 'basicoils', 'components', 'componentsList', 'basicoilsList', 'essentialoilsList'));
     }
 
     /**
@@ -133,12 +151,26 @@ class RecipeController extends Controller
      */
     public function update(Request $request, Recipe $recipe)
     {
-        $request->validate([
-            'name' => 'min:2|max:255',
-        ]);
 
-        $recipe->update($request->all());
-        return redirect()->route('admin.recipes.index')->with('success', 'Das Rezept wurde erfolgreich geändert!');
+        header('Content-Type: application/json; charset = utf-8');
+
+        if(strtolower($_SERVER['REQUEST_METHOD']) == 'put'){
+
+            $data = [
+                'name' => $request->recipeName,
+                'description' => $request->recipeDescription,
+                'annotation' => $request->recipeAnnotation,
+            ];
+
+            $recipe = Recipe::find($request->recipeId);
+            $recipe->update($data);
+
+            return response()->json([
+                'recipe'=>$recipe,
+                
+            ]);
+        }
+
     }
 
     /**
@@ -149,6 +181,9 @@ class RecipeController extends Controller
      */
     public function destroy(Recipe $recipe)
     {
+        ComponentRecipe::where('recipe_id', $recipe->id)->delete();
+        BasicoilRecipe::where('recipe_id', $recipe->id)->delete();
+        EssentialoilRecipe::where('recipe_id', $recipe->id)->delete();
         $recipe->delete();
         return redirect()->route('admin.recipes.index')->with('success', 'Das Rezept wurde erfolgreich gelöscht!');
     }

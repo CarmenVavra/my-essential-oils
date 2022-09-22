@@ -202,7 +202,7 @@ Route::get('/admin/recipe/create', [RecipeController::class, 'create'])->name('a
 Route::post('/admin/recipe', [RecipeController::class, 'store'])->name('admin.recipe.store');
 Route::get('/admin/recipe/{recipe}', [RecipeController::class, 'show'])->name('admin.recipe.show');
 Route::get('/admin/recipe/{recipe}/edit', [RecipeController::class, 'edit'])->name('admin.recipe.edit');
-Route::put('/admin/recipe/{recipe}', [RecipeController::class, 'update'])->name('admin.recipe.update');
+Route::put('/admin/recipe', [RecipeController::class, 'update'])->name('admin.recipe.update');
 Route::delete('/admin/recipe/{recipe}', [RecipeController::class, 'destroy'])->name('admin.recipe.delete');
 
 Route::get('/admin/components', [ComponentController::class, 'index'])->name('admin.components.index');
