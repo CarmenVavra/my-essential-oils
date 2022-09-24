@@ -138,6 +138,7 @@
                       @foreach($basicoils as $basicoil)
                       <div id="{{ str_replace(' ', '_', $basicoil->name) }}">
                         <h6>{{ $basicoil->name }}</h6>
+                        <a class="basicoil-delete btn btn-delete" name='{{ $basicoil->name }}' id='{{ $basicoil->name }}' href="">löschen</a>
                         <label class="inp" for="amount">
                           <input type="text" class="form-control" name="amount">
                           <span class="label">Menge</span>
@@ -174,6 +175,7 @@
                       @foreach($essentialoils as $essentialoil)
                       <div id="{{ str_replace(' ', '_', $essentialoil->name_english) }}">
                         <h6>{{ $essentialoil->name_english }}</h6>
+                        <a class="essentialoil-delete btn btn-delete" name='{{ $essentialoil->name_english }}' id='{{ $essentialoil->name_english }}' href="">löschen</a>
                         <label class="inp" for="amount">
                           <input type="text" class="form-control" name="amount">
                           <span class="label">Menge</span>
@@ -417,7 +419,6 @@
 
 
         let btnsComponentDelete = document.querySelectorAll('.component-delete');
-        
         btnsComponentDelete.forEach(function(value, index){
           value.onclick = function(e){
             console.log('value', value);
@@ -437,6 +438,45 @@
           }
         });
 
+        let btnsBasicoilDelete = document.querySelectorAll('.basicoil-delete');
+        btnsBasicoilDelete.forEach(function(value, index){
+          value.onclick = function(e){
+            console.log('value', value);
+            e.preventDefault();
+            $.ajax({
+              type:'DELETE',
+              url:"{{ route('admin.basicoil.recipe.delete') }}",
+              datatype:"json",
+              data:{recipeId:recipeId, data:e.target.id},
+              success:function(data){
+                data = data.response.replaceAll(' ', '_');
+                $('#'+data).hide();
+                console.log(data);     
+              }
+            });
+            //console.log('e.target', e.target.id);
+          }
+        });
+
+        let btnsEssentialoilDelete = document.querySelectorAll('.essentialoil-delete');
+        btnsEssentialoilDelete.forEach(function(value, index){
+          value.onclick = function(e){
+            console.log('value', value);
+            e.preventDefault();
+            $.ajax({
+              type:'DELETE',
+              url:"{{ route('admin.essentialoil.recipe.delete') }}",
+              datatype:"json",
+              data:{recipeId:recipeId, data:e.target.id},
+              success:function(data){
+                data = data.response.replaceAll(' ', '_');
+                $('#'+data).hide();
+                console.log(data);     
+              }
+            });
+            //console.log('e.target', e.target.id);
+          }
+        });
 
 
 

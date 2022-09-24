@@ -130,7 +130,7 @@ class ComponentRecipeController extends Controller
         header('Content-Type: application/json; charset = utf-8');
 
         if(strtolower($_SERVER['REQUEST_METHOD']) == 'delete'){
-/*              if(isset($request->data)){
+             if(isset($request->data)){
                 $componentName = $request->data;
                 $componentName = str_replace('_', ' ', $componentName);
                 $component = Component::where('name', $componentName)->first();
@@ -140,7 +140,7 @@ class ComponentRecipeController extends Controller
                 if(!is_null($componentRecipe)){
                     $componentRecipe->delete();
                 }
-            } */
+            }
 
             return response()->json([
                 'response' => $request->data,

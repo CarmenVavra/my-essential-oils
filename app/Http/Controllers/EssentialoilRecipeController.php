@@ -127,8 +127,26 @@ class EssentialoilRecipeController extends Controller
      * @param  \App\Models\EssentialoilRecipe  $essentialoilRecipe
      * @return \Illuminate\Http\Response
      */
-    public function destroy(EssentialoilRecipe $essentialoilRecipe)
+    public function destroy(Request $request)
     {
-        //
+        header('Content-Type: application/json; charset = utf-8');
+
+        if(strtolower($_SERVER['REQUEST_METHOD']) == 'delete'){
+             if(isset($request->data)){
+                $essentialoilName = $request->data;
+                $essentialoilName = str_replace('_', ' ', $essentialoilName);
+                $essentialoil = Essentialoil::where('name_english', $essentialoilName)->first();
+                $essentialoilRecipe = EssentialoilRecipe::where('essentialoil_id', $essentialoil->id)
+                                                       ->where('recipe_id', $request->recipeId)->first();
+
+                if(!is_null($essentialoilRecipe)){
+                    $essentialoilRecipe->delete();
+                }
+            }
+
+            return response()->json([
+                'response' => $request->data,
+            ]);
+        }
     }
 }

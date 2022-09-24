@@ -124,8 +124,26 @@ class BasicoilRecipeController extends Controller
      * @param  \App\Models\BasicoilRecipe  $basicoilRecipe
      * @return \Illuminate\Http\Response
      */
-    public function destroy(BasicoilRecipe $basicoilRecipe)
+    public function destroy(Request $request)
     {
-        //
+        header('Content-Type: application/json; charset = utf-8');
+
+        if(strtolower($_SERVER['REQUEST_METHOD']) == 'delete'){
+             if(isset($request->data)){
+                $basicoilName = $request->data;
+                $basicoilName = str_replace('_', ' ', $basicoilName);
+                $basicoil = Basicoil::where('name', $basicoilName)->first();
+                $basicoilRecipe = BasicoilRecipe::where('basicoil_id', $basicoil->id)
+                                                    ->where('recipe_id', $request->recipeId)->first();
+
+                if(!is_null($basicoilRecipe)){
+                    $basicoilRecipe->delete();
+                }
+            }
+
+            return response()->json([
+                'response' => $request->data,
+            ]);
+        }
     }
 }
