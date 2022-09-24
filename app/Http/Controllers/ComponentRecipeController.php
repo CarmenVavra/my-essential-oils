@@ -125,9 +125,27 @@ class ComponentRecipeController extends Controller
      * @param  \App\Models\ComponentRecipe  $componentRecipe
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ComponentRecipe $componentRecipe)
+    public function destroy(Request $request)
     {
-        //
+        header('Content-Type: application/json; charset = utf-8');
+
+        if(strtolower($_SERVER['REQUEST_METHOD']) == 'delete'){
+/*              if(isset($request->data)){
+                $componentName = $request->data;
+                $componentName = str_replace('_', ' ', $componentName);
+                $component = Component::where('name', $componentName)->first();
+                $componentRecipe = ComponentRecipe::where('component_id', $component->id)
+                                                    ->where('recipe_id', $request->recipeId)->first();
+
+                if(!is_null($componentRecipe)){
+                    $componentRecipe->delete();
+                }
+            } */
+
+            return response()->json([
+                'response' => $request->data,
+            ]);
+        }
     }
 
     public function createOrUpdate(Request $request){

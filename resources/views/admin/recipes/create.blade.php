@@ -101,6 +101,7 @@
                       @foreach($components as $component)
                       <div id="{{ str_replace(' ', '_', $component->name) }}">
                         <h6>{{ $component->name }}</h6>
+                        <a class="component-delete btn btn-delete" name='{{ $component->name }}' id='{{ $component->name }}' href="">löschen</a>
                         <label class="inp" for="amount">
                           <input type="text" class="form-control" name="amount">
                           <span class="label">Menge</span>
@@ -413,6 +414,29 @@
             eoTmpArray = [];
           });
         };
+
+
+        let btnsComponentDelete = document.querySelectorAll('.component-delete');
+        
+        btnsComponentDelete.forEach(function(value, index){
+          value.onclick = function(e){
+            console.log('value', value);
+            e.preventDefault();
+            $.ajax({
+              type:'DELETE',
+              url:"{{ route('admin.component.recipe.delete') }}",
+              datatype:"json",
+              data:{recipeId:recipeId, data:e.target.id},
+              success:function(data){
+                data = data.response.replaceAll(' ', '_');
+                $('#'+data).hide();
+                console.log(data);     
+              }
+            });
+            //console.log('e.target', e.target.id);
+          }
+        });
+
 
 
 

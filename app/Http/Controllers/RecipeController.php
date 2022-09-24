@@ -123,8 +123,8 @@ class RecipeController extends Controller
     {   
         $componentsList = Component::all()->sortBy('name');
         $components = Component::select('components.*', 'amount', 'unit')
-                                ->leftjoin('component_recipes', 'components.id', '=', 'component_id')
-                                ->where('recipe_id', $recipe->id)
+                                ->leftjoin('component_recipes as comp_rec', 'components.id', '=', 'comp_rec.component_id')
+                                ->where('comp_rec.recipe_id', $recipe->id)
                                 ->orderBy('name')->get();
         // dd($components);
         $basicoilsList = Basicoil::all()->sortBy('name');

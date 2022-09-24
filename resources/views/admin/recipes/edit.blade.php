@@ -100,6 +100,7 @@
                   <div class="group">
                     <div id="components" class="group-label">
                       <h4>Zutaten</h4>
+                      
                       @foreach($components as $component)
                       <div id="{{ str_replace(' ', '_', $component->name) }}">
                         <h6>{{ $component->name }}</h6>
@@ -268,8 +269,29 @@
                 console.log('componentsValue', componentsValue, 'componentSelectboxValue', componentSelectboxValue);
                 if(componentsValue == componentSelectboxValue){
                   $('#componentsCard').show();
-                  $('#'+componentSelectboxValue.replaceAll(' ', '_')).show();
+                  $('#components').append('Hallo');
+                  //$('#'+componentSelectboxValue.replaceAll(' ', '_')).show();
                 }
+
+                // <div id="{{ str_replace(' ', '_', $component->name) }}">
+                //         <h6>{{ $component->name }}</h6>
+                //         <label class="inp" for="amount">
+                //           <input type="text" class="form-control" name="amount" value="{{ old('amount', $component->amount) }}">
+                //           <span class="label">Menge</span>
+                //           <span class="focus-bg"></span>
+                //         </label>
+                //         <label class="inp" for="unit">
+                //           <input type="text" class="form-control" name="unit" value="{{ old('unit', $component->unit) }}">
+                //           <span class="label">Einheit</span>
+                //           <span class="focus-bg"></span>
+                //         </label>
+                //       </div>
+
+
+
+
+
+
 
               }
             });

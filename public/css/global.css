@@ -83,6 +83,11 @@
   opacity: 0.5; 
 } */
 
+#components h6{
+  display: inline;
+  margin-right: 50%;
+}
+
 .wdr-bg-row1{
   background-color: #735E93;
 }
