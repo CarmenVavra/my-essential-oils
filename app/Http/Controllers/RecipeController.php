@@ -122,8 +122,8 @@ class RecipeController extends Controller
     public function edit(Recipe $recipe)
     {   
         $componentsList = Component::all()->sortBy('name');
-        $components = Component::select('components.*', 'amount', 'unit')
-                                ->leftjoin('component_recipes as comp_rec', 'components.id', '=', 'comp_rec.component_id')
+        $components = Component::select('components.*', 'comp_rec.amount', 'comp_rec.unit')
+                                ->join('component_recipes as comp_rec', 'components.id', '=', 'comp_rec.component_id')
                                 ->where('comp_rec.recipe_id', $recipe->id)
                                 ->orderBy('name')->get();
         // dd($components);

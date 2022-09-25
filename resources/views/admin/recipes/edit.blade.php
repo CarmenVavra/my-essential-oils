@@ -256,6 +256,7 @@
         let componentSelectboxValue = '';
         
         componentSelect.onclick = function(e){
+          console.log('componentSelect e.targt ', e.target.getAttribute('name'));
           componentSelectboxValue = e.target.getAttribute('name');
           console.log('componentSelectboxValue', componentSelectboxValue);
             $.ajax({
@@ -265,34 +266,29 @@
               data:{recipeId:recipeId, name:componentSelectboxValue},
               success:function(data){
                 //console.log(data['componentName']);                
-                componentsValue = data['componentName'].replaceAll('_', ' ');
+                componentsValue = data['componentName'];
                 console.log('componentsValue', componentsValue, 'componentSelectboxValue', componentSelectboxValue);
                 if(componentsValue == componentSelectboxValue){
                   $('#componentsCard').show();
-                  $('#components').append('Hallo');
-                  //$('#'+componentSelectboxValue.replaceAll(' ', '_')).show();
+                  //TODO: check this out .. amount und unit werden nicht in DB geschrieben
+                  $('#components').append("<div name=\""+componentsValue.replaceAll('_', ' ')+"\" id=\""+componentsValue.replaceAll('_', ' ')+"\">"+
+                                          "<h6>"+componentsValue+"</h6>"+
+                                          "<label class=\"inp\" for=\"amount\">"+
+                                          "<input type=\"text\" class=\"form-control\" name=\"amount\">"+
+                                          "<span class=\"label\">Menge</span>"+
+                                          "<span class=\"focus-bg\"></span>"+
+                                          "</label>"+
+                                          "<label class=\"inp\" for=\"unit\">"+
+                                          "<input type=\"text\" class=\"form-control\" name=\"unit\">"+
+                                          "<span class=\"label\">Einheit</span>"+
+                                          "<span class=\"focus-bg\"></span>"+
+                                        "</label>"+
+                                      "</div>");
+                  $('#'+componentSelectboxValue.replaceAll(' ', '_')).show();
+
                 }
 
-                // <div id="{{ str_replace(' ', '_', $component->name) }}">
-                //         <h6>{{ $component->name }}</h6>
-                //         <label class="inp" for="amount">
-                //           <input type="text" class="form-control" name="amount" value="{{ old('amount', $component->amount) }}">
-                //           <span class="label">Menge</span>
-                //           <span class="focus-bg"></span>
-                //         </label>
-                //         <label class="inp" for="unit">
-                //           <input type="text" class="form-control" name="unit" value="{{ old('unit', $component->unit) }}">
-                //           <span class="label">Einheit</span>
-                //           <span class="focus-bg"></span>
-                //         </label>
-                //       </div>
-
-
-
-
-
-
-
+  
               }
             });
         };
@@ -362,6 +358,7 @@
           components.forEach(function(value, index){
             let comp = document.querySelectorAll('#'+value.id+' input');
             comp.forEach(function(value, index){
+              //console.log('value', value);
               if(value.value != ''){
                 if(!tmpArray.includes(value.parentElement.parentElement.id)){
                   tmpArray.push(value.parentElement.parentElement.id);

@@ -21,29 +21,20 @@
                 </div>
                 <div class="row py-2">
                   <div class="col">
-                    <label class="inp" for="description">
-                      <input class="form-control" name="description" id="description" type="text">
-                      <span class="label">Beschreibung</span>
-                      <span class="focus-bg"></span>
-                    </label>
+                    <label class="inp" for="description">Beschreibung</label>
+                    <textarea class="form-control" name="description" id="description" rows="5"></textarea>
                   </div>
                 </div>
                 <div class="row py-2">
                   <div class="col">
-                    <label class="inp" for="physicalEffect">
-                      <input type="text" class="form-control" name="physical_effect" id="physicalEffect">
-                      <span class="label">Körperliche Wirkung</span>
-                      <span class="focus-bg"></span>
-                    </label>
+                    <label class="inp" for="physicalEffect">Körperliche Wirkung</label>
+                    <textarea class="form-control" name="physical_effect" id="physicalEffect" rows="5"></textarea>
                   </div>
                 </div>
                 <div class="row py-2">
                   <div class="col">
-                    <label class="inp" for="mentalEffect">
-                      <input type="text" class="form-control" name="mental_effect" id="mentalEffect">
-                      <span class="label">Psychische Wirkung</span>
-                      <span class="focus-bg"></span>
-                    </label>
+                    <label class="inp" for="mentalEffect">Psychische Wirkung</label>
+                    <textarea class="form-control" name="mental_effect" id="mentalEffect" rows="5"></textarea>
                   </div>
                 </div>
                 <div class="row py-2">
