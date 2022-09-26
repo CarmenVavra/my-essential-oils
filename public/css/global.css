@@ -228,6 +228,10 @@ body{
   background-color: #eded84;
 }
 
+.bg-card-incredients{
+  background-color: #97e7f1;
+}
+
 .navbar-brand, .nav-link{
   color: #EFF1EF;
 }
