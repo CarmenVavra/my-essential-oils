@@ -19,7 +19,6 @@
       </button>
     </a>
 
-
     {{-- <a href="{{ route('admin.incredient.create') }}" class="btn btn-secondary">Neu</a> --}}
     <table class="table table-hover table-oils table-striped">
       <thead>
@@ -29,8 +28,10 @@
           <th>Körperliche Wirkung</th>
           <th>Psychische Wirkung</th>
           <th>show</th>
+          @if(Auth::user() != null && Auth::user()->role == 1)
           <th>edit</th>
           <th>delete</th>
+          @endif
         </tr>
       </thead>
       <tbody>
@@ -41,6 +42,7 @@
           <td>{{ $incredient->physical_effect }}</td>
           <td>{{ $incredient->mental_effect }}</td>
           <td><a href="{{ route('admin.incredient.show', $incredient->id) }}" class="btn btn-show btn-sm">show</a></td>
+          @if(Auth::user() != null && Auth::user()->role == 1)
           <td><a href="{{ route('admin.incredient.edit', $incredient->id) }}" class="btn btn-edit btn-sm">edit</a></td>
           <td>
             <form action="{{ route('admin.incredient.delete', $incredient->id) }}" method="post">
@@ -49,6 +51,7 @@
               <button type="submit" class="btn btn-delete btn-sm"><strong>X</strong></button>
             </form>
           </td>
+          @endif
         </tr>
         @endforeach
       </tbody>
