@@ -53,7 +53,7 @@ class IncredientController extends Controller
      */
     public function show(Incredient $incredient)
     {
-        //
+        return view('admin.incredients.show', compact('incredient'));
     }
 
     /**

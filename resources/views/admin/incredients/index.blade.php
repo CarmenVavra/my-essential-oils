@@ -28,6 +28,7 @@
           <th>Beschreibung</th>
           <th>Körperliche Wirkung</th>
           <th>Psychische Wirkung</th>
+          <th>show</th>
           <th>edit</th>
           <th>delete</th>
         </tr>
@@ -39,6 +40,7 @@
           <td>{{ $incredient->description }}</td>
           <td>{{ $incredient->physical_effect }}</td>
           <td>{{ $incredient->mental_effect }}</td>
+          <td><a href="{{ route('admin.incredient.show', $incredient->id) }}" class="btn btn-show btn-sm">show</a></td>
           <td><a href="{{ route('admin.incredient.edit', $incredient->id) }}" class="btn btn-edit btn-sm">edit</a></td>
           <td>
             <form action="{{ route('admin.incredient.delete', $incredient->id) }}" method="post">

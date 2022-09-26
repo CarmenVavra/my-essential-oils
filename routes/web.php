@@ -103,6 +103,7 @@ Route::delete('/scentdirection/{scentdirection}', [ScentdirectionController::cla
 Route::get('/incredients', [IncredientController::class, 'index'])->name('admin.incredients.index');
 Route::get('/incredient/create', [IncredientController::class, 'create'])->name('admin.incredient.create');
 Route::post('/incredient', [IncredientController::class, 'store'])->name('admin.incredient.store');
+Route::get('/incredient/{incredient}', [IncredientController::class, 'show'])->name('admin.incredient.show');
 Route::get('/incredient/{incredient}/edit', [IncredientController::class, 'edit'])->name('admin.incredient.edit');
 Route::put('/incredient/{incredient}', [IncredientController::class, 'update'])->name('admin.incredient.update');
 Route::delete('/incredient/{incredient}', [IncredientController::class, 'destroy'])->name('admin.incredient.delete');
