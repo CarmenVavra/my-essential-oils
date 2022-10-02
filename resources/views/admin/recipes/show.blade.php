@@ -42,7 +42,7 @@
         <div class="col-md-8">
           <div class="card">
             <div class="card-header">Beschreibung</div>
-            <div class="card-body"><pre>{{ $recipe->description }}</pre></div>
+            <div class="card-body">{{ $recipe->description }}</div>
           </div>
         </div>
       </div>
