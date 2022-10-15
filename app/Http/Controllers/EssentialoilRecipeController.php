@@ -47,6 +47,8 @@ class EssentialoilRecipeController extends Controller
             $data = [
                 'recipe_id' => $request->recipeId,
                 'essentialoil_id' => $essentialoil->id,
+                'amount' => $request->amount,
+                'unit' => $request->unit,
             ];
 
             if(is_null($essentialoilRecipe)){

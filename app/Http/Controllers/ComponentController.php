@@ -75,9 +75,11 @@ class ComponentController extends Controller
      */
     public function update(Request $request, Component $component)
     {
-        $request->validate([
+        // dd($request);
+
+/*         $request->validate([
             'name' => 'min:2|max:255',
-        ]);
+        ]); */
 
         $component->update($request->all());
         return redirect()->route('admin.components.index')->with('success', 'Die Zutat wurde erfolgreich geändert!');

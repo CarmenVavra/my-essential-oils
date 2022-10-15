@@ -43,7 +43,7 @@
                 <div class="row py-2">
                   <div class="col">
                     <label class="inp" for="reason_good_for">
-                      <input type="text" class="form-control" name="good_for" id="reason_good_for" value="{{ old('reason_good_for', $component->reason_good_for) }}">
+                      <input type="text" class="form-control" name="reason_good_for" id="reason_good_for" value="{{ old('reason_good_for', $component->reason_good_for) }}">
                       <span class="label">Begründung</span>
                       <span class="focus-bg"></span>
                     </label>
