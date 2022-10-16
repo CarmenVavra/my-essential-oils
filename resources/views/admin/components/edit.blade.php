@@ -52,7 +52,7 @@
                 <div class="row py-2">
                   <div class="col">
                     <label class="inp" for="bad_for">
-                      <input type="text" class="form-control" name="bad_for" id="bad_for" value="{{ old('bad_for', $component->good_for) }}">
+                      <input type="text" class="form-control" name="bad_for" id="bad_for" value="{{ old('bad_for', $component->bad_for) }}">
                       <span class="label">Nicht geeignet</span>
                       <span class="focus-bg"></span>
                     </label>
@@ -61,7 +61,7 @@
                 <div class="row py-2">
                   <div class="col">
                     <label class="inp" for="reason_bad_for">
-                      <input type="text" class="form-control" name="reason_bad_for" id="reason_bad_for" value="{{ old('reason_bad_for', $component->good_for) }}">
+                      <input type="text" class="form-control" name="reason_bad_for" id="reason_bad_for" value="{{ old('reason_bad_for', $component->bad_for) }}">
                       <span class="label">Begründung</span>
                       <span class="focus-bg"></span>
                     </label>
