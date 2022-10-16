@@ -11,6 +11,7 @@ class Component extends Model
 
     protected $fillable = [
         'name',
+        'description',
         'good_for',
         'reason_good_for',
         'bad_for',

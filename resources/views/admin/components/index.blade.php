@@ -36,6 +36,7 @@
       </thead>
       <tbody>
         @foreach($components as $component)
+        
         <tr>
           <td>{{ $component->name }}</td>
           <td>{{ $component->description }}</td>
