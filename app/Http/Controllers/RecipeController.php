@@ -32,6 +32,18 @@ class RecipeController extends Controller
      */
     public function create()
     {
+
+//        header('Content-Type: application/json; charset = utf-8');
+
+/*         if(strtolower($_SERVER['REQUEST_METHOD']) == 'get'){
+
+        
+            return response()->json([
+                'recipe'=>'success',
+                
+            ]);
+        } */
+
         $essentialoils = Essentialoil::all()->sortBy('name_english');
         $basicoils = Basicoil::all()->sortBy('name');
         $components = Component::all()->sortBy('name');

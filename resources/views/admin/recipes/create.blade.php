@@ -46,7 +46,7 @@
                 @csrf
                 <div class="row py-2">
                   <div class="col">
-                    <label for="componentSelect">Zutaten</label>
+                    <label for="componentSelect">Zutaten</label><span><a href="" id="newComponentLink" target="_blank">Neu</a></span>
                     <select class="form-control style widthHeight" name="componentSelect" id="componentSelect" size="5">
                       @foreach($components as $key => $component)
                         <option name="{{ $component->name }}" value="{{ $component->id }}">{{ $component->name }}</option>
@@ -252,6 +252,22 @@
         let componentsValue = '';
         let componentSelectboxValue = '';
         
+        let newComponentLink = document.querySelector('#newComponentLink');
+        newComponentLink.onclick = function(e){
+          e.preventDefault();
+
+          $.ajax({
+              type:'GET',
+              url:"{{ route('admin.component.create') }}",
+              datatype:"json",
+              data:{},
+              success:function(data){
+                $('#newComponentLink').attr('target', '_blank');
+
+              }
+            });
+        };
+
         componentSelect.onclick = function(e){
           componentSelectboxValue = e.target.getAttribute('name');
           console.log(componentSelectboxValue);
